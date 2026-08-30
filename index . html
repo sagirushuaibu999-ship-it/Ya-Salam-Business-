@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>YA SALAM BUSINESS</title>
+<meta name="description" content="Professional MTN and Airtel recharge card printing services.">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#0d1830;background:#fffdf6}
+nav{height:78px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 6%;box-shadow:0 2px 12px #00000012;position:sticky;top:0;z-index:5}
+.logo{font-weight:800;font-size:27px;line-height:.85}.logo span{display:block;color:#d92626;font-size:13px;letter-spacing:5px;margin-top:8px}
+.links{display:flex;gap:30px}.links a{color:#10182b;text-decoration:none;font-weight:700}.links a:first-child{color:#e12626}
+.wa{background:#079b48;color:#fff;text-decoration:none;padding:15px 22px;border-radius:9px;font-weight:700}
+.hero{min-height:600px;padding:75px 6%;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:35px;background:radial-gradient(circle at 10% 30%,#fff4d9,transparent 35%),#fffdf6}
+.kicker{color:#df2929;letter-spacing:5px;font-weight:800}.hero h1{font-size:70px;line-height:.95;margin:22px 0}.hero h1 span{color:#dc2929}.hero h2{font-size:32px;margin:25px 0 12px}.hero p{font-size:20px;line-height:1.6;color:#4b5568;max-width:600px}
+.cards{position:relative;height:430px}.card{position:absolute;width:80%;padding:45px 35px;border-radius:24px;box-shadow:0 20px 35px #0003;font-size:30px;font-weight:800}.mtn{background:#ffd100;color:#111;right:0;top:10px;transform:rotate(-4deg)}.airtel{background:#ef1717;color:#fff;left:0;bottom:15px;transform:rotate(3deg)}.pin{margin-top:45px;background:#eee;border-radius:12px;padding:20px;text-align:center;color:#222;font-size:18px}
+.features{margin:-20px 6% 60px;background:#fff;border-radius:18px;box-shadow:0 10px 30px #00000012;padding:30px;display:grid;grid-template-columns:repeat(4,1fr);gap:25px}.feature h3{margin-bottom:7px}.feature p{color:#596275;line-height:1.5}
+footer{text-align:center;padding:30px;background:#111a2d;color:#fff}
+@media(max-width:850px){.links{display:none}.hero{grid-template-columns:1fr;padding-top:45px}.hero h1{font-size:52px}.cards{height:360px}.features{grid-template-columns:1fr 1fr}.wa{padding:12px 14px}}
+@media(max-width:520px){nav{padding:0 5%}.hero{padding:40px 5%}.hero h1{font-size:43px}.hero h2{font-size:27px}.hero p{font-size:17px}.cards{height:310px}.card{width:92%;padding:30px 22px;font-size:23px}.features{margin:0 5% 40px;grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">YA SALAM<span>BUSINESS</span></div>
+  <div class="links"><a href="#">Home</a><a href="#about">About Us</a><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a></div>
+  <a class="wa" href="https://wa.me/2347069205190" target="_blank" rel="noopener">Contact on WhatsApp</a>
+</nav>
+<section class="hero">
+  <div>
+    <div class="kicker">WELCOME TO</div>
+    <h1>YA SALAM<br><span>BUSINESS</span></h1>
+    <h2>Recharge Card Printing<br><span style="color:#dc2929">Made Easy</span></h2>
+    <p>Professional recharge card printing services for MTN and Airtel. Get your recharge cards printed quickly and conveniently.</p>
+    <a class="wa" href="https://wa.me/2347069205190" target="_blank" rel="noopener">Contact on WhatsApp</a>
+  </div>
+  <div class="cards">
+    <div class="card mtn">MTN<br><small>RECHARGE CARD</small><div class="pin">1234 5678 9012 3456</div></div>
+    <div class="card airtel">airtel<br><small>RECHARGE CARD</small><div class="pin">1234 5678 9012 3456</div></div>
+  </div>
+</section>
+<section class="features" id="services">
+  <div class="feature"><h3>🖨️ High Quality</h3><p>Top-quality printing for clear and durable cards.</p></div>
+  <div class="feature"><h3>⚡ Fast Delivery</h3><p>Get your recharge cards printed and delivered fast.</p></div>
+  <div class="feature"><h3>🛡️ Secure & Reliable</h3><p>Safe and secure printing you can trust.</p></div>
+  <div class="feature"><h3>🎧 24/7 Support</h3><p>We are here to help you anytime, anywhere.</p></div>
+</section>
+<section id="about" style="padding:45px 6%;text-align:center"><h2>About Ya Salam Business</h2><p>Reliable MTN and Airtel recharge card printing made simple.</p></section>
+<section id="pricing" style="padding:45px 6%;text-align:center"><h2>Pricing</h2><p>Contact us for current printing prices and bulk orders.</p></section>
+<section id="contact" style="padding:55px 6%;text-align:center;background:#fff"><h2>Contact Ya Salam Business</h2><p>Use WhatsApp to place an order or ask for pricing.</p><a class="wa" href="https://wa.me/2347069205190" target="_blank" rel="noopener">Contact on WhatsApp</a></section>
+<footer>© 2026 YA SALAM BUSINESS — Recharge Card Printing Services</footer>
+</body>
+</html>
