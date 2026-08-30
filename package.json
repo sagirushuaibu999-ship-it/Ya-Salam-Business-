@@ -1,1 +1,13 @@
-
+{
+  "name": "ya-salam-business",
+  "version": "1.0.0",
+  "description": "Ya Salam Business VTpass backend",
+  "main": "Server.js",
+  "scripts": {
+    "start": "node Server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "cors": "^2.8.5"
+  }
+}
