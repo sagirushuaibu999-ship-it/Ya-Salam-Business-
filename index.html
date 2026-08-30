@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>YA SALAM BUSINESS | Data, Airtime & Recharge Card</title>
 <meta name="description" content="Ya Salam Business - Buy MTN, Airtel, Glo and 9mobile data and airtime. Recharge card printing services.">
+
 <style>
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -91,7 +91,6 @@ nav{
   color:#4b5568;
   max-width:600px
 }
-
 .buttons{
   display:flex;
   gap:12px;
@@ -145,20 +144,10 @@ nav{
   font-size:17px
 }
 
-.section{
-  padding:65px 6%
-}
-.section-title{
-  text-align:center;
-  margin-bottom:35px
-}
-.section-title h2{
-  font-size:38px;
-  margin:0 0 10px
-}
-.section-title p{
-  color:#667085
-}
+.section{padding:65px 6%}
+.section-title{text-align:center;margin-bottom:35px}
+.section-title h2{font-size:38px;margin:0 0 10px}
+.section-title p{color:#667085}
 
 .services{
   display:grid;
@@ -172,16 +161,9 @@ nav{
   box-shadow:0 8px 25px #00000012;
   text-align:center
 }
-.service .icon{
-  font-size:42px
-}
-.service h3{
-  font-size:23px
-}
-.service p{
-  color:#667085;
-  line-height:1.5
-}
+.service .icon{font-size:42px}
+.service h3{font-size:23px}
+.service p{color:#667085;line-height:1.5}
 
 .order-box{
   max-width:750px;
@@ -191,9 +173,7 @@ nav{
   border-radius:20px;
   box-shadow:0 10px 30px #00000012
 }
-.form-group{
-  margin-bottom:17px
-}
+.form-group{margin-bottom:17px}
 label{
   display:block;
   font-weight:700;
@@ -207,9 +187,8 @@ input,select{
   font-size:16px;
   outline:none
 }
-input:focus,select:focus{
-  border-color:#dc2929
-}
+input:focus,select:focus{border-color:#dc2929}
+
 .submit{
   width:100%;
   border:0;
@@ -220,6 +199,29 @@ input:focus,select:focus{
   border-radius:9px;
   font-size:17px;
   font-weight:800
+}
+.submit:disabled{
+  opacity:.6;
+  cursor:not-allowed
+}
+
+.result{
+  display:none;
+  margin-top:18px;
+  padding:15px;
+  border-radius:10px;
+  line-height:1.5;
+  background:#f2f4f7
+}
+.result.success{
+  display:block;
+  background:#ecfdf3;
+  color:#067647
+}
+.result.error{
+  display:block;
+  background:#fef3f2;
+  color:#b42318
 }
 
 .features{
@@ -233,10 +235,7 @@ input:focus,select:focus{
   gap:25px
 }
 .feature h3{margin-bottom:7px}
-.feature p{
-  color:#596275;
-  line-height:1.5
-}
+.feature p{color:#596275;line-height:1.5}
 
 .contact{
   text-align:center;
@@ -364,7 +363,7 @@ footer{
       <div class="icon">📱</div>
       <h3>Buy Data</h3>
       <p>
-        MTN, Airtel, Glo and 9mobile data bundles.
+        MTN and Airtel data bundles available directly from VTpass.
       </p>
       <a class="btn btn-red" href="#buy">Buy Data</a>
     </div>
@@ -394,14 +393,14 @@ footer{
 
   <div class="section-title">
     <h2>Buy Data / Airtime</h2>
-    <p>Fill the form below to place your order.</p>
+    <p>Choose your network and data plan.</p>
   </div>
 
   <div class="order-box">
 
     <div class="form-group">
       <label>Service</label>
-      <select id="service">
+      <select id="service" onchange="serviceChanged()">
         <option value="Data">Buy Data</option>
         <option value="Airtime">Buy Airtime</option>
       </select>
@@ -409,27 +408,36 @@ footer{
 
     <div class="form-group">
       <label>Network</label>
-      <select id="network">
-        <option>MTN</option>
-        <option>Airtel</option>
-        <option>Glo</option>
-        <option>9mobile</option>
+      <select id="network" onchange="networkChanged()">
+        <option value="MTN">MTN</option>
+        <option value="Airtel">Airtel</option>
+        <option value="Glo">Glo</option>
+        <option value="9mobile">9mobile</option>
       </select>
+    </div>
+
+    <div class="form-group" id="planGroup">
+      <label>Data Plan</label>
+      <select id="plan">
+        <option value="">Loading plans...</option>
+      </select>
+    </div>
+
+    <div class="form-group" id="amountGroup" style="display:none">
+      <label>Amount</label>
+      <input id="amount" type="number" min="1" placeholder="Enter amount">
     </div>
 
     <div class="form-group">
       <label>Phone Number</label>
-      <input id="phone" type="tel" placeholder="08012345678">
+      <input id="phone" type="tel" inputmode="numeric" placeholder="08012345678">
     </div>
 
-    <div class="form-group">
-      <label>Amount</label>
-      <input id="amount" type="number" placeholder="Enter amount">
-    </div>
-
-    <button class="submit" onclick="sendOrder()">
-      📲 Order via WhatsApp
+    <button class="submit" id="submitBtn" onclick="placeOrder()">
+      📲 Buy Data
     </button>
+
+    <div id="result" class="result"></div>
 
   </div>
 </section>
@@ -439,7 +447,7 @@ footer{
   <div class="section-title">
     <h2>Pricing</h2>
     <p>
-      Prices may change depending on network and package.
+      Prices are loaded from the available VTpass plans.
     </p>
   </div>
 
@@ -447,12 +455,12 @@ footer{
 
     <div class="feature">
       <h3>📱 Data</h3>
-      <p>Affordable data packages for all supported networks.</p>
+      <p>MTN and Airtel data packages.</p>
     </div>
 
     <div class="feature">
       <h3>💳 Airtime</h3>
-      <p>Fast airtime recharge for all major networks.</p>
+      <p>Fast airtime recharge for major networks.</p>
     </div>
 
     <div class="feature">
@@ -462,7 +470,7 @@ footer{
 
     <div class="feature">
       <h3>🎧 Support</h3>
-      <p>Contact us through WhatsApp for current prices.</p>
+      <p>Contact us through WhatsApp for support.</p>
     </div>
 
   </div>
@@ -492,33 +500,334 @@ footer{
 </footer>
 
 <script>
-function sendOrder(){
 
-  const service = document.getElementById("service").value;
-  const network = document.getElementById("network").value;
-  const phone = document.getElementById("phone").value;
-  const amount = document.getElementById("amount").value;
+const API_BASE =
+  "https://ya-salam-business-api.onrender.com";
 
-  if(!phone || !amount){
-    alert("Please enter your phone number and amount.");
+let currentPlans = [];
+
+// Load plans when page opens
+window.addEventListener("DOMContentLoaded", () => {
+  serviceChanged();
+});
+
+// Service selection
+function serviceChanged(){
+
+  const service =
+    document.getElementById("service").value;
+
+  const planGroup =
+    document.getElementById("planGroup");
+
+  const amountGroup =
+    document.getElementById("amountGroup");
+
+  const submitBtn =
+    document.getElementById("submitBtn");
+
+  if(service === "Data"){
+
+    planGroup.style.display = "block";
+    amountGroup.style.display = "none";
+
+    submitBtn.textContent = "📲 Buy Data";
+
+    networkChanged();
+
+  }else{
+
+    planGroup.style.display = "none";
+    amountGroup.style.display = "block";
+
+    submitBtn.textContent = "📲 Order Airtime";
+
+    currentPlans = [];
+  }
+}
+
+// Network selection
+async function networkChanged(){
+
+  const service =
+    document.getElementById("service").value;
+
+  if(service !== "Data") return;
+
+  const network =
+    document.getElementById("network").value;
+
+  const plan =
+    document.getElementById("plan");
+
+  if(network !== "MTN" && network !== "Airtel"){
+
+    plan.innerHTML =
+      '<option value="">This network is not connected yet</option>';
+
+    currentPlans = [];
+
     return;
   }
 
-  const message =
-    "Hello Ya Salam Business,%0A%0A" +
-    "I want to place an order.%0A" +
-    "Service: " + service + "%0A" +
-    "Network: " + network + "%0A" +
-    "Phone: " + phone + "%0A" +
-    "Amount: ₦" + amount;
+  const serviceID =
+    network === "MTN"
+      ? "mtn-data"
+      : "airtel-data";
 
-  window.open(
-    "https://wa.me/2347069205190?text=" + message,
-    "_blank"
-  );
+  plan.innerHTML =
+    '<option value="">Loading plans...</option>';
+
+  try{
+
+    const response =
+      await fetch(
+        API_BASE +
+        "/api/variations/" +
+        serviceID
+      );
+
+    const data =
+      await response.json();
+
+    if(
+      !response.ok ||
+      !data.content ||
+      !data.content.variations
+    ){
+      throw new Error("Unable to load data plans");
+    }
+
+    currentPlans =
+      data.content.variations;
+
+    plan.innerHTML =
+      '<option value="">Select a data plan</option>';
+
+    currentPlans.forEach(item => {
+
+      const option =
+        document.createElement("option");
+
+      option.value =
+        item.variation_code;
+
+      option.textContent =
+        item.name +
+        " — ₦" +
+        Number(item.variation_amount).toLocaleString();
+
+      plan.appendChild(option);
+
+    });
+
+  }catch(error){
+
+    currentPlans = [];
+
+    plan.innerHTML =
+      '<option value="">Failed to load plans</option>';
+
+    showResult(
+      "error",
+      "Unable to load data plans. Please try again."
+    );
+  }
 }
+
+// Place order
+async function placeOrder(){
+
+  const service =
+    document.getElementById("service").value;
+
+  const network =
+    document.getElementById("network").value;
+
+  const phone =
+    document.getElementById("phone").value.trim();
+
+  const submitBtn =
+    document.getElementById("submitBtn");
+
+  if(!phone){
+
+    showResult(
+      "error",
+      "Please enter the phone number."
+    );
+
+    return;
+  }
+
+  if(!/^0\d{10}$/.test(phone)){
+
+    showResult(
+      "error",
+      "Please enter a valid 11-digit Nigerian phone number."
+    );
+
+    return;
+  }
+
+  if(service === "Airtime"){
+
+    const amount =
+      document.getElementById("amount").value;
+
+    if(!amount || Number(amount) <= 0){
+
+      showResult(
+        "error",
+        "Please enter a valid airtime amount."
+      );
+
+      return;
+    }
+
+    const message =
+      "Hello Ya Salam Business,%0A%0A" +
+      "I want to place an airtime order.%0A" +
+      "Network: " + encodeURIComponent(network) + "%0A" +
+      "Phone: " + encodeURIComponent(phone) + "%0A" +
+      "Amount: ₦" + encodeURIComponent(amount);
+
+    window.open(
+      "https://wa.me/2347069205190?text=" +
+      message,
+      "_blank"
+    );
+
+    return;
+  }
+
+  if(network !== "MTN" && network !== "Airtel"){
+
+    showResult(
+      "error",
+      "Direct data purchase is currently available for MTN and Airtel only."
+    );
+
+    return;
+  }
+
+  const variationCode =
+    document.getElementById("plan").value;
+
+  if(!variationCode){
+
+    showResult(
+      "error",
+      "Please select a data plan."
+    );
+
+    return;
+  }
+
+  const selectedPlan =
+    currentPlans.find(
+      item => item.variation_code === variationCode
+    );
+
+  if(!selectedPlan){
+
+    showResult(
+      "error",
+      "Please select a valid data plan."
+    );
+
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Processing...";
+
+  showResult(
+    "success",
+    "Processing your order. Please wait..."
+  );
+
+  try{
+
+    const serviceID =
+      network === "MTN"
+        ? "mtn-data"
+        : "airtel-data";
+
+    const response =
+      await fetch(
+        API_BASE + "/api/data",
+        {
+          method:"POST",
+          headers:{
+            "Content-Type":"application/json"
+          },
+          body:JSON.stringify({
+            serviceID: serviceID,
+            variation_code: variationCode,
+            amount: Number(selectedPlan.variation_amount),
+            phone: phone
+          })
+        }
+      );
+
+    const data =
+      await response.json();
+
+    if(!response.ok){
+
+      throw new Error(
+        data.response_description ||
+        data.message ||
+        "Transaction failed"
+      );
+    }
+
+    const description =
+      data.response_description ||
+      data.message ||
+      "Transaction request submitted.";
+
+    showResult(
+      "success",
+      "✅ " + description
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    showResult(
+      "error",
+      "❌ Transaction failed: " +
+      error.message
+    );
+
+  }finally{
+
+    submitBtn.disabled = false;
+
+    submitBtn.textContent =
+      service === "Data"
+        ? "📲 Buy Data"
+        : "📲 Order Airtime";
+  }
+}
+
+// Display result
+function showResult(type,message){
+
+  const result =
+    document.getElementById("result");
+
+  result.className =
+    "result " + type;
+
+  result.textContent =
+    message;
+}
+
 </script>
 
 </body>
-</html>
-
+  </html>
