@@ -1,6 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 
+const express = require("express");
+const cors = require("cors");
+
 const app = express();
 
 app.use(cors());
@@ -12,7 +15,9 @@ const VTPASS_API_KEY = process.env.VTPASS_API_KEY;
 const VTPASS_PUBLIC_KEY = process.env.VTPASS_PUBLIC_KEY;
 const VTPASS_SECRET_KEY = process.env.VTPASS_SECRET_KEY;
 
-// Test endpoint
+const VTPASS_BASE_URL = "https://sandbox.vtpass.com/api";
+
+// Home / health check
 app.get("/", (req, res) => {
   res.json({
     status: "success",
@@ -20,7 +25,7 @@ app.get("/", (req, res) => {
   });
 });
 
-// Check whether VTpass credentials exist
+// Check VTpass configuration
 app.get("/api/vtpass-status", (req, res) => {
   res.json({
     status: "success",
@@ -32,21 +37,53 @@ app.get("/api/vtpass-status", (req, res) => {
   });
 });
 
-// VTpass request helper
-async function vtpassRequest(endpoint, body = {}) {
-  const response = await fetch(
-    `https://sandbox.vtpass.com/api/${endpoint}`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "api-key": VTPASS_API_KEY,
-        "public-key": VTPASS_PUBLIC_KEY,
-        "secret-key": VTPASS_SECRET_KEY
-      },
-      body: JSON.stringify(body)
+// Get VTpass service variations
+app.get("/api/variations/:serviceID", async (req, res) => {
+  try {
+    const { serviceID } = req.params;
+
+    if (!serviceID) {
+      return res.status(400).json({
+        status: "error",
+        message: "serviceID is required"
+      });
     }
-  );
+
+    const response = await fetch(
+      `${VTPASS_BASE_URL}/service-variations?serviceID=${encodeURIComponent(serviceID)}`,
+      {
+        method: "GET",
+        headers: {
+          "api-key": VTPASS_API_KEY,
+          "public-key": VTPASS_PUBLIC_KEY
+        }
+      }
+    );
+
+    const data = await response.json();
+
+    res.status(response.status).json(data);
+  } catch (error) {
+    console.error("Variation error:", error);
+
+    res.status(500).json({
+      status: "error",
+      message: "Unable to connect to VTpass"
+    });
+  }
+});
+
+// VTpass payment helper
+async function vtpassPay(body) {
+  const response = await fetch(`${VTPASS_BASE_URL}/pay`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "api-key": VTPASS_API_KEY,
+      "secret-key": VTPASS_SECRET_KEY
+    },
+    body: JSON.stringify(body)
+  });
 
   const data = await response.json();
 
@@ -56,7 +93,7 @@ async function vtpassRequest(endpoint, body = {}) {
   };
 }
 
-// Airtime order
+// Airtime purchase
 app.post("/api/airtime", async (req, res) => {
   try {
     const { serviceID, amount, phone } = req.body;
@@ -70,16 +107,16 @@ app.post("/api/airtime", async (req, res) => {
 
     const requestId = `YSB-${Date.now()}`;
 
-    const result = await vtpassRequest("pay", {
+    const result = await vtpassPay({
       request_id: requestId,
       serviceID,
-      amount,
+      amount: Number(amount),
       phone
     });
 
     res.status(result.httpStatus).json(result.data);
   } catch (error) {
-    console.error(error);
+    console.error("Airtime error:", error);
 
     res.status(500).json({
       status: "error",
@@ -88,10 +125,15 @@ app.post("/api/airtime", async (req, res) => {
   }
 });
 
-// Data order
+// Data purchase
 app.post("/api/data", async (req, res) => {
   try {
-    const { serviceID, variation_code, amount, phone } = req.body;
+    const {
+      serviceID,
+      variation_code,
+      amount,
+      phone
+    } = req.body;
 
     if (!serviceID || !variation_code || !phone) {
       return res.status(400).json({
@@ -102,21 +144,64 @@ app.post("/api/data", async (req, res) => {
 
     const requestId = `YSB-${Date.now()}`;
 
-    const result = await vtpassRequest("pay", {
+    const paymentData = {
       request_id: requestId,
       serviceID,
       variation_code,
-      amount,
       phone
-    });
+    };
+
+    // Include amount when supplied
+    if (amount !== undefined && amount !== null && amount !== "") {
+      paymentData.amount = Number(amount);
+    }
+
+    const result = await vtpassPay(paymentData);
 
     res.status(result.httpStatus).json(result.data);
   } catch (error) {
-    console.error(error);
+    console.error("Data error:", error);
 
     res.status(500).json({
       status: "error",
       message: "Unable to connect to VTpass"
+    });
+  }
+});
+
+// Check transaction status
+app.post("/api/requery", async (req, res) => {
+  try {
+    const { request_id } = req.body;
+
+    if (!request_id) {
+      return res.status(400).json({
+        status: "error",
+        message: "request_id is required"
+      });
+    }
+
+    const response = await fetch(`${VTPASS_BASE_URL}/requery`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "api-key": VTPASS_API_KEY,
+        "secret-key": VTPASS_SECRET_KEY
+      },
+      body: JSON.stringify({
+        request_id
+      })
+    });
+
+    const data = await response.json();
+
+    res.status(response.status).json(data);
+  } catch (error) {
+    console.error("Requery error:", error);
+
+    res.status(500).json({
+      status: "error",
+      message: "Unable to check transaction status"
     });
   }
 });
