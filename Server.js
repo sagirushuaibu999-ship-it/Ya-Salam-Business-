@@ -1,5 +1,3 @@
-
-
 const express = require("express");
 const cors = require("cors");
 
@@ -16,7 +14,9 @@ const VTPASS_SECRET_KEY = process.env.VTPASS_SECRET_KEY;
 
 const VTPASS_BASE_URL = "https://sandbox.vtpass.com/api";
 
-// Home / health check
+// ===============================
+// HOME / HEALTH CHECK
+// ===============================
 app.get("/", (req, res) => {
   res.json({
     status: "success",
@@ -24,7 +24,9 @@ app.get("/", (req, res) => {
   });
 });
 
-// Check VTpass configuration
+// ===============================
+// VTPASS STATUS
+// ===============================
 app.get("/api/vtpass-status", (req, res) => {
   res.json({
     status: "success",
@@ -36,7 +38,9 @@ app.get("/api/vtpass-status", (req, res) => {
   });
 });
 
-// Get VTpass service variations
+// ===============================
+// GET DATA VARIATIONS
+// ===============================
 app.get("/api/variations/:serviceID", async (req, res) => {
   try {
     const { serviceID } = req.params;
@@ -62,7 +66,9 @@ app.get("/api/variations/:serviceID", async (req, res) => {
     const data = await response.json();
 
     res.status(response.status).json(data);
+
   } catch (error) {
+
     console.error("Variation error:", error);
 
     res.status(500).json({
@@ -72,17 +78,25 @@ app.get("/api/variations/:serviceID", async (req, res) => {
   }
 });
 
-// VTpass payment helper
+// ===============================
+// VTPASS PAYMENT HELPER
+// ===============================
 async function vtpassPay(body) {
-  const response = await fetch(`${VTPASS_BASE_URL}/pay`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "api-key": VTPASS_API_KEY,
-      "secret-key": VTPASS_SECRET_KEY
-    },
-    body: JSON.stringify(body)
-  });
+
+  const response = await fetch(
+    `${VTPASS_BASE_URL}/pay`,
+    {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+        "api-key": VTPASS_API_KEY,
+        "secret-key": VTPASS_SECRET_KEY
+      },
+
+      body: JSON.stringify(body)
+    }
+  );
 
   const data = await response.json();
 
@@ -92,29 +106,76 @@ async function vtpassPay(body) {
   };
 }
 
-// Airtime purchase
+// ===============================
+// AIRTIME PURCHASE
+// ===============================
 app.post("/api/airtime", async (req, res) => {
-  try {
-    const { serviceID, amount, phone } = req.body;
 
+  try {
+
+    const {
+      serviceID,
+      amount,
+      phone
+    } = req.body;
+
+    // Validate
     if (!serviceID || !amount || !phone) {
+
       return res.status(400).json({
         status: "error",
         message: "serviceID, amount and phone are required"
       });
     }
 
-    const requestId = `YSB-${Date.now()}`;
+    // Validate amount
+    const numericAmount = Number(amount);
+
+    if (
+      !Number.isFinite(numericAmount) ||
+      numericAmount <= 0
+    ) {
+
+      return res.status(400).json({
+        status: "error",
+        message: "Invalid airtime amount"
+      });
+    }
+
+    // Validate Nigerian phone number
+    if (!/^0\d{10}$/.test(phone)) {
+
+      return res.status(400).json({
+        status: "error",
+        message: "Invalid Nigerian phone number"
+      });
+    }
+
+    const requestId =
+      `YSB-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 
     const result = await vtpassPay({
+
       request_id: requestId,
-      serviceID,
-      amount: Number(amount),
-      phone
+
+      serviceID: serviceID,
+
+      amount: numericAmount,
+
+      phone: phone
+
     });
 
-    res.status(result.httpStatus).json(result.data);
+    res.status(result.httpStatus).json({
+
+      ...result.data,
+
+      request_id: requestId
+
+    });
+
   } catch (error) {
+
     console.error("Airtime error:", error);
 
     res.status(500).json({
@@ -124,9 +185,13 @@ app.post("/api/airtime", async (req, res) => {
   }
 });
 
-// Data purchase
+// ===============================
+// DATA PURCHASE
+// ===============================
 app.post("/api/data", async (req, res) => {
+
   try {
+
     const {
       serviceID,
       variation_code,
@@ -134,31 +199,78 @@ app.post("/api/data", async (req, res) => {
       phone
     } = req.body;
 
-    if (!serviceID || !variation_code || !phone) {
+    if (
+      !serviceID ||
+      !variation_code ||
+      !phone
+    ) {
+
       return res.status(400).json({
         status: "error",
-        message: "serviceID, variation_code and phone are required"
+        message:
+          "serviceID, variation_code and phone are required"
       });
     }
 
-    const requestId = `YSB-${Date.now()}`;
+    // Validate Nigerian phone
+    if (!/^0\d{10}$/.test(phone)) {
 
-    const paymentData = {
-      request_id: requestId,
-      serviceID,
-      variation_code,
-      phone
-    };
-
-    // Include amount when supplied
-    if (amount !== undefined && amount !== null && amount !== "") {
-      paymentData.amount = Number(amount);
+      return res.status(400).json({
+        status: "error",
+        message: "Invalid Nigerian phone number"
+      });
     }
 
-    const result = await vtpassPay(paymentData);
+    const requestId =
+      `YSB-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 
-    res.status(result.httpStatus).json(result.data);
+    const paymentData = {
+
+      request_id: requestId,
+
+      serviceID: serviceID,
+
+      variation_code: variation_code,
+
+      phone: phone
+    };
+
+    // Add amount if provided
+    if (
+      amount !== undefined &&
+      amount !== null &&
+      amount !== ""
+    ) {
+
+      const numericAmount = Number(amount);
+
+      if (
+        !Number.isFinite(numericAmount) ||
+        numericAmount <= 0
+      ) {
+
+        return res.status(400).json({
+          status: "error",
+          message: "Invalid data amount"
+        });
+      }
+
+      paymentData.amount = numericAmount;
+    }
+
+    const result =
+      await vtpassPay(paymentData);
+
+    res.status(result.httpStatus).json({
+
+      ...result.data,
+
+      request_id: requestId
+
+    });
+
   } catch (error) {
+
     console.error("Data error:", error);
 
     res.status(500).json({
@@ -168,43 +280,69 @@ app.post("/api/data", async (req, res) => {
   }
 });
 
-// Check transaction status
+// ===============================
+// REQUERY TRANSACTION
+// ===============================
 app.post("/api/requery", async (req, res) => {
+
   try {
-    const { request_id } = req.body;
+
+    const {
+      request_id
+    } = req.body;
 
     if (!request_id) {
+
       return res.status(400).json({
         status: "error",
         message: "request_id is required"
       });
     }
 
-    const response = await fetch(`${VTPASS_BASE_URL}/requery`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "api-key": VTPASS_API_KEY,
-        "secret-key": VTPASS_SECRET_KEY
-      },
-      body: JSON.stringify({
-        request_id
-      })
-    });
+    const response = await fetch(
+      `${VTPASS_BASE_URL}/requery`,
+      {
+        method: "POST",
 
-    const data = await response.json();
+        headers: {
+          "Content-Type": "application/json",
+          "api-key": VTPASS_API_KEY,
+          "secret-key": VTPASS_SECRET_KEY
+        },
+
+        body: JSON.stringify({
+          request_id
+        })
+      }
+    );
+
+    const data =
+      await response.json();
 
     res.status(response.status).json(data);
+
   } catch (error) {
-    console.error("Requery error:", error);
+
+    console.error(
+      "Requery error:",
+      error
+    );
 
     res.status(500).json({
       status: "error",
-      message: "Unable to check transaction status"
+      message:
+        "Unable to check transaction status"
     });
   }
 });
 
+// ===============================
+// START SERVER
+// ===============================
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+
+  console.log(
+    `Server running on port ${PORT}`
+  );
+
 });
