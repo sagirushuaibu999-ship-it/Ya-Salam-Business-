@@ -322,11 +322,13 @@ app.post("/api/data", async (req, res) => {
     console.log("Data request:", requestId);
 
     const paymentData = {
-      request_id: requestId,
-      serviceID: serviceID,
-      variation_code: variation_code,
-      phone: phone
-    };
+  request_id: requestId,
+  serviceID: serviceID,
+  billersCode: phone,
+  variation_code: variation_code,
+  amount: amount ? Number(amount) : undefined,
+  phone: phone
+};
 
     if (
       amount !== undefined &&
