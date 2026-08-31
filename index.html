@@ -1,1 +1,1224 @@
-<!doctype htm
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>YA SALAM BUSINESS | Data, Airtime & Recharge Card</title>
+<meta name="description" content="Ya Salam Business - Buy MTN and Airtel data and airtime. Recharge card printing services.">
+
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  color:#101828;
+  background:#fffdf6
+}
+nav{
+  height:75px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 6%;
+  box-shadow:0 2px 12px #00000012;
+  position:sticky;
+  top:0;
+  z-index:10
+}
+.logo{
+  font-weight:900;
+  font-size:25px;
+  line-height:.85
+}
+.logo span{
+  display:block;
+  color:#d92626;
+  font-size:12px;
+  letter-spacing:4px;
+  margin-top:8px
+}
+.links{
+  display:flex;
+  gap:25px
+}
+.links a{
+  color:#101828;
+  text-decoration:none;
+  font-weight:700
+}
+.links a:hover{color:#dc2929}
+.wa{
+  background:#079b48;
+  color:#fff;
+  text-decoration:none;
+  padding:13px 19px;
+  border-radius:9px;
+  font-weight:800;
+  display:inline-block
+}
+
+.hero{
+  min-height:570px;
+  padding:70px 6%;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:35px;
+  background:
+  radial-gradient(circle at 10% 30%,#fff0c8,transparent 35%),
+  #fffdf6
+}
+.kicker{
+  color:#df2929;
+  letter-spacing:4px;
+  font-weight:900
+}
+.hero h1{
+  font-size:65px;
+  line-height:.95;
+  margin:20px 0
+}
+.hero h1 span{color:#dc2929}
+.hero h2{
+  font-size:30px;
+  margin:20px 0 12px
+}
+.hero p{
+  font-size:19px;
+  line-height:1.6;
+  color:#4b5568;
+  max-width:600px
+}
+.buttons{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:25px
+}
+.btn{
+  padding:14px 20px;
+  border-radius:9px;
+  text-decoration:none;
+  font-weight:800;
+  display:inline-block
+}
+.btn-red{background:#dc2929;color:white}
+.btn-dark{background:#111827;color:white}
+
+.cards{
+  position:relative;
+  height:420px
+}
+.card{
+  position:absolute;
+  width:80%;
+  padding:35px 30px;
+  border-radius:24px;
+  box-shadow:0 20px 35px #0003;
+  font-size:28px;
+  font-weight:900
+}
+.mtn{
+  background:#ffd100;
+  color:#111;
+  right:0;
+  top:15px;
+  transform:rotate(-4deg)
+}
+.airtel{
+  background:#ef1717;
+  color:#fff;
+  left:0;
+  bottom:15px;
+  transform:rotate(3deg)
+}
+.pin{
+  margin-top:30px;
+  background:#eee;
+  border-radius:10px;
+  padding:16px;
+  text-align:center;
+  color:#222;
+  font-size:17px
+}
+
+.section{
+  padding:65px 6%
+}
+.section-title{
+  text-align:center;
+  margin-bottom:35px
+}
+.section-title h2{
+  font-size:38px;
+  margin:0 0 10px
+}
+.section-title p{
+  color:#667085
+}
+
+.services{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px
+}
+.service{
+  background:#fff;
+  padding:30px;
+  border-radius:18px;
+  box-shadow:0 8px 25px #00000012;
+  text-align:center
+}
+.service .icon{
+  font-size:42px
+}
+.service h3{
+  font-size:23px
+}
+.service p{
+  color:#667085;
+  line-height:1.5
+}
+
+.order-box{
+  max-width:750px;
+  margin:auto;
+  background:#fff;
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 10px 30px #00000012
+}
+.form-group{
+  margin-bottom:17px
+}
+label{
+  display:block;
+  font-weight:700;
+  margin-bottom:7px
+}
+input,select{
+  width:100%;
+  padding:14px;
+  border:1px solid #d0d5dd;
+  border-radius:9px;
+  font-size:16px;
+  outline:none
+}
+input:focus,select:focus{
+  border-color:#dc2929
+}
+
+.submit{
+  width:100%;
+  border:0;
+  cursor:pointer;
+  background:#079b48;
+  color:#fff;
+  padding:15px;
+  border-radius:9px;
+  font-size:17px;
+  font-weight:800
+}
+.submit:disabled{
+  opacity:.6;
+  cursor:not-allowed
+}
+
+.result{
+  display:none;
+  margin-top:18px;
+  padding:15px;
+  border-radius:10px;
+  line-height:1.5
+}
+.result.success{
+  display:block;
+  background:#ecfdf3;
+  color:#067647
+}
+.result.error{
+  display:block;
+  background:#fef3f2;
+  color:#b42318
+}
+
+.features{
+  margin:0 6% 60px;
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 10px 30px #00000012;
+  padding:30px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:25px
+}
+.feature h3{
+  margin-bottom:7px
+}
+.feature p{
+  color:#596275;
+  line-height:1.5
+}
+
+.contact{
+  text-align:center;
+  background:#fff;
+  padding:65px 6%
+}
+.contact h2{
+  font-size:36px
+}
+
+footer{
+  text-align:center;
+  padding:30px;
+  background:#111a2d;
+  color:#fff
+}
+
+@media(max-width:850px){
+  .links{
+    display:none
+  }
+  .hero{
+    grid-template-columns:1fr;
+    padding-top:45px
+  }
+  .hero h1{
+    font-size:52px
+  }
+  .cards{
+    height:360px
+  }
+  .services{
+    grid-template-columns:1fr 1fr
+  }
+  .features{
+    grid-template-columns:1fr 1fr
+  }
+}
+
+@media(max-width:520px){
+  nav{
+    padding:0 5%
+  }
+  .hero{
+    padding:40px 5%
+  }
+  .hero h1{
+    font-size:43px
+  }
+  .hero h2{
+    font-size:27px
+  }
+  .hero p{
+    font-size:17px
+  }
+  .cards{
+    height:310px
+  }
+  .card{
+    width:92%;
+    padding:28px 20px;
+    font-size:22px
+  }
+  .services{
+    grid-template-columns:1fr
+  }
+  .features{
+    margin:0 5% 40px;
+    grid-template-columns:1fr
+  }
+  .section{
+    padding:50px 5%
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">
+    YA SALAM
+    <span>BUSINESS</span>
+  </div>
+
+  <div class="links">
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#buy">Buy</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <a class="wa"
+     href="https://wa.me/2347069205190"
+     target="_blank">
+    WhatsApp
+  </a>
+</nav>
+
+<section class="hero" id="home">
+
+  <div>
+
+    <div class="kicker">
+      WELCOME TO
+    </div>
+
+    <h1>
+      YA SALAM<br>
+      <span>BUSINESS</span>
+    </h1>
+
+    <h2>
+      Data, Airtime & Recharge Card
+      <br>
+      <span style="color:#dc2929">
+        Made Easy
+      </span>
+    </h2>
+
+    <p>
+      Buy MTN and Airtel data directly through VTpass.
+      Buy airtime and get fast support through WhatsApp.
+      We also provide professional recharge card printing.
+    </p>
+
+    <div class="buttons">
+
+      <a class="btn btn-red"
+         href="#buy">
+        Buy Now
+      </a>
+
+      <a class="btn btn-dark"
+         href="#services">
+        Our Services
+      </a>
+
+    </div>
+
+  </div>
+
+  <div class="cards">
+
+    <div class="card mtn">
+
+      MTN
+      <br>
+
+      <small>
+        RECHARGE CARD
+      </small>
+
+      <div class="pin">
+        1234 5678 9012 3456
+      </div>
+
+    </div>
+
+    <div class="card airtel">
+
+      airtel
+      <br>
+
+      <small>
+        RECHARGE CARD
+      </small>
+
+      <div class="pin">
+        1234 5678 9012 3456
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section"
+         id="services">
+
+  <div class="section-title">
+
+    <h2>
+      Our Services
+    </h2>
+
+    <p>
+      Everything you need for your mobile recharge business.
+    </p>
+
+  </div>
+
+  <div class="services">
+
+    <div class="service">
+
+      <div class="icon">
+        📱
+      </div>
+
+      <h3>
+        Buy Data
+      </h3>
+
+      <p>
+        MTN and Airtel data bundles
+        available directly from VTpass.
+      </p>
+
+      <a class="btn btn-red"
+         href="#buy">
+        Buy Data
+      </a>
+
+    </div>
+
+    <div class="service">
+
+      <div class="icon">
+        💳
+      </div>
+
+      <h3>
+        Buy Airtime
+      </h3>
+
+      <p>
+        Recharge MTN, Airtel, Glo
+        and 9mobile lines.
+      </p>
+
+      <a class="btn btn-red"
+         href="#buy">
+        Buy Airtime
+      </a>
+
+    </div>
+
+    <div class="service">
+
+      <div class="icon">
+        🖨️
+      </div>
+
+      <h3>
+        Recharge Card Printing
+      </h3>
+
+      <p>
+        Professional recharge card
+        printing for MTN and Airtel.
+      </p>
+
+      <a class="btn btn-red"
+         href="#contact">
+        Order Printing
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section"
+         id="buy">
+
+  <div class="section-title">
+
+    <h2>
+      Buy Data / Airtime
+    </h2>
+
+    <p>
+      Choose your network and data plan.
+    </p>
+
+  </div>
+
+  <div class="order-box">
+
+    <div class="form-group">
+
+      <label>
+        Service
+      </label>
+
+      <select id="service"
+              onchange="serviceChanged()">
+
+        <option value="Data">
+          Buy Data
+        </option>
+
+        <option value="Airtime">
+          Buy Airtime
+        </option>
+
+      </select>
+
+    </div>
+
+    <div class="form-group">
+
+      <label>
+        Network
+      </label>
+
+      <select id="network"
+              onchange="networkChanged()">
+
+        <option value="MTN">
+          MTN
+        </option>
+
+        <option value="Airtel">
+          Airtel
+        </option>
+
+        <option value="Glo">
+          Glo
+        </option>
+
+        <option value="9mobile">
+          9mobile
+        </option>
+
+      </select>
+
+    </div>
+
+    <div class="form-group"
+         id="planGroup">
+
+      <label>
+        Data Plan
+      </label>
+
+      <select id="plan">
+
+        <option value="">
+          Loading plans...
+        </option>
+
+      </select>
+
+    </div>
+
+    <div class="form-group"
+         id="amountGroup"
+         style="display:none">
+
+      <label>
+        Airtime Amount
+      </label>
+
+      <input
+        id="amount"
+        type="number"
+        min="1"
+        placeholder="Enter amount">
+
+    </div>
+
+    <div class="form-group">
+
+      <label>
+        Phone Number
+      </label>
+
+      <input
+        id="phone"
+        type="tel"
+        inputmode="numeric"
+        maxlength="11"
+        placeholder="08012345678">
+
+    </div>
+
+    <button
+      class="submit"
+      id="submitBtn"
+      onclick="placeOrder()">
+
+      📲 Buy Data
+
+    </button>
+
+    <div
+      id="result"
+      class="result">
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section"
+         id="pricing">
+
+  <div class="section-title">
+
+    <h2>
+      Pricing
+    </h2>
+
+    <p>
+      Prices are loaded from available VTpass plans.
+    </p>
+
+  </div>
+
+  <div class="features">
+
+    <div class="feature">
+
+      <h3>
+        📱 Data
+      </h3>
+
+      <p>
+        MTN and Airtel data packages
+        from VTpass.
+      </p>
+
+    </div>
+
+    <div class="feature">
+
+      <h3>
+        💳 Airtime
+      </h3>
+
+      <p>
+        Fast airtime ordering
+        through WhatsApp.
+      </p>
+
+    </div>
+
+    <div class="feature">
+
+      <h3>
+        🖨️ Printing
+      </h3>
+
+      <p>
+        Bulk recharge card
+        printing available.
+      </p>
+
+    </div>
+
+    <div class="feature">
+
+      <h3>
+        🎧 Support
+      </h3>
+
+      <p>
+        Contact us through WhatsApp
+        for support.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="contact"
+         id="contact">
+
+  <h2>
+    Contact Ya Salam Business
+  </h2>
+
+  <p>
+    Need help, current prices or
+    recharge card printing?
+    Contact us directly on WhatsApp.
+  </p>
+
+  <br>
+
+  <a class="wa"
+     href="https://wa.me/2347069205190"
+     target="_blank">
+
+    💬 Contact on WhatsApp
+
+  </a>
+
+</section>
+
+<footer>
+
+  © 2026 YA SALAM BUSINESS —
+  Data, Airtime & Recharge Card Services
+
+</footer>
+
+<script>
+
+const API_BASE =
+  "https://ya-salam-business-api.onrender.com";
+
+let currentPlans = [];
+
+// ===============================
+// PAGE LOAD
+// ===============================
+
+window.addEventListener(
+  "DOMContentLoaded",
+  () => {
+    serviceChanged();
+  }
+);
+
+
+// ===============================
+// SERVICE CHANGE
+// ===============================
+
+function serviceChanged(){
+
+  const service =
+    document.getElementById("service").value;
+
+  const planGroup =
+    document.getElementById("planGroup");
+
+  const amountGroup =
+    document.getElementById("amountGroup");
+
+  const submitBtn =
+    document.getElementById("submitBtn");
+
+  if(service === "Data"){
+
+    planGroup.style.display =
+      "block";
+
+    amountGroup.style.display =
+      "none";
+
+    submitBtn.textContent =
+      "📲 Buy Data";
+
+    networkChanged();
+
+  }else{
+
+    planGroup.style.display =
+      "none";
+
+    amountGroup.style.display =
+      "block";
+
+    submitBtn.textContent =
+      "📲 Order Airtime";
+
+    currentPlans = [];
+
+  }
+}
+
+
+// ===============================
+// NETWORK CHANGE
+// ===============================
+
+async function networkChanged(){
+
+  const service =
+    document.getElementById("service").value;
+
+  if(service !== "Data"){
+    return;
+  }
+
+  const network =
+    document.getElementById("network").value;
+
+  const plan =
+    document.getElementById("plan");
+
+  if(
+    network !== "MTN" &&
+    network !== "Airtel"
+  ){
+
+    plan.innerHTML =
+      '<option value="">This network is not connected yet</option>';
+
+    currentPlans = [];
+
+    return;
+  }
+
+  const serviceID =
+    network === "MTN"
+      ? "mtn-data"
+      : "airtel-data";
+
+  plan.innerHTML =
+    '<option value="">Loading plans...</option>';
+
+  try{
+
+    const response =
+      await fetch(
+        API_BASE +
+        "/api/variations/" +
+        serviceID
+      );
+
+    const data =
+      await response.json();
+
+    if(
+      !response.ok ||
+      !data.content ||
+      !data.content.variations
+    ){
+
+      throw new Error(
+        "Unable to load data plans"
+      );
+
+    }
+
+    currentPlans =
+      data.content.variations;
+
+    plan.innerHTML =
+      '<option value="">Select a data plan</option>';
+
+    currentPlans.forEach(
+      item => {
+
+        const option =
+          document.createElement(
+            "option"
+          );
+
+        option.value =
+          item.variation_code;
+
+        option.textContent =
+          item.name +
+          " — ₦" +
+          Number(
+            item.variation_amount
+          ).toLocaleString(
+            "en-NG",
+            {
+              minimumFractionDigits:0,
+              maximumFractionDigits:2
+            }
+          );
+
+        plan.appendChild(
+          option
+        );
+
+      }
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    currentPlans = [];
+
+    plan.innerHTML =
+      '<option value="">Failed to load plans</option>';
+
+    showResult(
+      "error",
+      "Unable to load data plans. Please try again."
+    );
+
+  }
+}
+
+
+// ===============================
+// PLACE ORDER
+// ===============================
+
+async function placeOrder(){
+
+  const service =
+    document.getElementById("service").value;
+
+  const network =
+    document.getElementById("network").value;
+
+  const phone =
+    document
+      .getElementById("phone")
+      .value
+      .trim();
+
+  const submitBtn =
+    document.getElementById("submitBtn");
+
+
+  if(!phone){
+
+    showResult(
+      "error",
+      "Please enter the phone number."
+    );
+
+    return;
+  }
+
+
+  if(!/^0\d{10}$/.test(phone)){
+
+    showResult(
+      "error",
+      "Please enter a valid 11-digit Nigerian phone number."
+    );
+
+    return;
+  }
+
+
+  // =============================
+  // AIRTIME
+  // =============================
+
+  if(service === "Airtime"){
+
+    const amount =
+      document
+        .getElementById("amount")
+        .value;
+
+    if(
+      !amount ||
+      Number(amount) <= 0
+    ){
+
+      showResult(
+        "error",
+        "Please enter a valid airtime amount."
+      );
+
+      return;
+    }
+
+    const message =
+      "Hello Ya Salam Business,\n\n" +
+      "I want to place an airtime order.\n" +
+      "Network: " + network + "\n" +
+      "Phone: " + phone + "\n" +
+      "Amount: ₦" + amount;
+
+    window.open(
+      "https://wa.me/2347069205190?text=" +
+      encodeURIComponent(message),
+      "_blank"
+    );
+
+    return;
+  }
+
+
+  // =============================
+  // DATA
+  // =============================
+
+  if(
+    network !== "MTN" &&
+    network !== "Airtel"
+  ){
+
+    showResult(
+      "error",
+      "Direct data purchase is currently available for MTN and Airtel only."
+    );
+
+    return;
+  }
+
+
+  const variationCode =
+    document.getElementById("plan").value;
+
+
+  if(!variationCode){
+
+    showResult(
+      "error",
+      "Please select a data plan."
+    );
+
+    return;
+  }
+
+
+  const selectedPlan =
+    currentPlans.find(
+      item =>
+        item.variation_code ===
+        variationCode
+    );
+
+
+  if(!selectedPlan){
+
+    showResult(
+      "error",
+      "Please select a valid data plan."
+    );
+
+    return;
+  }
+
+
+  submitBtn.disabled =
+    true;
+
+  submitBtn.textContent =
+    "Processing...";
+
+
+  showResult(
+    "success",
+    "Processing your order. Please wait..."
+  );
+
+
+  try{
+
+    const serviceID =
+      network === "MTN"
+        ? "mtn-data"
+        : "airtel-data";
+
+
+    const response =
+      await fetch(
+        API_BASE + "/api/data",
+        {
+          method:"POST",
+
+          headers:{
+            "Content-Type":
+              "application/json"
+          },
+
+          body:
+            JSON.stringify({
+
+              serviceID:
+                serviceID,
+
+              variation_code:
+                variationCode,
+
+              amount:
+                Number(
+                  selectedPlan
+                    .variation_amount
+                ),
+
+              phone:
+                phone
+
+            })
+        }
+      );
+
+
+    const data =
+      await response.json();
+
+
+    if(!response.ok){
+
+      throw new Error(
+        data.response_description ||
+        data.message ||
+        "Transaction failed"
+      );
+
+    }
+
+
+    const description =
+      data.response_description ||
+      data.message ||
+      "Transaction request submitted.";
+
+
+    showResult(
+      "success",
+      "✅ " + description
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    showResult(
+      "error",
+      "❌ Transaction failed: " +
+      error.message
+    );
+
+
+  }finally{
+
+    submitBtn.disabled =
+      false;
+
+    submitBtn.textContent =
+      service === "Data"
+        ? "📲 Buy Data"
+        : "📲 Order Airtime";
+
+  }
+
+}
+
+
+// ===============================
+// SHOW RESULT
+// ===============================
+
+function showResult(
+  type,
+  message
+){
+
+  const result =
+    document.getElementById(
+      "result"
+    );
+
+  result.className =
+    "result " + type;
+
+  result.textContent =
+    message;
+
+}
+
+</script>
+
+</body>
+      </html>
