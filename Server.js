@@ -178,6 +178,38 @@ app.get(
 
   }
 );
+// ===============================
+// TEST VTPASS CONNECTION
+// ===============================
+
+app.get("/api/test-vtpass", async (req, res) => {
+  try {
+    const response = await fetch(
+      `${VTPASS_BASE_URL}/service-categories`,
+      {
+        method: "GET",
+        headers: {
+          "api-key": VTPASS_API_KEY,
+          "public-key": VTPASS_PUBLIC_KEY
+        }
+      }
+    );
+
+    const data = await response.json();
+
+    res.status(response.status).json(data);
+
+  } catch (error) {
+    console.error("VTpass test error:", error);
+
+    res.status(500).json({
+      status: "error",
+      message: "Unable to connect to VTpass"
+    });
+  }
+});
+
+
 
 
 // ===============================
