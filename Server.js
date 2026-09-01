@@ -348,6 +348,51 @@ if (
 
   paymentData.amount = numericAmount;
 }
+      // ===============================
+// DATA PURCHASE
+// ===============================
+
+app.post("/api/data", async (req, res) => {
+  try {
+    const {
+      serviceID,
+      variation_code,
+      amount,
+      phone
+    } = req.body;
+
+    if (!serviceID || !variation_code || !phone) {
+      return res.status(400).json({
+        status: "error",
+        message:
+          "serviceID, variation_code and phone are required"
+      });
+    }
+
+    if (!/^0\d{10}$/.test(phone)) {
+      return res.status(400).json({
+        status: "error",
+        message: "Invalid Nigerian phone number"
+      });
+    }
+
+    const requestId = generateRequestId();
+
+    console.log("Data request:", requestId);
+
+    const paymentData = {
+      request_id: requestId,
+      serviceID: serviceID,
+      billersCode: phone,
+      variation_code: variation_code,
+      phone: phone
+    };
+
+    if (
+      amount !== undefined &&
+      amount !== null &&
+      amount !== ""
+    ) {
       const numericAmount = Number(amount);
 
       if (
@@ -380,10 +425,6 @@ if (
     });
   }
 });
-
-// ===============================
-// REQUERY TRANSACTION
-// ===============================
 
 app.post("/api/requery", async (req, res) => {
   try {
