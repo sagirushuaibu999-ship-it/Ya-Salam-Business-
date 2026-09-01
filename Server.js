@@ -326,15 +326,28 @@ app.post("/api/data", async (req, res) => {
   serviceID: serviceID,
   billersCode: phone,
   variation_code: variation_code,
-  amount: amount ? Number(amount) : undefined,
   phone: phone
 };
 
-    if (
-      amount !== undefined &&
-      amount !== null &&
-      amount !== ""
-    ) {
+if (
+  amount !== undefined &&
+  amount !== null &&
+  amount !== ""
+) {
+  const numericAmount = Number(amount);
+
+  if (
+    !Number.isFinite(numericAmount) ||
+    numericAmount <= 0
+  ) {
+    return res.status(400).json({
+      status: "error",
+      message: "Invalid data amount"
+    });
+  }
+
+  paymentData.amount = numericAmount;
+}
       const numericAmount = Number(amount);
 
       if (
