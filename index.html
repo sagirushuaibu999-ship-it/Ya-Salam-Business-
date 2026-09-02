@@ -1,2 +1,849 @@
-<
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>YA SALAM BUSINESS — NIN & BVN Verification</title>
+
+<meta name="description"
+content="YA SALAM BUSINESS NIN and BVN verification service.">
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  color:#101828;
+  background:#f5f7fb;
+}
+
+nav{
+  background:#fff;
+  padding:18px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:0 2px 12px #00000012;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:800;
+}
+
+.logo span{
+  display:block;
+  color:#e12626;
+  font-size:12px;
+  letter-spacing:4px;
+  margin-top:5px;
+}
+
+.wa{
+  background:#079b48;
+  color:#fff;
+  text-decoration:none;
+  padding:13px 18px;
+  border-radius:8px;
+  font-weight:700;
+}
+
+.hero{
+  padding:65px 6% 35px;
+  text-align:center;
+}
+
+.kicker{
+  color:#e12626;
+  font-weight:800;
+  letter-spacing:3px;
+}
+
+.hero h1{
+  font-size:48px;
+  margin:15px 0;
+}
+
+.hero h1 span{
+  color:#e12626;
+}
+
+.hero p{
+  max-width:650px;
+  margin:auto;
+  color:#667085;
+  font-size:18px;
+  line-height:1.6;
+}
+
+.box{
+  max-width:600px;
+  margin:30px auto 60px;
+  background:#fff;
+  padding:30px;
+  border-radius:18px;
+  box-shadow:0 10px 35px #00000012;
+}
+
+.tabs{
+  display:flex;
+  gap:10px;
+  margin-bottom:25px;
+}
+
+.tab{
+  flex:1;
+  padding:14px;
+  border:1px solid #d0d5dd;
+  background:#fff;
+  border-radius:9px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.tab.active{
+  background:#e12626;
+  color:#fff;
+  border-color:#e12626;
+}
+
+label{
+  display:block;
+  text-align:left;
+  font-weight:700;
+  margin-bottom:8px;
+}
+
+input{
+  width:100%;
+  padding:15px;
+  border:1px solid #d0d5dd;
+  border-radius:9px;
+  font-size:18px;
+  outline:none;
+}
+
+input:focus{
+  border-color:#e12626;
+}
+
+.verify{
+  width:100%;
+  margin-top:18px;
+  padding:15px;
+  border:0;
+  border-radius:9px;
+  background:#e12626;
+  color:#fff;
+  font-size:17px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.verify:disabled{
+  opacity:.6;
+}
+
+.message{
+  margin-top:18px;
+  padding:14px;
+  border-radius:9px;
+  display:none;
+  text-align:left;
+}
+
+.result{
+  display:none;
+  margin-top:25px;
+  border:1px solid #d0d5dd;
+  border-radius:14px;
+  overflow:hidden;
+  background:#fff;
+}
+
+.result-title{
+  background:#101828;
+  color:#fff;
+  padding:16px;
+  font-size:20px;
+  font-weight:800;
+}
+
+.result-body{
+  padding:20px;
+}
+
+.row{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  padding:11px 0;
+  border-bottom:1px solid #eaecf0;
+}
+
+.row:last-child{
+  border-bottom:0;
+}
+
+.row strong{
+  color:#475467;
+}
+
+.actions{
+  display:flex;
+  gap:10px;
+  margin-top:18px;
+}
+
+.actions button{
+  flex:1;
+  padding:13px;
+  border:0;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:700;
+}
+
+.download{
+  background:#079b48;
+  color:#fff;
+}
+
+.print{
+  background:#101828;
+  color:#fff;
+}
+
+.warning{
+  margin-top:18px;
+  font-size:13px;
+  color:#667085;
+  line-height:1.5;
+}
+
+.info{
+  max-width:900px;
+  margin:0 auto 60px;
+  padding:25px;
+  text-align:center;
+}
+
+.info p{
+  color:#667085;
+  line-height:1.6;
+}
+
+footer{
+  background:#101828;
+  color:#fff;
+  text-align:center;
+  padding:25px;
+  font-size:13px;
+}
+
+@media(max-width:600px){
+
+  nav{
+    padding:15px 5%;
+  }
+
+  .hero{
+    padding:45px 5% 25px;
+  }
+
+  .hero h1{
+    font-size:38px;
+  }
+
+  .box{
+    margin:25px 5% 45px;
+    padding:20px;
+  }
+
+  .row{
+    flex-direction:column;
+    gap:4px;
+  }
+
+  .actions{
+    flex-direction:column;
+  }
+}
+
+@media print{
+
+  body *{
+    visibility:hidden;
+  }
+
+  #result,
+  #result *{
+    visibility:visible;
+  }
+
+  #result{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    box-shadow:none;
+  }
+
+  .actions{
+    display:none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+
+  <div class="logo">
+    YA SALAM
+    <span>BUSINESS</span>
+  </div>
+
+  <a
+    class="wa"
+    href="https://wa.me/2347069205190"
+    target="_blank"
+    rel="noopener">
+    Contact on WhatsApp
+  </a>
+
+</nav>
+
+
+<section class="hero">
+
+  <div class="kicker">
+    YA SALAM BUSINESS
+  </div>
+
+  <h1>
+    NIN & <span>BVN Verification</span>
+  </h1>
+
+  <p>
+    Verify NIN and BVN information quickly through
+    Ya Salam Business verification service.
+  </p>
+
+</section>
+
+
+<div class="box">
+
+  <div class="tabs">
+
+    <button
+      class="tab active"
+      id="ninTab"
+      type="button">
+      NIN Verification
+    </button>
+
+    <button
+      class="tab"
+      id="bvnTab"
+      type="button">
+      BVN Verification
+    </button>
+
+  </div>
+
+
+  <label id="numberLabel">
+    Enter NIN Number
+  </label>
+
+  <input
+    id="idNumber"
+    type="tel"
+    inputmode="numeric"
+    maxlength="11"
+    placeholder="Enter 11-digit NIN"
+    autocomplete="off"
+  >
+
+  <button
+    class="verify"
+    id="verifyBtn"
+    type="button">
+    Verify Now
+  </button>
+
+
+  <div
+    class="message"
+    id="message">
+  </div>
+
+
+  <div
+    class="result"
+    id="result">
+
+    <div class="result-title">
+      Verification Result
+    </div>
+
+    <div class="result-body">
+
+      <div class="row">
+        <strong>First Name</strong>
+        <span id="firstName">-</span>
+      </div>
+
+      <div class="row">
+        <strong>Last Name</strong>
+        <span id="lastName">-</span>
+      </div>
+
+      <div class="row">
+        <strong>Gender</strong>
+        <span id="gender">-</span>
+      </div>
+
+      <div class="row">
+        <strong>Date of Birth</strong>
+        <span id="dob">-</span>
+      </div>
+
+      <div class="row">
+        <strong>State</strong>
+        <span id="state">-</span>
+      </div>
+
+      <div class="row">
+        <strong>Town</strong>
+        <span id="town">-</span>
+      </div>
+
+      <div class="row">
+        <strong>Country</strong>
+        <span id="country">-</span>
+      </div>
+
+
+      <div class="actions">
+
+        <button
+          class="download"
+          id="downloadBtn"
+          type="button">
+          Download Result
+        </button>
+
+        <button
+          class="print"
+          id="printBtn"
+          type="button">
+          Print Result
+        </button>
+
+      </div>
+
+
+      <div class="warning">
+        This is a verification result from the verification service.
+        It is not an official government identity card.
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<section class="info">
+
+  <h2>Secure Verification</h2>
+
+  <p>
+    Enter an 11-digit NIN or BVN number and select
+    Verify Now.
+  </p>
+
+</section>
+
+
+<footer>
+  © 2026 YA SALAM BUSINESS — NIN & BVN Verification
+</footer>
+
+
+<script>
+
+const API_BASE =
+  "https://ya-salam-business-api.onrender.com";
+
+let idType = "nin";
+
+
+const ninTab =
+  document.getElementById("ninTab");
+
+const bvnTab =
+  document.getElementById("bvnTab");
+
+const numberLabel =
+  document.getElementById("numberLabel");
+
+const idNumber =
+  document.getElementById("idNumber");
+
+const verifyBtn =
+  document.getElementById("verifyBtn");
+
+const message =
+  document.getElementById("message");
+
+const result =
+  document.getElementById("result");
+
+
+function selectType(type){
+
+  idType = type;
+
+  result.style.display = "none";
+
+  message.style.display = "none";
+
+  idNumber.value = "";
+
+  if(type === "nin"){
+
+    ninTab.classList.add("active");
+
+    bvnTab.classList.remove("active");
+
+    numberLabel.textContent =
+      "Enter NIN Number";
+
+    idNumber.placeholder =
+      "Enter 11-digit NIN";
+
+  }else{
+
+    bvnTab.classList.add("active");
+
+    ninTab.classList.remove("active");
+
+    numberLabel.textContent =
+      "Enter BVN Number";
+
+    idNumber.placeholder =
+      "Enter 11-digit BVN";
+
+  }
+
+}
+
+
+ninTab.addEventListener(
+  "click",
+  function(){
+
+    selectType("nin");
+
+  }
+);
+
+
+bvnTab.addEventListener(
+  "click",
+  function(){
+
+    selectType("bvn");
+
+  }
+);
+
+
+function showMessage(
+  text,
+  type
+){
+
+  message.style.display = "block";
+
+  message.textContent = text;
+
+  if(type === "error"){
+
+    message.style.background =
+      "#fee4e2";
+
+    message.style.color =
+      "#b42318";
+
+  }else{
+
+    message.style.background =
+      "#dcfae6";
+
+    message.style.color =
+      "#067647";
+
+  }
+
+}
+
+
+function setResult(data){
+
+  document.getElementById("firstName")
+    .textContent =
+    data.first_name || "-";
+
+  document.getElementById("lastName")
+    .textContent =
+    data.last_name || "-";
+
+  document.getElementById("gender")
+    .textContent =
+    data.gender || "-";
+
+  document.getElementById("dob")
+    .textContent =
+    data.date_of_birth || "-";
+
+  document.getElementById("state")
+    .textContent =
+    data.address_state || "-";
+
+  document.getElementById("town")
+    .textContent =
+    data.address_town || "-";
+
+  document.getElementById("country")
+    .textContent =
+    data.country || "-";
+
+  result.style.display =
+    "block";
+
+}
+
+
+async function verifyIdentity(){
+
+  const number =
+    idNumber.value.trim();
+
+
+  if(!/^\d{11}$/.test(number)){
+
+    showMessage(
+      "Please enter exactly 11 digits.",
+      "error"
+    );
+
+    result.style.display =
+      "none";
+
+    return;
+
+  }
+
+
+  verifyBtn.disabled =
+    true;
+
+  verifyBtn.textContent =
+    "Verifying...";
+
+  message.style.display =
+    "none";
+
+  result.style.display =
+    "none";
+
+
+  const endpoint =
+    idType === "nin"
+      ? "/api/nin/verify"
+      : "/api/bvn/verify";
+
+
+  const body =
+    idType === "nin"
+      ? { nin: number }
+      : { bvn: number };
+
+
+  try{
+
+    const response =
+      await fetch(
+        API_BASE + endpoint,
+        {
+          method:"POST",
+
+          headers:{
+            "Content-Type":
+              "application/json"
+          },
+
+          body:
+            JSON.stringify(body)
+        }
+      );
+
+
+    const data =
+      await response.json();
+
+
+    if(
+      response.ok &&
+      data.status === "found"
+    ){
+
+      showMessage(
+        "Verification successful.",
+        "success"
+      );
+
+      setResult(data);
+
+    }else{
+
+      showMessage(
+        data.message ||
+        "No matching record was found.",
+        "error"
+      );
+
+    }
+
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      "Unable to connect to verification service. Please try again.",
+      "error"
+    );
+
+
+  }finally{
+
+    verifyBtn.disabled =
+      false;
+
+    verifyBtn.textContent =
+      "Verify Now";
+
+  }
+
+}
+
+
+verifyBtn.addEventListener(
+  "click",
+  verifyIdentity
+);
+
+
+document.getElementById(
+  "downloadBtn"
+).addEventListener(
+  "click",
+  function(){
+
+    const text =
+`YA SALAM BUSINESS
+NIN & BVN VERIFICATION RESULT
+
+First Name: ${
+document.getElementById("firstName").textContent
+}
+
+Last Name: ${
+document.getElementById("lastName").textContent
+}
+
+Gender: ${
+document.getElementById("gender").textContent
+}
+
+Date of Birth: ${
+document.getElementById("dob").textContent
+}
+
+State: ${
+document.getElementById("state").textContent
+}
+
+Town: ${
+document.getElementById("town").textContent
+}
+
+Country: ${
+document.getElementById("country").textContent
+}
+
+This is a verification result.
+It is NOT an official government identity card.`;
+
+
+    const blob =
+      new Blob(
+        [text],
+        {type:"text/plain"}
+      );
+
+
+    const url =
+      URL.createObjectURL(blob);
+
+
+    const a =
+      document.createElement("a");
+
+
+    a.href = url;
+
+    a.download =
+      "ya-salam-verification-result.txt";
+
+
+    a.click();
+
+
+    URL.revokeObjectURL(url);
+
+  }
+);
+
+
+document.getElementById(
+  "printBtn"
+).addEventListener(
+  "click",
+  function(){
+
+    window.print();
+
+  }
+);
+
+</script>
+
+</body>
+  </html>
   
