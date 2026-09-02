@@ -168,30 +168,6 @@ app.post("/api/nin/verify", async (req, res) => {
       });
     }
 
-    if (!/^\d{11}$/.test(String(nin))) {
-      return res.status(400).json({
-        status: "error",
-        message: "NIN must contain exactly 11 digits"
-      });
-    }
-
-    const result = await ninjaIdentityLookup(
-      "nin",
-      String(nin)
-    );
-
-    res.status(result.httpStatus).json(result.data);
-
-  } catch (error) {
-    console.error("NIN verification error:", error.message);
-
-    res.status(500).json({
-      status: "error",
-      message: "Unable to connect to NIN verification service"
-    });
-  }
-});
-
 
 // ======================================
 // BVN VERIFICATION
