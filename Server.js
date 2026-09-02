@@ -231,7 +231,28 @@ app.post("/api/bvn/verify", async (req, res) => {
     });
   }
 });
+// ======================================
+// TEMPORARY NIN TEST
+// ======================================
 
+app.get("/api/test-nin", async (req, res) => {
+  try {
+    const result = await ninjaIdentityLookup(
+      "nin",
+      "77777777777"
+    );
+
+    res.status(result.httpStatus).json(result.data);
+
+  } catch (error) {
+    console.error("Test NIN error:", error.message);
+
+    res.status(500).json({
+      status: "error",
+      message: "NIN Sandbox test failed"
+    });
+  }
+});
 
 // ======================================
 // START SERVER
