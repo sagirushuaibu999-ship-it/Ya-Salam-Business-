@@ -1,1 +1,1086 @@
-<!do
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>YA SALAM BUSINESS | NIN & BVN Verification</title>
+
+<meta name="description"
+content="Ya Salam Business - NIN and BVN verification services.">
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  color:#101828;
+  background:#fffdf6;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav{
+  height:75px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 6%;
+  box-shadow:0 2px 12px #00000012;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.logo{
+  font-weight:900;
+  font-size:25px;
+  line-height:.85;
+}
+
+.logo span{
+  display:block;
+  color:#d92626;
+  font-size:12px;
+  letter-spacing:4px;
+  margin-top:8px;
+}
+
+.links{
+  display:flex;
+  gap:25px;
+}
+
+.links a{
+  color:#101828;
+  text-decoration:none;
+  font-weight:700;
+}
+
+.links a:hover{
+  color:#dc2929;
+}
+
+.wa{
+  background:#079b48;
+  color:#fff;
+  text-decoration:none;
+  padding:13px 19px;
+  border-radius:9px;
+  font-weight:800;
+  display:inline-block;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  min-height:520px;
+  padding:70px 6%;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:35px;
+
+  background:
+  radial-gradient(
+    circle at 10% 30%,
+    #fff0c8,
+    transparent 35%
+  ),
+  #fffdf6;
+}
+
+.kicker{
+  color:#df2929;
+  letter-spacing:4px;
+  font-weight:900;
+}
+
+.hero h1{
+  font-size:65px;
+  line-height:.95;
+  margin:20px 0;
+}
+
+.hero h1 span{
+  color:#dc2929;
+}
+
+.hero h2{
+  font-size:30px;
+  margin:20px 0 12px;
+}
+
+.hero p{
+  font-size:19px;
+  line-height:1.6;
+  color:#4b5568;
+  max-width:600px;
+}
+
+.buttons{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:25px;
+}
+
+.btn{
+  padding:14px 20px;
+  border-radius:9px;
+  text-decoration:none;
+  font-weight:800;
+  display:inline-block;
+}
+
+.btn-red{
+  background:#dc2929;
+  color:white;
+}
+
+.btn-dark{
+  background:#111827;
+  color:white;
+}
+
+/* =========================
+   HERO CARD
+========================= */
+
+.verify-card{
+  background:#fff;
+  padding:35px;
+  border-radius:25px;
+  box-shadow:0 20px 40px #00000018;
+  text-align:center;
+}
+
+.verify-card .big-icon{
+  font-size:75px;
+  margin-bottom:15px;
+}
+
+.verify-card h3{
+  font-size:30px;
+  margin:10px 0;
+}
+
+.verify-card p{
+  color:#667085;
+  line-height:1.6;
+}
+
+/* =========================
+   SERVICES
+========================= */
+
+.section{
+  padding:65px 6%;
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:35px;
+}
+
+.section-title h2{
+  font-size:38px;
+  margin:0 0 10px;
+}
+
+.section-title p{
+  color:#667085;
+}
+
+.services{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:22px;
+  max-width:850px;
+  margin:auto;
+}
+
+.service{
+  background:#fff;
+  padding:30px;
+  border-radius:18px;
+  box-shadow:0 8px 25px #00000012;
+  text-align:center;
+}
+
+.service .icon{
+  font-size:48px;
+}
+
+.service h3{
+  font-size:23px;
+}
+
+.service p{
+  color:#667085;
+  line-height:1.5;
+}
+
+/* =========================
+   VERIFICATION FORM
+========================= */
+
+.verify-box{
+  max-width:700px;
+  margin:auto;
+  background:#fff;
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 10px 30px #00000012;
+}
+
+.form-group{
+  margin-bottom:18px;
+}
+
+label{
+  display:block;
+  font-weight:700;
+  margin-bottom:7px;
+}
+
+input,
+select{
+  width:100%;
+  padding:15px;
+  border:1px solid #d0d5dd;
+  border-radius:9px;
+  font-size:16px;
+  outline:none;
+}
+
+input:focus,
+select:focus{
+  border-color:#dc2929;
+}
+
+.submit{
+  width:100%;
+  border:0;
+  cursor:pointer;
+  background:#079b48;
+  color:#fff;
+  padding:15px;
+  border-radius:9px;
+  font-size:17px;
+  font-weight:800;
+}
+
+.submit:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+/* =========================
+   RESULT
+========================= */
+
+.result{
+  display:none;
+  margin-top:20px;
+  padding:18px;
+  border-radius:10px;
+  line-height:1.6;
+}
+
+.result.success{
+  display:block;
+  background:#ecfdf3;
+  color:#067647;
+}
+
+.result.error{
+  display:block;
+  background:#fef3f2;
+  color:#b42318;
+}
+
+.result h3{
+  margin-top:0;
+}
+
+.result-row{
+  padding:7px 0;
+  border-bottom:1px solid #00000012;
+}
+
+.result-row:last-child{
+  border-bottom:0;
+}
+
+/* =========================
+   FEATURES
+========================= */
+
+.features{
+  margin:0 6% 60px;
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 10px 30px #00000012;
+  padding:30px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:25px;
+}
+
+.feature h3{
+  margin-bottom:7px;
+}
+
+.feature p{
+  color:#596275;
+  line-height:1.5;
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact{
+  text-align:center;
+  background:#fff;
+  padding:65px 6%;
+}
+
+.contact h2{
+  font-size:36px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  text-align:center;
+  padding:30px;
+  background:#111a2d;
+  color:#fff;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:850px){
+
+  .links{
+    display:none;
+  }
+
+  .hero{
+    grid-template-columns:1fr;
+    padding-top:45px;
+  }
+
+  .hero h1{
+    font-size:52px;
+  }
+
+  .services{
+    grid-template-columns:1fr;
+  }
+
+  .features{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:520px){
+
+  nav{
+    padding:0 5%;
+  }
+
+  .hero{
+    padding:40px 5%;
+  }
+
+  .hero h1{
+    font-size:43px;
+  }
+
+  .hero h2{
+    font-size:27px;
+  }
+
+  .hero p{
+    font-size:17px;
+  }
+
+  .section{
+    padding:50px 5%;
+  }
+
+  .verify-box{
+    padding:22px;
+  }
+
+  .features{
+    margin:0 5% 40px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     NAV
+========================= -->
+
+<nav>
+
+  <div class="logo">
+    YA SALAM
+    <span>BUSINESS</span>
+  </div>
+
+  <div class="links">
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#verify">Verify</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <a
+    class="wa"
+    href="https://wa.me/2347069205190"
+    target="_blank">
+    WhatsApp
+  </a>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="home">
+
+  <div>
+
+    <div class="kicker">
+      WELCOME TO
+    </div>
+
+    <h1>
+      YA SALAM<br>
+      <span>BUSINESS</span>
+    </h1>
+
+    <h2>
+      NIN & BVN
+      <br>
+      <span style="color:#dc2929">
+        Verification Services
+      </span>
+    </h2>
+
+    <p>
+      Verify NIN and BVN information through
+      our secure verification service.
+      Fast, simple and easy to use.
+    </p>
+
+    <div class="buttons">
+
+      <a
+        class="btn btn-red"
+        href="#verify">
+        Verify Now
+      </a>
+
+      <a
+        class="btn btn-dark"
+        href="#services">
+        Our Services
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <div class="verify-card">
+
+    <div class="big-icon">
+      🛡️
+    </div>
+
+    <h3>
+      Identity Verification
+    </h3>
+
+    <p>
+      NIN and BVN verification
+      from one simple platform.
+    </p>
+
+    <p>
+      🔒 Your verification credentials
+      are sent securely through
+      our backend.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     SERVICES
+========================= -->
+
+<section
+  class="section"
+  id="services">
+
+  <div class="section-title">
+
+    <h2>
+      Our Services
+    </h2>
+
+    <p>
+      Simple identity verification services.
+    </p>
+
+  </div>
+
+
+  <div class="services">
+
+    <div class="service">
+
+      <div class="icon">
+        🪪
+      </div>
+
+      <h3>
+        NIN Verification
+      </h3>
+
+      <p>
+        Verify an 11-digit National
+        Identification Number.
+      </p>
+
+      <a
+        class="btn btn-red"
+        href="#verify">
+        Verify NIN
+      </a>
+
+    </div>
+
+
+    <div class="service">
+
+      <div class="icon">
+        🏦
+      </div>
+
+      <h3>
+        BVN Verification
+      </h3>
+
+      <p>
+        Verify an 11-digit Bank
+        Verification Number.
+      </p>
+
+      <a
+        class="btn btn-red"
+        href="#verify">
+        Verify BVN
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     VERIFICATION
+========================= -->
+
+<section
+  class="section"
+  id="verify">
+
+  <div class="section-title">
+
+    <h2>
+      Verify NIN / BVN
+    </h2>
+
+    <p>
+      Select the verification type and
+      enter the 11-digit number.
+    </p>
+
+  </div>
+
+
+  <div class="verify-box">
+
+    <div class="form-group">
+
+      <label for="idType">
+        Verification Type
+      </label>
+
+      <select id="idType">
+
+        <option value="nin">
+          NIN Verification
+        </option>
+
+        <option value="bvn">
+          BVN Verification
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label for="idNumber">
+        NIN / BVN Number
+      </label>
+
+      <input
+        id="idNumber"
+        type="text"
+        inputmode="numeric"
+        maxlength="11"
+        autocomplete="off"
+        placeholder="Enter 11-digit number">
+
+    </div>
+
+
+    <button
+      class="submit"
+      id="verifyBtn"
+      onclick="verifyIdentity()">
+
+      🔍 Verify Now
+
+    </button>
+
+
+    <div
+      id="result"
+      class="result">
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     FEATURES
+========================= -->
+
+<div class="features">
+
+  <div class="feature">
+
+    <h3>
+      🔒 Secure
+    </h3>
+
+    <p>
+      Verification requests are
+      processed through our backend.
+    </p>
+
+  </div>
+
+
+  <div class="feature">
+
+    <h3>
+      ⚡ Fast
+    </h3>
+
+    <p>
+      Get verification results
+      quickly when the service is available.
+    </p>
+
+  </div>
+
+
+  <div class="feature">
+
+    <h3>
+      📱 Mobile Friendly
+    </h3>
+
+    <p>
+      Designed to work smoothly
+      on Android phones and computers.
+    </p>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section
+  class="contact"
+  id="contact">
+
+  <h2>
+    Contact Ya Salam Business
+  </h2>
+
+  <p>
+    Need help with NIN or BVN verification?
+    Contact us directly on WhatsApp.
+  </p>
+
+  <br>
+
+  <a
+    class="wa"
+    href="https://wa.me/2347069205190"
+    target="_blank">
+
+    💬 Contact on WhatsApp
+
+  </a>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  © 2026 YA SALAM BUSINESS —
+  NIN & BVN Verification Services
+
+</footer>
+
+
+<script>
+
+/* =========================
+   BACKEND URL
+========================= */
+
+const API_BASE =
+  "https://ya-salam-business-api.onrender.com";
+
+
+/* =========================
+   VERIFY NIN / BVN
+========================= */
+
+async function verifyIdentity(){
+
+  const idType =
+    document.getElementById("idType").value;
+
+  const idNumber =
+    document
+      .getElementById("idNumber")
+      .value
+      .trim();
+
+  const verifyBtn =
+    document.getElementById("verifyBtn");
+
+
+  /* =========================
+     VALIDATE NUMBER
+  ========================= */
+
+  if(!/^\d{11}$/.test(idNumber)){
+
+    showResult(
+      "error",
+      "Please enter exactly 11 digits."
+    );
+
+    return;
+  }
+
+
+  /* =========================
+     LOADING
+  ========================= */
+
+  verifyBtn.disabled = true;
+
+  verifyBtn.textContent =
+    "⏳ Verifying...";
+
+  showResult(
+    "success",
+    "Please wait while we verify the information..."
+  );
+
+
+  try{
+
+    const endpoint =
+      idType === "nin"
+        ? "/api/nin/verify"
+        : "/api/bvn/verify";
+
+
+    const response =
+      await fetch(
+        API_BASE + endpoint,
+        {
+          method:"POST",
+
+          headers:{
+            "Content-Type":
+              "application/json"
+          },
+
+          body:JSON.stringify({
+
+            [idType === "nin"
+              ? "nin"
+              : "bvn"
+            ]:idNumber
+
+          })
+        }
+      );
+
+
+    const data =
+      await response.json();
+
+
+    /* =========================
+       API ERROR
+    ========================= */
+
+    if(!response.ok){
+
+      throw new Error(
+        data.message ||
+        data.error ||
+        "Verification failed."
+      );
+
+    }
+
+
+    /* =========================
+       CHECK RESULT
+    ========================= */
+
+    if(
+      data.status === "found" ||
+      data.data?.status === "found"
+    ){
+
+      const person =
+        data.data || data;
+
+
+      showVerificationResult(
+        person,
+        idType
+      );
+
+    }else{
+
+      showResult(
+        "error",
+        "❌ No matching record was found."
+      );
+
+    }
+
+
+  }catch(error){
+
+    console.error(
+      "Verification error:",
+      error
+    );
+
+    showResult(
+      "error",
+      "❌ Verification failed. Please try again."
+    );
+
+
+  }finally{
+
+    verifyBtn.disabled = false;
+
+    verifyBtn.textContent =
+      "🔍 Verify Now";
+
+  }
+
+}
+
+
+/* =========================
+   SHOW VERIFICATION RESULT
+========================= */
+
+function showVerificationResult(
+  person,
+  idType
+){
+
+  const result =
+    document.getElementById("result");
+
+
+  const title =
+    idType.toUpperCase() +
+    " Verification Successful";
+
+
+  const firstName =
+    person.first_name || "";
+
+  const lastName =
+    person.last_name || "";
+
+  const gender =
+    person.gender || "";
+
+  const dateOfBirth =
+    person.date_of_birth || "";
+
+  const state =
+    person.address_state || "";
+
+  const town =
+    person.address_town || "";
+
+  const country =
+    person.country || "";
+
+
+  result.className =
+    "result success";
+
+
+  result.innerHTML = `
+
+    <h3>
+      ✅ ${escapeHtml(title)}
+    </h3>
+
+    <div class="result-row">
+      <strong>Name:</strong>
+      ${escapeHtml(
+        (firstName + " " + lastName).trim()
+      )}
+    </div>
+
+    <div class="result-row">
+      <strong>Gender:</strong>
+      ${escapeHtml(gender)}
+    </div>
+
+    <div class="result-row">
+      <strong>Date of Birth:</strong>
+      ${escapeHtml(dateOfBirth)}
+    </div>
+
+    <div class="result-row">
+      <strong>State:</strong>
+      ${escapeHtml(state)}
+    </div>
+
+    <div class="result-row">
+      <strong>Town:</strong>
+      ${escapeHtml(town)}
+    </div>
+
+    <div class="result-row">
+      <strong>Country:</strong>
+      ${escapeHtml(country)}
+    </div>
+
+  `;
+
+}
+
+
+/* =========================
+   RESULT MESSAGE
+========================= */
+
+function showResult(
+  type,
+  message
+){
+
+  const result =
+    document.getElementById("result");
+
+  result.className =
+    "result " + type;
+
+  result.textContent =
+    message;
+
+}
+
+
+/* =========================
+   HTML ESCAPE
+========================= */
+
+function escapeHtml(value){
+
+  return String(value || "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+</script>
+
+</body>
+</html>
