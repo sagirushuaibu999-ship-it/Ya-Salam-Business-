@@ -1380,3 +1380,131 @@ h2{
   text-align:center;
   font-size:12px;
   colo
+    .footer{
+      margin-top:20px;
+      text-align:center;
+      font-size:12px;
+      color:#667085;
+    }
+
+    @media print{
+      body{
+        padding:0;
+      }
+
+      .card{
+        border:2px solid #079b48;
+        box-shadow:none;
+      }
+    }
+
+    </style></head>
+
+    <body>
+
+      <div class="card">
+
+        <div class="header">
+
+          <div class="logo">
+            YA SALAM <span>BUSINESS</span>
+          </div>
+
+          <h2>
+            ${type} VERIFICATION RESULT
+          </h2>
+
+        </div>
+
+        <div class="row">
+          <strong>Name</strong>
+          <span>${escapeHtml(name)}</span>
+        </div>
+
+        <div class="row">
+          <strong>Gender</strong>
+          <span>${escapeHtml(person.gender || "")}</span>
+        </div>
+
+        <div class="row">
+          <strong>Date of Birth</strong>
+          <span>${escapeHtml(person.date_of_birth || "")}</span>
+        </div>
+
+        <div class="row">
+          <strong>State</strong>
+          <span>${escapeHtml(person.address_state || "")}</span>
+        </div>
+
+        <div class="row">
+          <strong>Town</strong>
+          <span>${escapeHtml(person.address_town || "")}</span>
+        </div>
+
+        <div class="row">
+          <strong>Country</strong>
+          <span>${escapeHtml(person.country || "")}</span>
+        </div>
+
+        <div class="warning">
+          Verification Result — Not an Official
+          NIN/BVN Card or Government ID.
+        </div>
+
+        <div class="footer">
+          YA SALAM BUSINESS<br>
+          NIN & BVN Verification Services
+        </div>
+
+      </div>
+
+    </body>
+    </html>
+  `);
+
+  printWindow.document.close();
+
+  printWindow.focus();
+
+  setTimeout(function(){
+    printWindow.print();
+  }, 500);
+
+}
+
+
+/* =========================
+   SHOW SIMPLE MESSAGE
+========================= */
+
+function showResult(type, message){
+
+  const result =
+    document.getElementById("result");
+
+  result.className =
+    "result " + type;
+
+  result.innerHTML =
+    `<p>${escapeHtml(message)}</p>`;
+}
+
+
+/* =========================
+   HTML SECURITY
+========================= */
+
+function escapeHtml(value){
+
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+</script>
+
+</body>
+</html>
