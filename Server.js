@@ -253,7 +253,28 @@ app.get("/api/test-nin", async (req, res) => {
     });
   }
 });
+// ======================================
+// TEMPORARY BVN TEST
+// ======================================
 
+app.get("/api/test-bvn", async (req, res) => {
+  try {
+    const result = await ninjaIdentityLookup(
+      "bvn",
+      "77777777777"
+    );
+
+    res.status(result.httpStatus).json(result.data);
+
+  } catch (error) {
+    console.error("Test BVN error:", error.message);
+
+    res.status(500).json({
+      status: "error",
+      message: "BVN Sandbox test failed"
+    });
+  }
+});
 // ======================================
 // START SERVER
 // ======================================
