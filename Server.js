@@ -18,8 +18,7 @@ async function setup() {
     CREATE TABLE IF NOT EXISTS wallets (
       id SERIAL PRIMARY KEY,
       email TEXT UNIQUE NOT NULL,
-      balance NUMERIC DEFAULT 0,
-      created_at TIMESTAMP DEFAULT NOW()
+      balance NUMERIC DEFAULT 0
     );
 
     CREATE TABLE IF NOT EXISTS wallet_transactions (
@@ -27,8 +26,7 @@ async function setup() {
       reference TEXT UNIQUE NOT NULL,
       email TEXT NOT NULL,
       amount NUMERIC NOT NULL,
-      status TEXT DEFAULT 'pending',
-      created_at TIMESTAMP DEFAULT NOW()
+      status TEXT DEFAULT 'pending'
     );
   `);
 }
@@ -52,6 +50,9 @@ app.get("/api/status", (req, res) => {
 app.post("/api/wallet", async (req, res) => {
   try {
     const { email } = req.body;
+
+    if (!email)
+      return res.status(400).json({ message: "Email required" });
 
     await db.query(
       `INSERT INTO wallets(email)
@@ -99,7 +100,9 @@ app.post("/api/wallet/fund", async (req, res) => {
       [email]
     );
 
-    const reference = "YSB-" + Date.now();
+    const reference =
+      "YSB-" + Date.now() + "-" +
+      Math.floor(Math.random() * 10000);
 
     await db.query(
       `INSERT INTO wallet_transactions
@@ -113,7 +116,8 @@ app.post("/api/wallet/fund", async (req, res) => {
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}`,
+          Authorization:
+            `Bearer ${process.env.PAYSTACK_SECRET_KEY}`,
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
@@ -126,10 +130,14 @@ app.post("/api/wallet/fund", async (req, res) => {
 
     const data = await pay.json();
 
+    if (!data.status)
+      return res.status(400).json(data);
+
     res.json({
-      status: data.status ? "success" : "error",
+      status: "success",
       reference,
-      authorization_url: data.data?.authorization_url || null
+      authorization_url:
+        data.data.authorization_url
     });
 
   } catch (e) {
@@ -140,10 +148,109 @@ app.post("/api/wallet/fund", async (req, res) => {
   }
 });
 
+app.get(
+  "/api/wallet/verify/:reference",
+  async (req, res) => {
+    try {
+      const reference = req.params.reference;
+
+      const tx = await db.query(
+        `SELECT * FROM wallet_transactions
+         WHERE reference=$1`,
+        [reference]
+      );
+
+      if (!tx.rows.length)
+        return res.status(404).json({
+          status: "error",
+          message: "Transaction not found"
+        });
+
+      const payment = await fetch(
+        `https://api.paystack.co/transaction/verify/${reference}`,
+        {
+          headers: {
+            Authorization:
+              `Bearer ${process.env.PAYSTACK_SECRET_KEY}`
+          }
+        }
+      );
+
+      const data = await payment.json();
+
+      if (
+        !data.status ||
+        data.data.status !== "success"
+      ) {
+        return res.json({
+          status: "pending",
+          message: "Payment not successful yet"
+        });
+      }
+
+      const amount =
+        Number(data.data.amount) / 100;
+
+      if (amount !== Number(tx.rows[0].amount))
+        return res.status(400).json({
+          status: "error",
+          message: "Amount mismatch"
+        });
+
+      if (tx.rows[0].status === "success")
+        return res.json({
+          status: "success",
+          message: "Wallet already credited"
+        });
+
+      await db.query("BEGIN");
+
+      await db.query(
+        `UPDATE wallets
+         SET balance = balance + $1
+         WHERE email=$2`,
+        [amount, tx.rows[0].email]
+      );
+
+      await db.query(
+        `UPDATE wallet_transactions
+         SET status='success'
+         WHERE reference=$1`,
+        [reference]
+      );
+
+      await db.query("COMMIT");
+
+      const wallet = await db.query(
+        `SELECT balance FROM wallets
+         WHERE email=$1`,
+        [tx.rows[0].email]
+      );
+
+      res.json({
+        status: "success",
+        message: "Wallet credited",
+        balance: wallet.rows[0].balance
+      });
+
+    } catch (e) {
+      await db.query("ROLLBACK").catch(() => {});
+
+      res.status(500).json({
+        status: "error",
+        message: "Unable to verify payment"
+      });
+    }
+  }
+);
+
 setup()
   .then(() => {
     app.listen(PORT, () => {
-      console.log("Ya Salam Business backend running on port " + PORT);
+      console.log(
+        "Ya Salam Business backend running on port " +
+        PORT
+      );
     });
   })
   .catch(console.error);
