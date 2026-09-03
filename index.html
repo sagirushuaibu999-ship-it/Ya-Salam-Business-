@@ -4,301 +4,108 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>YA SALAM BUSINESS — NIN & BVN Verification</title>
-
-<meta name="description"
-content="YA SALAM BUSINESS NIN and BVN verification service.">
+<title>YA SALAM BUSINESS</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
-
+*{box-sizing:border-box}
 body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  color:#101828;
-  background:#f5f7fb;
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#f5f7fb;
+ color:#101828
 }
-
 nav{
-  background:#fff;
-  padding:18px 6%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  box-shadow:0 2px 12px #00000012;
-  position:sticky;
-  top:0;
-  z-index:10;
+ background:#fff;
+ padding:16px 6%;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ box-shadow:0 2px 12px #0001
 }
-
-.logo{
-  font-size:25px;
-  font-weight:800;
-}
-
+.logo{font-size:24px;font-weight:800}
 .logo span{
-  display:block;
-  color:#e12626;
-  font-size:12px;
-  letter-spacing:4px;
-  margin-top:5px;
+ display:block;
+ color:#e12626;
+ font-size:11px;
+ letter-spacing:4px
 }
-
 .wa{
-  background:#079b48;
-  color:#fff;
-  text-decoration:none;
-  padding:13px 18px;
-  border-radius:8px;
-  font-weight:700;
+ background:#079b48;
+ color:#fff;
+ text-decoration:none;
+ padding:11px 15px;
+ border-radius:8px;
+ font-weight:bold
 }
-
 .hero{
-  padding:65px 6% 35px;
-  text-align:center;
+ text-align:center;
+ padding:45px 6% 20px
 }
-
-.kicker{
-  color:#e12626;
-  font-weight:800;
-  letter-spacing:3px;
-}
-
-.hero h1{
-  font-size:48px;
-  margin:15px 0;
-}
-
-.hero h1 span{
-  color:#e12626;
-}
-
-.hero p{
-  max-width:650px;
-  margin:auto;
-  color:#667085;
-  font-size:18px;
-  line-height:1.6;
-}
-
+.hero h1{font-size:40px}
+.hero h1 span{color:#e12626}
+.hero p{color:#667085}
 .box{
-  max-width:600px;
-  margin:30px auto 60px;
-  background:#fff;
-  padding:30px;
-  border-radius:18px;
-  box-shadow:0 10px 35px #00000012;
+ max-width:600px;
+ margin:25px auto;
+ background:#fff;
+ padding:25px;
+ border-radius:16px;
+ box-shadow:0 8px 30px #0001
 }
-
-.tabs{
-  display:flex;
-  gap:10px;
-  margin-bottom:25px;
-}
-
-.tab{
-  flex:1;
-  padding:14px;
-  border:1px solid #d0d5dd;
-  background:#fff;
-  border-radius:9px;
-  font-weight:700;
-  cursor:pointer;
-}
-
-.tab.active{
-  background:#e12626;
-  color:#fff;
-  border-color:#e12626;
-}
-
-label{
-  display:block;
-  text-align:left;
-  font-weight:700;
-  margin-bottom:8px;
-}
-
+h2{margin-top:0}
 input{
-  width:100%;
-  padding:15px;
-  border:1px solid #d0d5dd;
-  border-radius:9px;
-  font-size:18px;
-  outline:none;
+ width:100%;
+ padding:14px;
+ margin:7px 0;
+ border:1px solid #d0d5dd;
+ border-radius:8px;
+ font-size:16px
 }
-
-input:focus{
-  border-color:#e12626;
+button{
+ width:100%;
+ padding:14px;
+ margin-top:10px;
+ border:0;
+ border-radius:8px;
+ font-weight:bold;
+ cursor:pointer
 }
-
-.verify{
-  width:100%;
-  margin-top:18px;
-  padding:15px;
-  border:0;
-  border-radius:9px;
-  background:#e12626;
-  color:#fff;
-  font-size:17px;
-  font-weight:800;
-  cursor:pointer;
-}
-
-.verify:disabled{
-  opacity:.6;
-}
-
+.verify{background:#e12626;color:#fff}
+.fund{background:#079b48;color:#fff}
+.tabs{display:flex;gap:10px}
+.tab{background:#fff;border:1px solid #ddd}
+.tab.active{background:#e12626;color:#fff}
 .message{
-  margin-top:18px;
-  padding:14px;
-  border-radius:9px;
-  display:none;
-  text-align:left;
+ display:none;
+ margin-top:12px;
+ padding:12px;
+ border-radius:8px
 }
-
+.balance{
+ font-size:28px;
+ font-weight:800;
+ color:#079b48;
+ margin:15px 0
+}
 .result{
-  display:none;
-  margin-top:25px;
-  border:1px solid #d0d5dd;
-  border-radius:14px;
-  overflow:hidden;
-  background:#fff;
+ display:none;
+ margin-top:20px;
+ border:1px solid #ddd;
+ border-radius:10px;
+ padding:18px
 }
-
-.result-title{
-  background:#101828;
-  color:#fff;
-  padding:16px;
-  font-size:20px;
-  font-weight:800;
-}
-
-.result-body{
-  padding:20px;
-}
-
 .row{
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-  padding:11px 0;
-  border-bottom:1px solid #eaecf0;
+ display:flex;
+ justify-content:space-between;
+ padding:9px 0;
+ border-bottom:1px solid #eee
 }
-
-.row:last-child{
-  border-bottom:0;
-}
-
-.row strong{
-  color:#475467;
-}
-
-.actions{
-  display:flex;
-  gap:10px;
-  margin-top:18px;
-}
-
-.actions button{
-  flex:1;
-  padding:13px;
-  border:0;
-  border-radius:8px;
-  cursor:pointer;
-  font-weight:700;
-}
-
-.download{
-  background:#079b48;
-  color:#fff;
-}
-
-.print{
-  background:#101828;
-  color:#fff;
-}
-
-.warning{
-  margin-top:18px;
-  font-size:13px;
-  color:#667085;
-  line-height:1.5;
-}
-
-.info{
-  max-width:900px;
-  margin:0 auto 60px;
-  padding:25px;
-  text-align:center;
-}
-
-.info p{
-  color:#667085;
-  line-height:1.6;
-}
-
 footer{
-  background:#101828;
-  color:#fff;
-  text-align:center;
-  padding:25px;
-  font-size:13px;
-}
-
-@media(max-width:600px){
-
-  nav{
-    padding:15px 5%;
-  }
-
-  .hero{
-    padding:45px 5% 25px;
-  }
-
-  .hero h1{
-    font-size:38px;
-  }
-
-  .box{
-    margin:25px 5% 45px;
-    padding:20px;
-  }
-
-  .row{
-    flex-direction:column;
-    gap:4px;
-  }
-
-  .actions{
-    flex-direction:column;
-  }
-}
-
-@media print{
-
-  body *{
-    visibility:hidden;
-  }
-
-  #result,
-  #result *{
-    visibility:visible;
-  }
-
-  #result{
-    position:absolute;
-    left:0;
-    top:0;
-    width:100%;
-    box-shadow:none;
-  }
-
-  .actions{
-    display:none;
-  }
+ background:#101828;
+ color:#fff;
+ text-align:center;
+ padding:22px;
+ margin-top:50px
 }
 </style>
 </head>
@@ -306,544 +113,399 @@ footer{
 <body>
 
 <nav>
+ <div class="logo">
+  YA SALAM
+  <span>BUSINESS</span>
+ </div>
 
-  <div class="logo">
-    YA SALAM
-    <span>BUSINESS</span>
-  </div>
-
-  <a
-    class="wa"
-    href="https://wa.me/2347069205190"
-    target="_blank"
-    rel="noopener">
-    Contact on WhatsApp
-  </a>
-
+ <a class="wa"
+ href="https://wa.me/2347069205190"
+ target="_blank">
+ Contact on WhatsApp
+ </a>
 </nav>
 
-
 <section class="hero">
+ <h1>NIN & <span>BVN Verification</span></h1>
+ <p>Secure verification and digital services by YA SALAM BUSINESS.</p>
+</section>
 
-  <div class="kicker">
-    YA SALAM BUSINESS
-  </div>
+<!-- WALLET -->
+<section class="box">
 
-  <h1>
-    NIN & <span>BVN Verification</span>
-  </h1>
+ <h2>💰 My Wallet</h2>
 
-  <p>
-    Verify NIN and BVN information quickly through
-    Ya Salam Business verification service.
-  </p>
+ <input
+  id="walletEmail"
+  type="email"
+  placeholder="Enter your email">
+
+ <button
+  id="walletBtn"
+  class="verify">
+  Check Wallet
+ </button>
+
+ <div id="balance" class="balance">
+  ₦0.00
+ </div>
+
+ <input
+  id="walletAmount"
+  type="number"
+  min="100"
+  placeholder="Amount to fund (₦)">
+
+ <button
+  id="fundBtn"
+  class="fund">
+  Fund Wallet
+ </button>
+
+ <div id="walletMessage" class="message"></div>
 
 </section>
 
+<!-- VERIFICATION -->
+<section class="box">
 
-<div class="box">
-
-  <div class="tabs">
-
-    <button
-      class="tab active"
-      id="ninTab"
-      type="button">
-      NIN Verification
-    </button>
-
-    <button
-      class="tab"
-      id="bvnTab"
-      type="button">
-      BVN Verification
-    </button>
-
-  </div>
-
-
-  <label id="numberLabel">
-    Enter NIN Number
-  </label>
-
-  <input
-    id="idNumber"
-    type="tel"
-    inputmode="numeric"
-    maxlength="11"
-    placeholder="Enter 11-digit NIN"
-    autocomplete="off"
-  >
+ <div class="tabs">
 
   <button
-    class="verify"
-    id="verifyBtn"
-    type="button">
-    Verify Now
+   id="ninTab"
+   class="tab active">
+   NIN
   </button>
 
+  <button
+   id="bvnTab"
+   class="tab">
+   BVN
+  </button>
 
-  <div
-    class="message"
-    id="message">
+ </div>
+
+ <input
+  id="idNumber"
+  type="tel"
+  maxlength="11"
+  inputmode="numeric"
+  placeholder="Enter 11-digit NIN">
+
+ <button
+  id="verifyBtn"
+  class="verify">
+  Verify Now
+ </button>
+
+ <div id="message" class="message"></div>
+
+ <div id="result" class="result">
+
+  <h3>Verification Result</h3>
+
+  <div class="row">
+   <strong>First Name</strong>
+   <span id="firstName">-</span>
   </div>
 
-
-  <div
-    class="result"
-    id="result">
-
-    <div class="result-title">
-      Verification Result
-    </div>
-
-    <div class="result-body">
-
-      <div class="row">
-        <strong>First Name</strong>
-        <span id="firstName">-</span>
-      </div>
-
-      <div class="row">
-        <strong>Last Name</strong>
-        <span id="lastName">-</span>
-      </div>
-
-      <div class="row">
-        <strong>Gender</strong>
-        <span id="gender">-</span>
-      </div>
-
-      <div class="row">
-        <strong>Date of Birth</strong>
-        <span id="dob">-</span>
-      </div>
-
-      <div class="row">
-        <strong>State</strong>
-        <span id="state">-</span>
-      </div>
-
-      <div class="row">
-        <strong>Town</strong>
-        <span id="town">-</span>
-      </div>
-
-      <div class="row">
-        <strong>Country</strong>
-        <span id="country">-</span>
-      </div>
-
-
-      <div class="actions">
-
-        <button
-          class="download"
-          id="downloadBtn"
-          type="button">
-          Download Result
-        </button>
-
-        <button
-          class="print"
-          id="printBtn"
-          type="button">
-          Print Result
-        </button>
-
-      </div>
-
-
-      <div class="warning">
-        This is a verification result from the verification service.
-        It is not an official government identity card.
-      </div>
-
-    </div>
-
+  <div class="row">
+   <strong>Last Name</strong>
+   <span id="lastName">-</span>
   </div>
 
-</div>
+  <div class="row">
+   <strong>Gender</strong>
+   <span id="gender">-</span>
+  </div>
 
+  <div class="row">
+   <strong>Date of Birth</strong>
+   <span id="dob">-</span>
+  </div>
 
-<section class="info">
+  <div class="row">
+   <strong>State</strong>
+   <span id="state">-</span>
+  </div>
 
-  <h2>Secure Verification</h2>
+  <div class="row">
+   <strong>Town</strong>
+   <span id="town">-</span>
+  </div>
 
-  <p>
-    Enter an 11-digit NIN or BVN number and select
-    Verify Now.
-  </p>
+  <div class="row">
+   <strong>Country</strong>
+   <span id="country">-</span>
+  </div>
+
+ </div>
 
 </section>
 
-
 <footer>
-  © 2026 YA SALAM BUSINESS — NIN & BVN Verification
+ © 2026 YA SALAM BUSINESS
 </footer>
-
 
 <script>
 
-const API_BASE =
-  "https://ya-salam-business-api.onrender.com";
+const API =
+"https://ya-salam-business-api.onrender.com";
 
-let idType = "nin";
-
+let type = "nin";
 
 const ninTab =
-  document.getElementById("ninTab");
+document.getElementById("ninTab");
 
 const bvnTab =
-  document.getElementById("bvnTab");
-
-const numberLabel =
-  document.getElementById("numberLabel");
+document.getElementById("bvnTab");
 
 const idNumber =
-  document.getElementById("idNumber");
+document.getElementById("idNumber");
 
 const verifyBtn =
-  document.getElementById("verifyBtn");
+document.getElementById("verifyBtn");
 
 const message =
-  document.getElementById("message");
+document.getElementById("message");
 
 const result =
-  document.getElementById("result");
+document.getElementById("result");
 
+function msg(el,text,error=false){
 
-function selectType(type){
+ el.style.display="block";
+ el.textContent=text;
+ el.style.background=error?"#fee4e2":"#dcfae6";
+ el.style.color=error?"#b42318":"#067647";
 
-  idType = type;
+}
 
-  result.style.display = "none";
+ninTab.onclick=()=>{
 
-  message.style.display = "none";
+ type="nin";
 
-  idNumber.value = "";
+ ninTab.classList.add("active");
+ bvnTab.classList.remove("active");
 
-  if(type === "nin"){
+ idNumber.placeholder="Enter 11-digit NIN";
+ idNumber.value="";
 
-    ninTab.classList.add("active");
+};
 
-    bvnTab.classList.remove("active");
+bvnTab.onclick=()=>{
 
-    numberLabel.textContent =
-      "Enter NIN Number";
+ type="bvn";
 
-    idNumber.placeholder =
-      "Enter 11-digit NIN";
+ bvnTab.classList.add("active");
+ ninTab.classList.remove("active");
+
+ idNumber.placeholder="Enter 11-digit BVN";
+ idNumber.value="";
+
+};
+
+verifyBtn.onclick=async()=>{
+
+ const number=idNumber.value.trim();
+
+ if(!/^\d{11}$/.test(number)){
+  msg(message,"Enter exactly 11 digits.",true);
+  return;
+ }
+
+ verifyBtn.disabled=true;
+ verifyBtn.textContent="Verifying...";
+
+ try{
+
+  const r=await fetch(
+   API+(type==="nin"
+    ?"/api/nin/verify"
+    :"/api/bvn/verify"),
+   {
+    method:"POST",
+    headers:{
+     "Content-Type":"application/json"
+    },
+    body:JSON.stringify(
+     type==="nin"
+      ?{nin:number}
+      :{bvn:number}
+    )
+   }
+  );
+
+  const d=await r.json();
+
+  if(r.ok && d.status==="found"){
+
+   msg(message,"Verification successful.");
+
+   document.getElementById("firstName").textContent=d.first_name||"-";
+   document.getElementById("lastName").textContent=d.last_name||"-";
+   document.getElementById("gender").textContent=d.gender||"-";
+   document.getElementById("dob").textContent=d.date_of_birth||"-";
+   document.getElementById("state").textContent=d.address_state||"-";
+   document.getElementById("town").textContent=d.address_town||"-";
+   document.getElementById("country").textContent=d.country||"-";
+
+   result.style.display="block";
 
   }else{
 
-    bvnTab.classList.add("active");
-
-    ninTab.classList.remove("active");
-
-    numberLabel.textContent =
-      "Enter BVN Number";
-
-    idNumber.placeholder =
-      "Enter 11-digit BVN";
+   msg(
+    message,
+    d.message||"Record not found.",
+    true
+   );
 
   }
 
-}
+ }catch(e){
 
+  msg(
+   message,
+   "Unable to connect to service.",
+   true
+  );
 
-ninTab.addEventListener(
-  "click",
-  function(){
+ }finally{
 
-    selectType("nin");
+  verifyBtn.disabled=false;
+  verifyBtn.textContent="Verify Now";
 
-  }
-);
+ }
 
+};
 
-bvnTab.addEventListener(
-  "click",
-  function(){
+document.getElementById("walletBtn").onclick=async()=>{
 
-    selectType("bvn");
+ const email=
+ document.getElementById("walletEmail").value.trim();
 
-  }
-);
+ if(!email){
+  msg(
+   document.getElementById("walletMessage"),
+   "Enter your email.",
+   true
+  );
+  return;
+ }
 
+ try{
 
-function showMessage(
-  text,
-  type
-){
+  const r=await fetch(
+   API+"/api/wallet/"+encodeURIComponent(email)
+  );
 
-  message.style.display = "block";
+  const d=await r.json();
 
-  message.textContent = text;
+  if(d.wallet){
 
-  if(type === "error"){
+   document.getElementById("balance")
+   .textContent="₦"+Number(d.wallet.balance).toLocaleString();
 
-    message.style.background =
-      "#fee4e2";
-
-    message.style.color =
-      "#b42318";
+   msg(
+    document.getElementById("walletMessage"),
+    "Wallet loaded successfully."
+   );
 
   }else{
 
-    message.style.background =
-      "#dcfae6";
+   await fetch(API+"/api/wallet",{
+    method:"POST",
+    headers:{
+     "Content-Type":"application/json"
+    },
+    body:JSON.stringify({email})
+   });
 
-    message.style.color =
-      "#067647";
+   document.getElementById("balance").textContent="₦0.00";
 
-  }
-
-}
-
-
-function setResult(data){
-
-  document.getElementById("firstName")
-    .textContent =
-    data.first_name || "-";
-
-  document.getElementById("lastName")
-    .textContent =
-    data.last_name || "-";
-
-  document.getElementById("gender")
-    .textContent =
-    data.gender || "-";
-
-  document.getElementById("dob")
-    .textContent =
-    data.date_of_birth || "-";
-
-  document.getElementById("state")
-    .textContent =
-    data.address_state || "-";
-
-  document.getElementById("town")
-    .textContent =
-    data.address_town || "-";
-
-  document.getElementById("country")
-    .textContent =
-    data.country || "-";
-
-  result.style.display =
-    "block";
-
-}
-
-
-async function verifyIdentity(){
-
-  const number =
-    idNumber.value.trim();
-
-
-  if(!/^\d{11}$/.test(number)){
-
-    showMessage(
-      "Please enter exactly 11 digits.",
-      "error"
-    );
-
-    result.style.display =
-      "none";
-
-    return;
+   msg(
+    document.getElementById("walletMessage"),
+    "Wallet created successfully."
+   );
 
   }
 
+ }catch(e){
 
-  verifyBtn.disabled =
-    true;
+  msg(
+   document.getElementById("walletMessage"),
+   "Unable to load wallet.",
+   true
+  );
 
-  verifyBtn.textContent =
-    "Verifying...";
+ }
 
-  message.style.display =
-    "none";
+};
 
-  result.style.display =
-    "none";
+document.getElementById("fundBtn").onclick=async()=>{
 
+ const email=
+ document.getElementById("walletEmail").value.trim();
 
-  const endpoint =
-    idType === "nin"
-      ? "/api/nin/verify"
-      : "/api/bvn/verify";
+ const amount=
+ Number(document.getElementById("walletAmount").value);
 
+ const wm=
+ document.getElementById("walletMessage");
 
-  const body =
-    idType === "nin"
-      ? { nin: number }
-      : { bvn: number };
+ if(!email){
+  msg(wm,"Enter your email first.",true);
+  return;
+ }
 
+ if(!amount || amount<100){
+  msg(wm,"Minimum funding is ₦100.",true);
+  return;
+ }
 
-  try{
+ try{
 
-    const response =
-      await fetch(
-        API_BASE + endpoint,
-        {
-          method:"POST",
+  msg(wm,"Opening Paystack...");
 
-          headers:{
-            "Content-Type":
-              "application/json"
-          },
+  const r=await fetch(
+   API+"/api/wallet/fund",
+   {
+    method:"POST",
+    headers:{
+     "Content-Type":"application/json"
+    },
+    body:JSON.stringify({
+     email,
+     amount
+    })
+   }
+  );
 
-          body:
-            JSON.stringify(body)
-        }
-      );
+  const d=await r.json();
 
+  if(d.status==="success" && d.authorization_url){
 
-    const data =
-      await response.json();
+   window.location.href=d.authorization_url;
 
+  }else{
 
-    if(
-      response.ok &&
-      data.status === "found"
-    ){
-
-      showMessage(
-        "Verification successful.",
-        "success"
-      );
-
-      setResult(data);
-
-    }else{
-
-      showMessage(
-        data.message ||
-        "No matching record was found.",
-        "error"
-      );
-
-    }
-
-
-  }catch(error){
-
-    console.error(error);
-
-    showMessage(
-      "Unable to connect to verification service. Please try again.",
-      "error"
-    );
-
-
-  }finally{
-
-    verifyBtn.disabled =
-      false;
-
-    verifyBtn.textContent =
-      "Verify Now";
+   msg(
+    wm,
+    d.message||"Unable to start payment.",
+    true
+   );
 
   }
 
-}
+ }catch(e){
 
+  msg(wm,"Payment connection failed.",true);
 
-verifyBtn.addEventListener(
-  "click",
-  verifyIdentity
-);
+ }
 
-
-document.getElementById(
-  "downloadBtn"
-).addEventListener(
-  "click",
-  function(){
-
-    const text =
-`YA SALAM BUSINESS
-NIN & BVN VERIFICATION RESULT
-
-First Name: ${
-document.getElementById("firstName").textContent
-}
-
-Last Name: ${
-document.getElementById("lastName").textContent
-}
-
-Gender: ${
-document.getElementById("gender").textContent
-}
-
-Date of Birth: ${
-document.getElementById("dob").textContent
-}
-
-State: ${
-document.getElementById("state").textContent
-}
-
-Town: ${
-document.getElementById("town").textContent
-}
-
-Country: ${
-document.getElementById("country").textContent
-}
-
-This is a verification result.
-It is NOT an official government identity card.`;
-
-
-    const blob =
-      new Blob(
-        [text],
-        {type:"text/plain"}
-      );
-
-
-    const url =
-      URL.createObjectURL(blob);
-
-
-    const a =
-      document.createElement("a");
-
-
-    a.href = url;
-
-    a.download =
-      "ya-salam-verification-result.txt";
-
-
-    a.click();
-
-
-    URL.revokeObjectURL(url);
-
-  }
-);
-
-
-document.getElementById(
-  "printBtn"
-).addEventListener(
-  "click",
-  function(){
-
-    window.print();
-
-  }
-);
+};
 
 </script>
 
 </body>
-  </html>
-  
+</html>
