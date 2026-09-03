@@ -11,8 +11,9 @@ main{max-width:500px;margin:auto;padding:15px}
 .card{background:white;padding:20px;margin:15px 0;border-radius:12px}
 input,button{width:100%;padding:13px;margin:7px 0;box-sizing:border-box}
 button{background:#087f23;color:white;border:0;border-radius:7px;font-weight:bold}
-.tabs{display:flex;gap:8px}.tabs button{width:50%}
-#result{margin-top:10px}
+.tabs{display:flex;gap:8px}
+.tabs button{width:50%}
+#result,#walletMsg{margin-top:10px}
 </style>
 </head>
 
@@ -45,15 +46,19 @@ placeholder="Amount to fund (₦)" min="100">
 </div>
 
 <div class="card">
+
 <div class="tabs">
-<button onclick="type='nin'">NIN</button>
-<button onclick="type='bvn'">BVN</button>
+<button onclick="setType('nin')">NIN</button>
+<button onclick="setType('bvn')">BVN</button>
 </div>
 
 <input id="number" maxlength="11"
 placeholder="Enter 11-digit NIN">
 
+<p>Verification fee: <b>₦100</b></p>
+
 <button onclick="verify()">Verify Now</button>
+
 <p id="result"></p>
 </div>
 
@@ -63,81 +68,148 @@ placeholder="Enter 11-digit NIN">
 const API="https://ya-salam-business-api.onrender.com";
 let type="nin";
 
+function setType(t){
+ type=t;
+
+ document.getElementById("number").value="";
+
+ document.getElementById("number").placeholder=
+   t==="nin"
+   ?"Enter 11-digit NIN"
+   :"Enter 11-digit BVN";
+}
+
 async function checkWallet(){
- const email=document.getElementById("email").value.trim();
- if(!email)return;
- const r=await fetch(API+"/api/wallet/"+encodeURIComponent(email));
- const d=await r.json();
- document.getElementById("balance").textContent=
-   "₦"+Number(d.wallet?.balance||0).toFixed(2);
+ try{
+  const email=document.getElementById("email").value.trim();
+
+  if(!email)return;
+
+  const r=await fetch(
+    API+"/api/wallet/"+encodeURIComponent(email)
+  );
+
+  const d=await r.json();
+
+  document.getElementById("balance").textContent=
+    "₦"+Number(d.wallet?.balance||0).toFixed(2);
+
+ }catch(e){
+  document.getElementById("walletMsg").textContent=
+    "Unable to load wallet";
+ }
 }
 
 async function fundWallet(){
- const email=document.getElementById("email").value.trim();
- const amount=Number(document.getElementById("amount").value);
+ try{
+  const email=document.getElementById("email").value.trim();
+  const amount=Number(
+    document.getElementById("amount").value
+  );
 
- if(!email||amount<100){
-   document.getElementById("walletMsg").textContent="Minimum is ₦100";
+  if(!email||amount<100){
+   document.getElementById("walletMsg").textContent=
+     "Minimum is ₦100";
    return;
- }
+  }
 
- document.getElementById("walletMsg").textContent="Opening Paystack...";
+  document.getElementById("walletMsg").textContent=
+    "Opening Paystack...";
 
- const r=await fetch(API+"/api/wallet/fund",{
+  const r=await fetch(API+"/api/wallet/fund",{
    method:"POST",
    headers:{"Content-Type":"application/json"},
    body:JSON.stringify({email,amount})
- });
+  });
 
- const d=await r.json();
+  const d=await r.json();
 
- if(d.authorization_url){
+  if(d.authorization_url){
    location.href=d.authorization_url;
- }else{
+  }else{
    document.getElementById("walletMsg").textContent=
      d.message||"Payment error";
+  }
+
+ }catch(e){
+  document.getElementById("walletMsg").textContent=
+    "Connection error";
  }
 }
 
 async function verify(){
- const n=document.getElementById("number").value.trim();
+ try{
+  const email=document.getElementById("email").value.trim();
+  const n=document.getElementById("number").value.trim();
 
- if(n.length!==11){
+  if(!email){
+   document.getElementById("result").textContent=
+     "Enter your email first";
+   return;
+  }
+
+  if(!/^\d{11}$/.test(n)){
    document.getElementById("result").textContent=
      "Enter 11 digits";
    return;
+  }
+
+  document.getElementById("result").textContent=
+    "Checking wallet and verifying...";
+
+  const r=await fetch(
+    API+"/api/"+type+"/verify",
+    {
+     method:"POST",
+     headers:{"Content-Type":"application/json"},
+     body:JSON.stringify({
+      email:email,
+      idNumber:n
+     })
+    }
+  );
+
+  const d=await r.json();
+
+  document.getElementById("result").textContent=
+    d.message||"Verification completed";
+
+  if(d.status==="success"){
+   checkWallet();
+  }
+
+ }catch(e){
+  document.getElementById("result").textContent=
+    "Connection error";
  }
-
- document.getElementById("result").textContent="Verifying...";
-
- const r=await fetch(API+"/api/"+type+"/verify",{
-   method:"POST",
-   headers:{"Content-Type":"application/json"},
-   body:JSON.stringify({[type]:n})
- });
-
- const d=await r.json();
- document.getElementById("result").textContent=
-   d.message||JSON.stringify(d);
 }
 
-/* After Paystack returns */
+/* Paystack return */
 const params=new URLSearchParams(location.search);
-const reference=params.get("reference")||params.get("trxref");
+const reference=
+  params.get("reference")||
+  params.get("trxref");
 
 if(reference){
+
  document.getElementById("walletMsg").textContent=
    "Confirming payment...";
 
- fetch(API+"/api/wallet/verify/"+encodeURIComponent(reference))
+ fetch(
+   API+"/api/wallet/verify/"+
+   encodeURIComponent(reference)
+ )
  .then(r=>r.json())
  .then(d=>{
    document.getElementById("walletMsg").textContent=
      d.message||"Payment checked";
+
    checkWallet();
  });
 }
+
+checkWallet();
 </script>
 
 </body>
-</html>
+ </html>
