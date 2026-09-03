@@ -1043,6 +1043,202 @@ app.listen(PORT, async () => {
     `Ya Salam Business backend running on port ${PORT}`
   );
 
+  await initializeDatabase()app.get(
+  "/api/wallet/:email/transactions",
+  async (req, res) => {
+
+    try {
+
+      const email =
+        String(req.params.email)
+          .trim()
+          .toLowerCase();
+
+      const result =
+        await pool.query(
+          `
+          SELECT
+            reference,
+            amount,
+            type,
+            status,
+            paystack_status,
+            created_at
+          FROM wallet_transactions
+          WHERE email = $1
+          ORDER BY created_at DESC
+          LIMIT 100
+          `,
+          [email]
+        );
+
+      res.json({
+        status: "success",
+        transactions:
+          result.rows.map(row => ({
+            ...row,
+            amount: Number(row.amount)
+          }))
+      });
+
+    } catch (error) {
+
+      console.error(
+        "Transaction history error:",
+        error.message
+      );
+
+      res.status(500).json({
+        status: "error",
+        message:
+          "Unable to get transaction history"
+      });
+    }
+  }
+);
+
+// =====================================================
+// START SERVER
+// =====================================================
+
+app.listen(PORT, async () => {
+
+  console.log(
+    `Ya Salam Business backend running on port ${PORT}`
+  );
+
+  await initializeDatabase();app.get(
+  "/api/wallet/:email/transactions",
+  async (req, res) => {
+
+    try {
+
+      const email =
+        String(req.params.email)
+          .trim()
+          .toLowerCase();
+
+      const result =
+        await pool.query(
+          `
+          SELECT
+            reference,
+            amount,
+            type,
+            status,
+            paystack_status,
+            created_at
+          FROM wallet_transactions
+          WHERE email = $1
+          ORDER BY created_at DESC
+          LIMIT 100
+          `,
+          [email]
+        );
+
+      res.json({
+        status: "success",
+        transactions:
+          result.rows.map(row => ({
+            ...row,
+            amount: Number(row.amount)
+          }))
+      });
+
+    } catch (error) {
+
+      console.error(
+        "Transaction history error:",
+        error.message
+      );
+
+      res.status(500).json({
+        status: "error",
+        message:
+          "Unable to get transaction history"
+      });
+    }
+  }
+);
+
+// =====================================================
+// START SERVER
+// =====================================================
+
+app.listen(PORT, async () => {
+
+  console.log(
+    `Ya Salam Business backend running on port ${PORT}`
+  );
+
+  await initializeDatabase();app.get(
+  "/api/wallet/:email/transactions",
+  async (req, res) => {
+
+    try {
+
+      const email =
+        String(req.params.email)
+          .trim()
+          .toLowerCase();
+
+      const result =
+        await pool.query(
+          `
+          SELECT
+            reference,
+            amount,
+            type,
+            status,
+            paystack_status,
+            created_at
+          FROM wallet_transactions
+          WHERE email = $1
+          ORDER BY created_at DESC
+          LIMIT 100
+          `,
+          [email]
+        );
+
+      res.json({
+        status: "success",
+        transactions:
+          result.rows.map(row => ({
+            ...row,
+            amount: Number(row.amount)
+          }))
+      });
+
+    } catch (error) {
+
+      console.error(
+        "Transaction history error:",
+        error.message
+      );
+
+      res.status(500).json({
+        status: "error",
+        message:
+          "Unable to get transaction history"
+      });
+    }
+  }
+);
+
+// =====================================================
+// START SERVER
+// =====================================================
+
+app.listen(PORT, async () => {
+
+  console.log(
+    `Ya Salam Business backend running on port ${PORT}`
+  );
+
   await initializeDatabase();
+
+});
+
+});
 
 });
