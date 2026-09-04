@@ -384,29 +384,36 @@ if(d.status === "success"){
     "Wallet Balance: ₦" +
     Number(d.balance || 0).toFixed(2);
 
-  // Show the fields returned by Ninja
-  if(d.verification){
+  // Show verification details
+if(d.verification){
 
-    const v = d.verification;
+  const v = d.verification.data || d.verification;
 
-    let html =
-      "<hr><b>Verification Details</b><br>";
+  let html =
+    "<hr><b>Verification Details</b><br>";
 
-    function addField(label, value){
-
-      if(
-        value !== undefined &&
-        value !== null &&
-        value !== ""
-      ){
-
-        html +=
-          "<div style='margin-top:6px'>" +
-          "<b>" + label + ":</b> " +
-          String(value) +
-          "</div>";
-      }
+  function addField(label, value){
+    if(
+      value !== undefined &&
+      value !== null &&
+      value !== ""
+    ){
+      html +=
+        "<div style='margin-top:6px'>" +
+        "<b>" + label + ":</b> " +
+        String(value) +
+        "</div>";
     }
+  }
+
+  addField("First Name", v.first_name);
+  addField("Last Name", v.last_name);
+  addField("Date of Birth", v.date_of_birth);
+  addField("Gender", v.gender);
+  addField("Status", v.status);
+
+  result.innerHTML += html;
+}
 
     // Common fields
     addField("Name", v.name);
