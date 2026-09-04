@@ -636,7 +636,23 @@ async function verifyIdentity(
       );
 
     const ninjaData =
-      await ninjaResponse.json();
+  await ninjaResponse.json();
+
+console.log(
+  "NINJA RESPONSE KEYS:",
+  Object.keys(ninjaData || {})
+);
+
+if (
+  ninjaData &&
+  typeof ninjaData.data === "object" &&
+  ninjaData.data !== null
+) {
+  console.log(
+    "NINJA DATA KEYS:",
+    Object.keys(ninjaData.data)
+  );
+}
 
     // Verification failed
     // DO NOT CHARGE
