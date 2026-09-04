@@ -698,12 +698,13 @@ async function verifyIdentity(
     );
 
     res.json({
-      status: "success",
-      message:
-        `${idType.toUpperCase()} verification successful`,
-      balance:
-        debit.rows[0].balance
-    });
+  status: "success",
+  message:
+    `${idType.toUpperCase()} verification successful`,
+  balance:
+    debit.rows[0].balance,
+  verification: ninjaData
+});
 
   } catch (e) {
     await client.query(
