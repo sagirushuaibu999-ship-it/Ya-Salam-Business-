@@ -372,11 +372,76 @@ async function verify(){
     const d =
       await r.json();
 
-    document.getElementById(
-      "result"
-    ).textContent =
-      d.message ||
-      "Verification completed";
+    const result =
+  document.getElementById("result");
+
+if(d.status === "success"){
+
+  result.innerHTML =
+    "<b>" +
+    (d.message || "Verification successful") +
+    "</b><br>" +
+    "Wallet Balance: ₦" +
+    Number(d.balance || 0).toFixed(2);
+
+  // Show the fields returned by Ninja
+  if(d.verification){
+
+    const v = d.verification;
+
+    let html =
+      "<hr><b>Verification Details</b><br>";
+
+    function addField(label, value){
+
+      if(
+        value !== undefined &&
+        value !== null &&
+        value !== ""
+      ){
+
+        html +=
+          "<div style='margin-top:6px'>" +
+          "<b>" + label + ":</b> " +
+          String(value) +
+          "</div>";
+      }
+    }
+
+    // Common fields
+    addField("Name", v.name);
+    addField("First Name", v.firstName);
+    addField("Middle Name", v.middleName);
+    addField("Last Name", v.lastName);
+    addField("Date of Birth", v.dateOfBirth);
+    addField("Gender", v.gender);
+    addField("Phone", v.phone);
+    addField("Status", v.status);
+
+    // Some APIs put the actual record inside data
+    if(v.data && typeof v.data === "object"){
+
+      addField("Name", v.data.name);
+      addField("First Name", v.data.firstName);
+      addField("Middle Name", v.data.middleName);
+      addField("Last Name", v.data.lastName);
+      addField("Date of Birth", v.data.dateOfBirth);
+      addField("Gender", v.data.gender);
+      addField("Phone", v.data.phone);
+      addField("Status", v.data.status);
+    }
+
+    result.innerHTML += html;
+  }
+
+  checkWallet();
+
+}else{
+
+  result.textContent =
+    d.message ||
+    "Verification failed";
+  }
 
     if(d.status === "success"){
 
