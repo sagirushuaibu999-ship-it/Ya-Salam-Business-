@@ -3,138 +3,294 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>YA SALAM BUSINESS</title>
+
+<title>YA SALAM BUSINESS — NIN & BVN Verification</title>
+
+<meta name="description"
+content="YA SALAM BUSINESS NIN and BVN verification service.">
 
 <style>
+
+*{
+  box-sizing:border-box;
+}
+
 body{
-  font-family:Arial;
   margin:0;
-  background:#f5f5f5;
-  color:#222
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f1f8f3;
+  color:#17231b;
 }
 
 header{
-  background:#087f23;
+  background:linear-gradient(135deg,#006b1b,#0b982f);
   color:white;
   text-align:center;
-  padding:20px
+  padding:25px 15px 30px;
+  box-shadow:0 3px 12px rgba(0,0,0,.15);
+}
+
+.logo{
+  width:82px;
+  height:82px;
+  margin:0 auto 12px;
+  border-radius:50%;
+  background:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:4px solid #d9f7df;
+  box-shadow:0 4px 12px rgba(0,0,0,.2);
+}
+
+.logo-inner{
+  width:62px;
+  height:62px;
+  border-radius:50%;
+  background:#087f23;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  font-weight:bold;
+  letter-spacing:1px;
+}
+
+header h1{
+  margin:5px 0;
+  font-size:25px;
+}
+
+header p{
+  margin:5px 0 0;
+  opacity:.95;
 }
 
 main{
-  max-width:500px;
+  max-width:520px;
   margin:auto;
-  padding:15px
+  padding:15px;
 }
 
 .card{
   background:white;
   padding:20px;
   margin:15px 0;
-  border-radius:12px
+  border-radius:15px;
+  box-shadow:0 3px 15px rgba(0,0,0,.08);
 }
 
-input,button{
+.card h2{
+  margin-top:0;
+}
+
+input,
+button{
   width:100%;
-  padding:13px;
+  padding:14px;
   margin:7px 0;
-  box-sizing:border-box
+  box-sizing:border-box;
+  font-size:16px;
+}
+
+input{
+  border:1px solid #ccd8cf;
+  border-radius:8px;
+  outline:none;
+}
+
+input:focus{
+  border-color:#087f23;
+  box-shadow:0 0 0 2px rgba(8,127,35,.1);
 }
 
 button{
   background:#087f23;
   color:white;
   border:0;
-  border-radius:7px;
-  font-weight:bold
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#06681d;
+}
+
+.balance{
+  text-align:center;
+  color:#087f23;
+  font-size:28px;
 }
 
 .tabs{
   display:flex;
-  gap:8px
+  gap:8px;
 }
 
 .tabs button{
-  width:50%
+  width:50%;
 }
 
-#result,#walletMsg{
-  margin-top:10px
+.tabs button:first-child{
+  background:#087f23;
 }
+
+.info{
+  background:#eef8f0;
+  padding:12px;
+  border-radius:8px;
+  font-size:14px;
+}
+
+#result,
+#walletMsg{
+  margin-top:12px;
+  line-height:1.6;
+}
+
+.success{
+  color:#087f23;
+  font-weight:bold;
+}
+
+.footer{
+  text-align:center;
+  padding:20px;
+  color:#666;
+  font-size:13px;
+}
+
+hr{
+  border:0;
+  border-top:1px solid #ddd;
+  margin:15px 0;
+}
+
 </style>
 </head>
 
 <body>
 
 <header>
-<h1>YA SALAM BUSINESS</h1>
-<p>NIN & BVN Verification</p>
+
+  <div class="logo">
+    <div class="logo-inner">
+      YSB
+    </div>
+  </div>
+
+  <h1>YA SALAM BUSINESS</h1>
+
+  <p>NIN & BVN Verification</p>
+
 </header>
 
 <main>
 
-<div class="card">
-
-<h2>💰 My Wallet</h2>
-
-<input
- id="email"
- type="email"
- placeholder="Enter your email"
- value="sagirushuaibu999@gmail.com"
->
-
-<button onclick="checkWallet()">
-Check Wallet
-</button>
-
-<h2 id="balance">₦0.00</h2>
-
-<input
- id="amount"
- type="number"
- placeholder="Amount to fund (₦)"
- min="100"
->
-
-<button type="button" onclick="fundWallet();">
-  Fund Wallet
-</button>
-
-<p id="walletMsg"></p>
-
-</div>
+<!-- WALLET -->
 
 <div class="card">
 
-<div class="tabs">
-<button onclick="setType('nin')">NIN</button>
-<button onclick="setType('bvn')">BVN</button>
+  <h2>💰 My Wallet</h2>
+
+  <input
+    id="email"
+    type="email"
+    placeholder="Enter your email"
+    value="sagirushuaibu999@gmail.com"
+  >
+
+  <button
+    type="button"
+    onclick="checkWallet()">
+    Check Wallet
+  </button>
+
+  <h2
+    id="balance"
+    class="balance">
+    ₦0.00
+  </h2>
+
+  <input
+    id="amount"
+    type="number"
+    value="100"
+    placeholder="Amount to fund (₦)"
+    min="100"
+  >
+
+  <button
+    type="button"
+    onclick="fundWallet()">
+    💳 Fund Wallet
+  </button>
+
+  <p id="walletMsg">
+    Ready to fund wallet
+  </p>
+
 </div>
 
-<input
- id="number"
- maxlength="11"
- placeholder="Enter 11-digit NIN"
->
 
-<p>Verification fee: <b>₦100</b></p>
+<!-- VERIFICATION -->
 
-<button onclick="verify()">
-Verify Now
-</button>
+<div class="card">
 
-<p id="result"></p>
+  <div class="tabs">
+
+    <button
+      type="button"
+      onclick="setType('nin')">
+      NIN
+    </button>
+
+    <button
+      type="button"
+      onclick="setType('bvn')">
+      BVN
+    </button>
+
+  </div>
+
+  <input
+    id="number"
+    maxlength="11"
+    inputmode="numeric"
+    placeholder="Enter 11-digit NIN"
+  >
+
+  <div class="info">
+    Verification fee:
+    <b>₦100</b>
+  </div>
+
+  <button
+    type="button"
+    onclick="verify()">
+    🔍 Verify Now
+  </button>
+
+  <div id="result"></div>
 
 </div>
 
 </main>
+
+<div class="footer">
+  © 2026 YA SALAM BUSINESS
+</div>
+
 
 <script>
 
 const API =
 "https://ya-salam-business-api.onrender.com";
 
-let type="nin";
+let type = "nin";
+
 
 /* =========================
    NIN / BVN TYPE
@@ -142,12 +298,15 @@ let type="nin";
 
 function setType(t){
 
-  type=t;
+  type = t;
 
-  document.getElementById("number").value="";
+  const number =
+    document.getElementById("number");
 
-  document.getElementById("number").placeholder =
-    t==="nin"
+  number.value = "";
+
+  number.placeholder =
+    t === "nin"
     ? "Enter 11-digit NIN"
     : "Enter 11-digit BVN";
 }
@@ -160,7 +319,8 @@ function setType(t){
 async function checkWallet(){
 
   const email =
-    document.getElementById("email").value.trim();
+    document.getElementById("email")
+    .value.trim();
 
   const balance =
     document.getElementById("balance");
@@ -176,32 +336,26 @@ async function checkWallet(){
     return;
   }
 
-  balance.textContent = "Loading...";
+  balance.textContent =
+    "Loading...";
 
-  msg.textContent = "";
+  msg.textContent =
+    "Checking wallet...";
 
   try{
 
-    const url =
-      API +
-      "/api/wallet/" +
-      encodeURIComponent(email);
-
     const response =
-      await fetch(url);
-
-    if(!response.ok){
-
-      throw new Error(
-        "Server returned " +
-        response.status
+      await fetch(
+        API +
+        "/api/wallet/" +
+        encodeURIComponent(email)
       );
-    }
 
     const data =
       await response.json();
 
-    if(data.status !== "success"){
+    if(!response.ok ||
+       data.status !== "success"){
 
       throw new Error(
         data.message ||
@@ -210,24 +364,29 @@ async function checkWallet(){
     }
 
     const amount =
-      Number(data.wallet?.balance || 0);
+      Number(
+        data.wallet?.balance || 0
+      );
 
     balance.textContent =
-      "₦" + amount.toFixed(2);
+      "₦" +
+      amount.toFixed(2);
 
     msg.textContent =
       "Wallet updated successfully";
 
   }catch(error){
 
-    console.error("Wallet error:",error);
+    console.error(
+      "Wallet error:",
+      error
+    );
 
     balance.textContent =
       "₦0.00";
 
     msg.textContent =
       "Unable to load wallet. Please try again.";
-
   }
 }
 
@@ -238,79 +397,95 @@ async function checkWallet(){
 
 async function fundWallet(){
 
+  const msg =
+    document.getElementById("walletMsg");
+
   try{
 
     const email =
-      document.getElementById("email").value.trim();
+      document.getElementById("email")
+      .value.trim();
 
     const amount =
       Number(
-        document.getElementById("amount").value
+        document.getElementById("amount")
+        .value
       );
 
     if(!email){
 
-      document.getElementById("walletMsg")
-      .textContent =
+      msg.textContent =
         "Enter your email first";
 
       return;
     }
 
-    if(amount < 100){
+    if(!Number.isFinite(amount) ||
+       amount < 100){
 
-      document.getElementById("walletMsg")
-      .textContent =
-        "Minimum is ₦100";
+      msg.textContent =
+        "Minimum funding amount is ₦100";
 
       return;
     }
 
-    document.getElementById("walletMsg")
-    .textContent =
+    msg.textContent =
       "Opening Paystack...";
 
-    const r =
+    const response =
       await fetch(
         API + "/api/wallet/fund",
         {
           method:"POST",
+
           headers:{
             "Content-Type":
             "application/json"
           },
+
           body:JSON.stringify({
-            email,
-            amount
+            email:email,
+            amount:amount
           })
         }
       );
 
-    const d =
-      await r.json();
+    const data =
+      await response.json();
 
-    if(d.authorization_url){
+    if(!response.ok){
 
-      location.href =
-        d.authorization_url;
-
-    }else{
-
-      document.getElementById(
-        "walletMsg"
-      ).textContent =
-        d.message ||
-        "Payment error";
+      throw new Error(
+        data.message ||
+        "Payment request failed"
+      );
     }
 
-  }catch(e){
+    if(data.authorization_url){
 
-    console.error(e);
+      msg.textContent =
+        "Redirecting to Paystack...";
 
-    document.getElementById(
-      "walletMsg"
-    ).textContent =
-      "Connection error";
+      window.location.href =
+        data.authorization_url;
+
+      return;
+    }
+
+    msg.textContent =
+      data.message ||
+      "Unable to open Paystack.";
+
+  }catch(error){
+
+    console.error(
+      "Fund wallet error:",
+      error
+    );
+
+    msg.textContent =
+      error.message ||
+      "Connection error. Please try again.";
   }
 }
 
@@ -321,145 +496,159 @@ async function fundWallet(){
 
 async function verify(){
 
+  const result =
+    document.getElementById("result");
+
   try{
 
     const email =
       document.getElementById("email")
       .value.trim();
 
-    const n =
+    const number =
       document.getElementById("number")
       .value.trim();
 
     if(!email){
 
-      document.getElementById("result")
-      .textContent =
+      result.textContent =
         "Enter your email first";
 
       return;
     }
 
-    if(!/^\d{11}$/.test(n)){
+    if(!/^\d{11}$/.test(number)){
 
-      document.getElementById("result")
-      .textContent =
-        "Enter 11 digits";
+      result.textContent =
+        "Enter exactly 11 digits";
 
       return;
     }
 
-    document.getElementById("result")
-    .textContent =
+    result.textContent =
       "Checking wallet and verifying...";
 
-    const r =
+    const response =
       await fetch(
-        API + "/api/" + type + "/verify",
+        API +
+        "/api/" +
+        type +
+        "/verify",
         {
           method:"POST",
+
           headers:{
             "Content-Type":
             "application/json"
           },
+
           body:JSON.stringify({
             email:email,
-            idNumber:n
+            idNumber:number
           })
         }
       );
 
-    const d =
-      await r.json();
+    const data =
+      await response.json();
 
-    const result =
-  document.getElementById("result");
+    if(data.status !== "success"){
 
-if(d.status === "success"){
+      result.textContent =
+        data.message ||
+        "Verification failed";
 
-  result.innerHTML =
-    "<b>" +
-    (d.message || "Verification successful") +
-    "</b><br>" +
-    "Wallet Balance: ₦" +
-    Number(d.balance || 0).toFixed(2);
-
-  // Show verification details
-if(d.verification){
-
-  const v = d.verification.data || d.verification;
-
-  let html =
-    "<hr><b>Verification Details</b><br>";
-
-  function addField(label, value){
-    if(
-      value !== undefined &&
-      value !== null &&
-      value !== ""
-    ){
-      html +=
-        "<div style='margin-top:6px'>" +
-        "<b>" + label + ":</b> " +
-        String(value) +
-        "</div>";
-    }
-  }
-
-  addField("First Name", v.first_name);
-  addField("Last Name", v.last_name);
-  addField("Date of Birth", v.date_of_birth);
-  addField("Gender", v.gender);
-  addField("Status", v.status);
-
-  result.innerHTML += html;
-}
-
-    // Common fields
-    addField("Name", v.name);
-    addField("First Name", v.firstName);
-    addField("Middle Name", v.middleName);
-    addField("Last Name", v.lastName);
-    addField("Date of Birth", v.dateOfBirth);
-    addField("Gender", v.gender);
-    addField("Phone", v.phone);
-    addField("Status", v.status);
-
-    // Some APIs put the actual record inside data
-    if(v.data && typeof v.data === "object"){
-
-      addField("Name", v.data.name);
-      addField("First Name", v.data.firstName);
-      addField("Middle Name", v.data.middleName);
-      addField("Last Name", v.data.lastName);
-      addField("Date of Birth", v.data.dateOfBirth);
-      addField("Gender", v.data.gender);
-      addField("Phone", v.data.phone);
-      addField("Status", v.data.status);
+      return;
     }
 
-    result.innerHTML += html;
-  }
+    result.innerHTML =
+      "<div class='success'>" +
+      (data.message ||
+       "Verification successful") +
+      "</div>" +
 
-  checkWallet();
+      "<div style='margin-top:6px'>" +
+      "Wallet Balance: ₦" +
+      Number(
+        data.balance || 0
+      ).toFixed(2) +
+      "</div>";
 
-}else{
 
-  result.textContent =
-    d.message ||
-    "Verification failed";
-  }
+    /* =========================
+       VERIFICATION DETAILS
+    ========================= */
 
-    
+    if(data.verification){
 
-  }catch(e){
+      const v =
+        data.verification.data ||
+        data.verification;
 
-    console.error(e);
+      let html =
+        "<hr>" +
+        "<b>Verification Details</b>";
 
-    document.getElementById(
-      "result"
-    ).textContent =
-      "Connection error";
+      function addField(
+        label,
+        value
+      ){
+
+        if(
+          value !== undefined &&
+          value !== null &&
+          value !== ""
+        ){
+
+          html +=
+            "<div style='margin-top:6px'>" +
+            "<b>" +
+            label +
+            ":</b> " +
+            String(value) +
+            "</div>";
+        }
+      }
+
+      addField(
+        "First Name",
+        v.first_name
+      );
+
+      addField(
+        "Last Name",
+        v.last_name
+      );
+
+      addField(
+        "Date of Birth",
+        v.date_of_birth
+      );
+
+      addField(
+        "Gender",
+        v.gender
+      );
+
+      addField(
+        "Status",
+        v.status
+      );
+
+      result.innerHTML += html;
+    }
+
+    await checkWallet();
+
+  }catch(error){
+
+    console.error(
+      "Verification error:",
+      error
+    );
+
+    result.textContent =
+      "Connection error. Please try again.";
   }
 }
 
@@ -470,7 +659,7 @@ if(d.verification){
 
 const params =
   new URLSearchParams(
-    location.search
+    window.location.search
   );
 
 const reference =
@@ -479,9 +668,12 @@ const reference =
 
 if(reference){
 
-  document.getElementById(
-    "walletMsg"
-  ).textContent =
+  const msg =
+    document.getElementById(
+      "walletMsg"
+    );
+
+  msg.textContent =
     "Confirming payment...";
 
   fetch(
@@ -489,25 +681,28 @@ if(reference){
     "/api/wallet/verify/" +
     encodeURIComponent(reference)
   )
-  .then(r => r.json())
-  .then(d => {
+  .then(
+    response =>
+      response.json()
+  )
+  .then(
+    data => {
 
-    document.getElementById(
-      "walletMsg"
-    ).textContent =
-      d.message ||
-      "Payment checked";
+      msg.textContent =
+        data.message ||
+        "Payment checked";
 
-    checkWallet();
+      checkWallet();
 
-  })
-  .catch(() => {
+    }
+  )
+  .catch(
+    () => {
 
-    document.getElementById(
-      "walletMsg"
-    ).textContent =
-      "Unable to confirm payment";
-  });
+      msg.textContent =
+        "Unable to confirm payment";
+    }
+  );
 }
 
 
@@ -520,5 +715,4 @@ checkWallet();
 </script>
 
 </body>
-</html>
-
+      </html>
