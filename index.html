@@ -1,19 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-
-<title>YA SALAM BUSINESS — NIN & BVN Verification</title>
-
-<meta name="description"
-content="YA SALAM BUSINESS NIN and BVN verification service.">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>YA SALAM BUSINESS — NIN, BVN & KYC</title><meta name="description"
+content="YA SALAM BUSINESS NIN, BVN and KYC verification service.">
 
 <style>
-
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
@@ -40,7 +32,6 @@ header{
   align-items:center;
   justify-content:center;
   border:4px solid #d9f7df;
-  box-shadow:0 4px 12px rgba(0,0,0,.2);
 }
 
 .logo-inner{
@@ -54,7 +45,6 @@ header{
   justify-content:center;
   font-size:22px;
   font-weight:bold;
-  letter-spacing:1px;
 }
 
 header h1{
@@ -63,8 +53,7 @@ header h1{
 }
 
 header p{
-  margin:5px 0 0;
-  opacity:.95;
+  margin:5px 0;
 }
 
 main{
@@ -85,12 +74,10 @@ main{
   margin-top:0;
 }
 
-input,
-button{
+input,button{
   width:100%;
   padding:14px;
   margin:7px 0;
-  box-sizing:border-box;
   font-size:16px;
 }
 
@@ -102,7 +89,6 @@ input{
 
 input:focus{
   border-color:#087f23;
-  box-shadow:0 0 0 2px rgba(8,127,35,.1);
 }
 
 button{
@@ -133,10 +119,6 @@ button:hover{
   width:50%;
 }
 
-.tabs button:first-child{
-  background:#087f23;
-}
-
 .info{
   background:#eef8f0;
   padding:12px;
@@ -145,7 +127,8 @@ button:hover{
 }
 
 #result,
-#walletMsg{
+#walletMsg,
+#diditMsg{
   margin-top:12px;
   line-height:1.6;
 }
@@ -167,124 +150,60 @@ hr{
   border-top:1px solid #ddd;
   margin:15px 0;
 }
+</style></head><body><header>  <div class="logo">
+    <div class="logo-inner">YSB</div>
+  </div>  <h1>YA SALAM BUSINESS</h1>  <p>NIN, BVN & KYC Verification</p></header><main><!-- WALLET --><div class="card">  <h2>💰 My Wallet</h2><input
+id="email"
+type="email"
+placeholder="Enter your email"
+value="sagirushuaibu999@gmail.com"
 
-</style>
-</head>
+«»
 
-<body>
-
-<header>
-
-  <div class="logo">
-    <div class="logo-inner">
-      YSB
-    </div>
-  </div>
-
-  <h1>YA SALAM BUSINESS</h1>
-
-  <p>NIN & BVN Verification</p>
-
-</header>
-
-<main>
-
-<!-- WALLET -->
-
-<div class="card">
-
-  <h2>💰 My Wallet</h2>
-
-  <input
-    id="email"
-    type="email"
-    placeholder="Enter your email"
-    value="sagirushuaibu999@gmail.com"
-  >
-
-  <button
-    type="button"
-    onclick="checkWallet()">
+  <button onclick="checkWallet()">
     Check Wallet
-  </button>
-
-  <h2
-    id="balance"
-    class="balance">
+  </button>  <h2 id="balance" class="balance">
     ₦0.00
-  </h2>
+  </h2><input
+id="amount"
+type="number"
+value="100"
+min="100"
+placeholder="Amount to fund (₦)"
 
-  <input
-    id="amount"
-    type="number"
-    value="100"
-    placeholder="Amount to fund (₦)"
-    min="100"
-  >
+«»
 
-  <button
-    type="button"
-    onclick="fundWallet()">
+  <button onclick="fundWallet()">
     💳 Fund Wallet
-  </button>
-
-  <p id="walletMsg">
+  </button>  <p id="walletMsg">
     Ready to fund wallet
-  </p>
+  </p></div><!-- NIN / BVN --><div class="card">  <h2>🪪 NIN & BVN Verification</h2>  <div class="tabs"><button onclick="setType('nin')">
+  NIN
+</button>
 
-</div>
+<button onclick="setType('bvn')">
+  BVN
+</button>
 
+  </div><input
+id="number"
+maxlength="11"
+inputmode="numeric"
+placeholder="Enter 11-digit NIN"
 
-<!-- VERIFICATION -->
-
-<div class="card">
-
-  <div class="tabs">
-
-    <button
-      type="button"
-      onclick="setType('nin')">
-      NIN
-    </button>
-
-    <button
-      type="button"
-      onclick="setType('bvn')">
-      BVN
-    </button>
-
-  </div>
-
-  <input
-    id="number"
-    maxlength="11"
-    inputmode="numeric"
-    placeholder="Enter 11-digit NIN"
-  >
+«»
 
   <div class="info">
-    Verification fee:
-    <b>₦100</b>
-  </div>
-
-  <button
-    type="button"
-    onclick="verify()">
+    Verification fee: <b>₦100</b>
+  </div>  <button onclick="verify()">
     🔍 Verify Now
-  </button>
-
-  <div id="result"></div>
-
-</div>
-
-</main>
-
-<div class="footer">
+  </button>  <div id="result"></div></div><!-- DIDIT --><div class="card">  <h2>🔐 KYC Verification</h2>  <div class="info">
+    Complete secure identity verification.
+  </div>  <button onclick="startDidit()">
+    🪪 Start KYC Verification
+  </button>  <p id="diditMsg"></p></div></main><div class="footer">
   © 2026 YA SALAM BUSINESS
-</div>
-
-
-<script>
+</div><script>
 
 const API =
 "https://ya-salam-business-api.onrender.com";
@@ -377,10 +296,7 @@ async function checkWallet(){
 
   }catch(error){
 
-    console.error(
-      "Wallet error:",
-      error
-    );
+    console.error(error);
 
     balance.textContent =
       "₦0.00";
@@ -478,14 +394,11 @@ async function fundWallet(){
 
   }catch(error){
 
-    console.error(
-      "Fund wallet error:",
-      error
-    );
+    console.error(error);
 
     msg.textContent =
       error.message ||
-      "Connection error. Please try again.";
+      "Connection error.";
   }
 }
 
@@ -564,20 +477,15 @@ async function verify(){
     result.innerHTML =
       "<div class='success'>" +
       (data.message ||
-       "Verification successful") +
+      "Verification successful") +
       "</div>" +
 
-      "<div style='margin-top:6px'>" +
+      "<div>" +
       "Wallet Balance: ₦" +
       Number(
         data.balance || 0
       ).toFixed(2) +
       "</div>";
-
-
-    /* =========================
-       VERIFICATION DETAILS
-    ========================= */
 
     if(data.verification){
 
@@ -586,13 +494,9 @@ async function verify(){
         data.verification;
 
       let html =
-        "<hr>" +
-        "<b>Verification Details</b>";
+        "<hr><b>Verification Details</b>";
 
-      function addField(
-        label,
-        value
-      ){
+      function addField(label,value){
 
         if(
           value !== undefined &&
@@ -642,13 +546,93 @@ async function verify(){
 
   }catch(error){
 
-    console.error(
-      "Verification error:",
-      error
-    );
+    console.error(error);
 
     result.textContent =
       "Connection error. Please try again.";
+  }
+}
+
+
+/* =========================
+   DIDIT
+========================= */
+
+async function startDidit(){
+
+  const email =
+    document.getElementById("email")
+    .value.trim();
+
+  const msg =
+    document.getElementById("diditMsg");
+
+  if(!email){
+
+    msg.textContent =
+      "Enter your email first";
+
+    return;
+  }
+
+  msg.textContent =
+    "Creating secure verification session...";
+
+  try{
+
+    const response =
+      await fetch(
+        API + "/api/didit/session",
+        {
+          method:"POST",
+
+          headers:{
+            "Content-Type":
+            "application/json"
+          },
+
+          body:JSON.stringify({
+            email:email
+          })
+        }
+      );
+
+    const data =
+      await response.json();
+
+    if(!response.ok ||
+       data.status !== "success"){
+
+      msg.textContent =
+        data.message ||
+        "Unable to start Didit verification.";
+
+      return;
+    }
+
+    if(!data.url){
+
+      msg.textContent =
+        "Didit verification URL not found.";
+
+      return;
+    }
+
+    msg.textContent =
+      "Opening secure verification...";
+
+    window.location.href =
+      data.url;
+
+  }catch(error){
+
+    console.error(
+      "Didit error:",
+      error
+    );
+
+    msg.textContent =
+      "Unable to connect to Didit.";
   }
 }
 
@@ -712,46 +696,5 @@ if(reference){
 
 checkWallet();
 
-</script>checkWallet();
-
-</script><div class="card">
-  <h2>🔐 KYC Verification</h2>
-  <button onclick="startDidit()">🪪 Start Verification</button>
-  <p id="diditMsg"></p>
-</div><script>
-async function startDidit(){
-  const email=document.getElementById("email").value.trim();
-  const msg=document.getElementById("diditMsg");
-
-  if(!email){
-    msg.textContent="Enter your email first";
-    return;
-  }
-
-  msg.textContent="Opening verification...";
-
-  try{
-    const r=await fetch(API+"/api/didit/session",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({email})
-    });
-
-    const data=await r.json();
-
-    if(!r.ok || !data.url){
-      msg.textContent=data.message||"Unable to start verification";
-      return;
-    }
-
-    window.location.href=data.url;
-
-  }catch(e){
-    msg.textContent="Connection error. Please try again.";
-  }
-}
 </script></body>
 </html>
-
-</body>
-      </html>
