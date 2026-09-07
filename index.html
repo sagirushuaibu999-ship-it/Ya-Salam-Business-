@@ -1,11 +1,18 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1"><title>YA SALAM BUSINESS — NIN, BVN & KYC</title><meta name="description"
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>YA SALAM BUSINESS — NIN, BVN & KYC</title>
+
+<meta name="description"
 content="YA SALAM BUSINESS NIN, BVN and KYC verification service.">
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
@@ -74,14 +81,11 @@ main{
   margin-top:0;
 }
 
-input,button{
+input{
   width:100%;
   padding:14px;
   margin:7px 0;
   font-size:16px;
-}
-
-input{
   border:1px solid #ccd8cf;
   border-radius:8px;
   outline:none;
@@ -92,22 +96,29 @@ input:focus{
 }
 
 button{
-  background:#087f23;
-  color:white;
-  border:0;
-  border-radius:8px;
+  width:100%;
+  display:block;
+  padding:15px;
+  margin:10px 0;
+  font-size:16px;
   font-weight:bold;
+  color:white;
+  background:#087f23;
+  border:0;
+  border-radius:9px;
   cursor:pointer;
+  text-align:center;
 }
 
-button:hover{
-  background:#06681d;
+button:active{
+  transform:scale(.98);
 }
 
 .balance{
   text-align:center;
   color:#087f23;
   font-size:28px;
+  margin:15px 0;
 }
 
 .tabs{
@@ -138,6 +149,25 @@ button:hover{
   font-weight:bold;
 }
 
+.result-actions{
+  display:flex;
+  gap:8px;
+  margin-top:15px;
+}
+
+.result-actions button{
+  width:50%;
+  margin:0;
+}
+
+.download-btn{
+  background:#087f23;
+}
+
+.print-btn{
+  background:#333;
+}
+
 .footer{
   text-align:center;
   padding:20px;
@@ -150,60 +180,145 @@ hr{
   border-top:1px solid #ddd;
   margin:15px 0;
 }
-</style></head><body><header>  <div class="logo">
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="logo">
     <div class="logo-inner">YSB</div>
-  </div>  <h1>YA SALAM BUSINESS</h1>  <p>NIN, BVN & KYC Verification</p></header><main><!-- WALLET --><div class="card">  <h2>💰 My Wallet</h2><input
-id="email"
-type="email"
-placeholder="Enter your email"
-value="sagirushuaibu999@gmail.com"
+  </div>
 
-«»
+  <h1>YA SALAM BUSINESS</h1>
 
-  <button onclick="checkWallet()">
-    Check Wallet
-  </button>  <h2 id="balance" class="balance">
+  <p>NIN, BVN & KYC Verification</p>
+
+</header>
+
+
+<main>
+
+<!-- WALLET -->
+
+<div class="card">
+
+  <h2>💰 My Wallet</h2>
+
+  <input
+    id="email"
+    type="email"
+    placeholder="Enter your email"
+    value="sagirushuaibu999@gmail.com"
+  >
+
+  <button
+    type="button"
+    onclick="checkWallet()">
+    🔄 Check Wallet
+  </button>
+
+  <h2
+    id="balance"
+    class="balance">
     ₦0.00
-  </h2><input
-id="amount"
-type="number"
-value="100"
-min="100"
-placeholder="Amount to fund (₦)"
+  </h2>
 
-«»
+  <input
+    id="amount"
+    type="number"
+    value="100"
+    min="100"
+    placeholder="Amount to fund (₦)"
+  >
 
-  <button onclick="fundWallet()">
+  <button
+    type="button"
+    onclick="fundWallet()">
     💳 Fund Wallet
-  </button>  <p id="walletMsg">
+  </button>
+
+  <p id="walletMsg">
     Ready to fund wallet
-  </p></div><!-- NIN / BVN --><div class="card">  <h2>🪪 NIN & BVN Verification</h2>  <div class="tabs"><button onclick="setType('nin')">
-  NIN
-</button>
+  </p>
 
-<button onclick="setType('bvn')">
-  BVN
-</button>
+</div>
 
-  </div><input
-id="number"
-maxlength="11"
-inputmode="numeric"
-placeholder="Enter 11-digit NIN"
 
-«»
+<!-- NIN / BVN -->
+
+<div class="card">
+
+  <h2>🪪 NIN & BVN Verification</h2>
+
+  <div class="tabs">
+
+    <button
+      type="button"
+      onclick="setType('nin')">
+      NIN
+    </button>
+
+    <button
+      type="button"
+      onclick="setType('bvn')">
+      BVN
+    </button>
+
+  </div>
+
+  <input
+    id="number"
+    maxlength="11"
+    inputmode="numeric"
+    placeholder="Enter 11-digit NIN"
+  >
 
   <div class="info">
     Verification fee: <b>₦100</b>
-  </div>  <button onclick="verify()">
+  </div>
+
+  <button
+    type="button"
+    onclick="verify()">
     🔍 Verify Now
-  </button>  <div id="result"></div></div><!-- DIDIT --><div class="card">  <h2>🔐 KYC Verification</h2>  <div class="info">
+  </button>
+
+  <div id="result"></div>
+
+</div>
+
+
+<!-- DIDIT KYC -->
+
+<div class="card">
+
+  <h2>🔐 KYC Verification</h2>
+
+  <div class="info">
     Complete secure identity verification.
-  </div>  <button onclick="startDidit()">
+  </div>
+
+  <button
+    type="button"
+    onclick="startDidit()">
     🪪 Start KYC Verification
-  </button>  <p id="diditMsg"></p></div></main><div class="footer">
+  </button>
+
+  <p id="diditMsg"></p>
+
+</div>
+
+</main>
+
+
+<div class="footer">
   © 2026 YA SALAM BUSINESS
-</div><script>
+</div>
+
+
+<script>
 
 const API =
 "https://ya-salam-business-api.onrender.com";
@@ -474,7 +589,8 @@ async function verify(){
       return;
     }
 
-    result.innerHTML =
+    let html =
+
       "<div class='success'>" +
       (data.message ||
       "Verification successful") +
@@ -493,7 +609,7 @@ async function verify(){
         data.verification.data ||
         data.verification;
 
-      let html =
+      html +=
         "<hr><b>Verification Details</b>";
 
       function addField(label,value){
@@ -538,9 +654,30 @@ async function verify(){
         "Status",
         v.status
       );
-
-      result.innerHTML += html;
     }
+
+    html += `
+
+      <div class="result-actions">
+
+        <button
+          type="button"
+          class="download-btn"
+          onclick="downloadResults()">
+          📥 Download
+        </button>
+
+        <button
+          type="button"
+          class="print-btn"
+          onclick="printResults()">
+          🖨️ Print
+        </button>
+
+      </div>
+    `;
+
+    result.innerHTML = html;
 
     await checkWallet();
 
@@ -555,7 +692,269 @@ async function verify(){
 
 
 /* =========================
-   DIDIT
+   DOWNLOAD RESULTS
+========================= */
+
+function downloadResults(){
+
+  const result =
+    document.getElementById("result");
+
+  if(!result.innerText.trim()){
+
+    alert(
+      "No verification result to download."
+    );
+
+    return;
+  }
+
+  const email =
+    document.getElementById("email")
+    .value.trim();
+
+  const text =
+
+    "YA SALAM BUSINESS\n" +
+    "NIN, BVN & KYC Verification\n" +
+    "================================\n\n" +
+
+    "Email: " +
+    email +
+    "\n\n" +
+
+    result.innerText +
+    "\n\n" +
+
+    "================================\n" +
+    "Generated by YA SALAM BUSINESS\n";
+
+  const blob =
+    new Blob(
+      [text],
+      {
+        type:
+        "text/plain;charset=utf-8"
+      }
+    );
+
+  const url =
+    URL.createObjectURL(blob);
+
+  const link =
+    document.createElement("a");
+
+  link.href = url;
+
+  link.download =
+    "YA-SALAM-BUSINESS-Verification.txt";
+
+  document.body.appendChild(link);
+
+  link.click();
+
+  link.remove();
+
+  URL.revokeObjectURL(url);
+}
+
+
+/* =========================
+   PRINT RESULTS
+========================= */
+
+function printResults(){
+
+  const result =
+    document.getElementById("result");
+
+  if(!result.innerText.trim()){
+
+    alert(
+      "No verification result to print."
+    );
+
+    return;
+  }
+
+  const email =
+    document.getElementById("email")
+    .value.trim();
+
+  const printWindow =
+    window.open(
+      "",
+      "_blank",
+      "width=650,height=850"
+    );
+
+  if(!printWindow){
+
+    alert(
+      "Please allow pop-ups to print."
+    );
+
+    return;
+  }
+
+  printWindow.document.write(`
+
+    <!DOCTYPE html>
+
+    <html>
+
+    <head>
+
+      <meta charset="UTF-8">
+
+      <title>
+        YA SALAM BUSINESS Verification
+      </title>
+
+      <style>
+
+        body{
+          font-family:Arial,Helvetica,sans-serif;
+          padding:30px;
+          color:#17231b;
+        }
+
+        .header{
+          text-align:center;
+          border-bottom:2px solid #087f23;
+          padding-bottom:15px;
+          margin-bottom:20px;
+        }
+
+        .header h1{
+          color:#087f23;
+          margin:0 0 8px;
+        }
+
+        .header p{
+          margin:0;
+        }
+
+        .box{
+          border:1px solid #ddd;
+          padding:20px;
+          border-radius:10px;
+        }
+
+        .success{
+          color:#087f23;
+          font-weight:bold;
+        }
+
+        .actions{
+          margin-top:20px;
+        }
+
+        button{
+          padding:10px 20px;
+          border:0;
+          border-radius:6px;
+          background:#087f23;
+          color:white;
+        }
+
+        .footer{
+          margin-top:30px;
+          text-align:center;
+          font-size:12px;
+          color:#777;
+        }
+
+        @media print{
+
+          .actions{
+            display:none;
+          }
+
+        }
+
+      </style>
+
+    </head>
+
+    <body>
+
+      <div class="header">
+
+        <h1>
+          YA SALAM BUSINESS
+        </h1>
+
+        <p>
+          NIN, BVN & KYC Verification
+        </p>
+
+      </div>
+
+      <div class="box">
+
+        <p>
+          <b>Email:</b>
+          ${escapeHtml(email)}
+        </p>
+
+        ${result.innerHTML}
+
+      </div>
+
+      <div class="footer">
+
+        Generated by
+        YA SALAM BUSINESS
+
+      </div>
+
+      <div class="actions">
+
+        <button onclick="window.print()">
+          Print
+        </button>
+
+      </div>
+
+    </body>
+
+    </html>
+
+  `);
+
+  printWindow.document.close();
+
+  printWindow.focus();
+
+  setTimeout(
+    function(){
+
+      printWindow.print();
+
+    },
+    500
+  );
+}
+
+
+/* =========================
+   HTML SECURITY
+========================= */
+
+function escapeHtml(value){
+
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+
+/* =========================
+   DIDIT KYC
 ========================= */
 
 async function startDidit(){
@@ -665,10 +1064,12 @@ if(reference){
     "/api/wallet/verify/" +
     encodeURIComponent(reference)
   )
+
   .then(
     response =>
       response.json()
   )
+
   .then(
     data => {
 
@@ -680,11 +1081,13 @@ if(reference){
 
     }
   )
+
   .catch(
     () => {
 
       msg.textContent =
         "Unable to confirm payment";
+
     }
   );
 }
@@ -696,5 +1099,8 @@ if(reference){
 
 checkWallet();
 
-</script></body>
-</html>
+</script>
+
+</body>
+  </html>
+  
