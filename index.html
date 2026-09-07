@@ -712,7 +712,46 @@ if(reference){
 
 checkWallet();
 
-</script>
+</script>checkWallet();
+
+</script><div class="card">
+  <h2>🔐 KYC Verification</h2>
+  <button onclick="startDidit()">🪪 Start Verification</button>
+  <p id="diditMsg"></p>
+</div><script>
+async function startDidit(){
+  const email=document.getElementById("email").value.trim();
+  const msg=document.getElementById("diditMsg");
+
+  if(!email){
+    msg.textContent="Enter your email first";
+    return;
+  }
+
+  msg.textContent="Opening verification...";
+
+  try{
+    const r=await fetch(API+"/api/didit/session",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({email})
+    });
+
+    const data=await r.json();
+
+    if(!r.ok || !data.url){
+      msg.textContent=data.message||"Unable to start verification";
+      return;
+    }
+
+    window.location.href=data.url;
+
+  }catch(e){
+    msg.textContent="Connection error. Please try again.";
+  }
+}
+</script></body>
+</html>
 
 </body>
       </html>
