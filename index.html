@@ -18,105 +18,107 @@ content="Ya Salam Business - Digital Services Portal">
 
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:#f3f8f5;
-  color:#123;
+  background:#f2f8f5;
+  color:#173226;
   min-height:100vh;
 }
 
 /* HEADER */
-header{
-  background:linear-gradient(135deg,#087f3d,#0caf58);
+.header{
+  background:linear-gradient(145deg,#056b35,#0aae59);
   color:white;
-  padding:30px 18px;
   text-align:center;
-  border-bottom-left-radius:30px;
-  border-bottom-right-radius:30px;
-  box-shadow:0 5px 20px rgba(0,0,0,.15);
+  padding:28px 18px 32px;
+  border-radius:0 0 32px 32px;
+  box-shadow:0 7px 25px rgba(0,0,0,.16);
 }
 
 /* LOGO */
 .logo{
-  width:82px;
-  height:82px;
+  width:88px;
+  height:88px;
   margin:auto;
-  border-radius:24px;
   background:white;
+  border-radius:26px;
   display:flex;
   align-items:center;
   justify-content:center;
-  box-shadow:0 6px 18px rgba(0,0,0,.2);
   position:relative;
+  box-shadow:0 8px 20px rgba(0,0,0,.20);
 }
 
-.logo::before{
+.logo:before{
   content:"";
-  width:52px;
-  height:52px;
-  border:5px solid #087f3d;
-  border-radius:50%;
   position:absolute;
+  width:61px;
+  height:61px;
+  border:5px solid #07833f;
+  border-radius:50%;
 }
 
 .logo span{
-  color:#087f3d;
-  font-size:23px;
-  font-weight:900;
+  position:relative;
   z-index:2;
+  color:#07833f;
+  font-size:22px;
+  font-weight:900;
+  letter-spacing:-1px;
 }
 
-header h1{
+.header h1{
   margin-top:15px;
-  font-size:27px;
+  font-size:26px;
   letter-spacing:1px;
 }
 
-header p{
-  margin-top:7px;
-  font-size:14px;
-  opacity:.95;
+.header p{
+  margin-top:6px;
+  font-size:13px;
+  opacity:.94;
 }
 
 /* MAIN */
-main{
+.container{
   width:100%;
   max-width:600px;
   margin:auto;
-  padding:25px 16px 35px;
+  padding:24px 15px 30px;
 }
 
+/* WELCOME */
 .welcome{
   text-align:center;
-  margin-bottom:22px;
+  margin-bottom:20px;
 }
 
 .welcome h2{
+  color:#087d3d;
   font-size:21px;
-  color:#087f3d;
 }
 
 .welcome p{
+  color:#68756f;
+  font-size:13px;
   margin-top:7px;
-  color:#667;
-  font-size:14px;
 }
 
-/* CARDS */
+/* SERVICE CARD */
 .services{
   display:grid;
-  gap:14px;
+  gap:13px;
 }
 
 .service{
-  background:white;
-  border-radius:18px;
-  padding:18px;
-  text-decoration:none;
-  color:#123;
   display:flex;
   align-items:center;
-  gap:15px;
-  box-shadow:0 4px 15px rgba(0,0,0,.08);
-  border:1px solid #e4eee8;
+  gap:14px;
+  background:white;
+  text-decoration:none;
+  color:#173226;
+  padding:16px;
+  border-radius:19px;
+  border:1px solid #e0ebe5;
+  box-shadow:0 4px 14px rgba(0,0,0,.07);
   transition:.2s;
 }
 
@@ -125,35 +127,38 @@ main{
 }
 
 .icon{
-  min-width:52px;
+  width:52px;
   height:52px;
-  border-radius:15px;
+  min-width:52px;
+  border-radius:16px;
   background:#e8f7ef;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:27px;
+  font-size:26px;
 }
 
 .service h3{
-  font-size:16px;
+  font-size:15px;
   margin-bottom:5px;
 }
 
 .service p{
-  font-size:12px;
-  color:#778;
+  font-size:11.5px;
+  color:#78837e;
+  line-height:1.4;
 }
 
 .arrow{
   margin-left:auto;
-  font-size:22px;
-  color:#0a9147;
+  font-size:27px;
+  color:#09944b;
+  font-weight:300;
 }
 
-/* AIRTAIL */
+/* AIRTEL */
 .airtel{
-  border:2px solid #e52329;
+  border:1.5px solid #edcaca;
 }
 
 .airtel .icon{
@@ -161,30 +166,95 @@ main{
 }
 
 .airtel h3{
-  color:#c71920;
+  color:#c51b21;
+}
+
+/* CONTACT SECTION */
+.contact{
+  margin-top:25px;
+  background:white;
+  border-radius:22px;
+  padding:20px 16px;
+  box-shadow:0 4px 16px rgba(0,0,0,.07);
+  border:1px solid #e0ebe5;
+}
+
+.contact-title{
+  text-align:center;
+  color:#087d3d;
+  font-size:19px;
+  margin-bottom:15px;
+}
+
+.contact-buttons{
+  display:grid;
+  gap:11px;
+}
+
+.contact-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  text-decoration:none;
+  color:white;
+  padding:14px;
+  border-radius:14px;
+  font-size:14px;
+  font-weight:bold;
+}
+
+.whatsapp{
+  background:#20b85a;
+}
+
+.email{
+  background:#087d3d;
+}
+
+/* ABOUT */
+.about{
+  margin-top:18px;
+  background:#e9f7ef;
+  border-radius:20px;
+  padding:20px 17px;
+  text-align:center;
+}
+
+.about h3{
+  color:#087d3d;
+  margin-bottom:9px;
+  font-size:18px;
+}
+
+.about p{
+  color:#586961;
+  font-size:13px;
+  line-height:1.7;
 }
 
 /* FOOTER */
 footer{
   text-align:center;
-  padding:20px;
-  font-size:12px;
-  color:#788;
+  padding:20px 10px 25px;
+  color:#7a8781;
+  font-size:11px;
 }
 
 footer strong{
-  color:#087f3d;
+  color:#087d3d;
 }
 
 /* DESKTOP */
 @media(min-width:600px){
-  main{
-    padding-top:35px;
-  }
 
   .service:hover{
     transform:translateY(-3px);
-    box-shadow:0 8px 22px rgba(0,0,0,.12);
+    box-shadow:0 9px 24px rgba(0,0,0,.11);
+  }
+
+  .contact-btn:hover{
+    opacity:.9;
   }
 }
 </style>
@@ -192,7 +262,8 @@ footer strong{
 
 <body>
 
-<header>
+<!-- HEADER -->
+<header class="header">
 
   <div class="logo">
     <span>YSB</span>
@@ -205,20 +276,24 @@ footer strong{
 </header>
 
 
-<main>
+<!-- MAIN -->
+<main class="container">
 
-  <div class="welcome">
+  <!-- WELCOME -->
+  <section class="welcome">
     <h2>Welcome 👋</h2>
     <p>Select a service below to continue.</p>
-  </div>
+  </section>
 
 
-  <div class="services">
+  <!-- SERVICES -->
+  <section class="services">
 
-    <!-- 1 -->
+    <!-- PRINT RECHARGE CARD -->
     <a class="service"
        href="https://printrechargecardonline.com/login"
-       target="_blank">
+       target="_blank"
+       rel="noopener">
 
       <div class="icon">💳</div>
 
@@ -232,10 +307,11 @@ footer strong{
     </a>
 
 
-    <!-- 2 -->
+    <!-- IKILASS -->
     <a class="service"
        href="https://ikilassdigitalhub.com.ng/login"
-       target="_blank">
+       target="_blank"
+       rel="noopener">
 
       <div class="icon">🏢</div>
 
@@ -249,10 +325,11 @@ footer strong{
     </a>
 
 
-    <!-- 3 -->
+    <!-- RECORDDOCS -->
     <a class="service"
        href="https://recorddocs.net/register?agent=yahaya6843"
-       target="_blank">
+       target="_blank"
+       rel="noopener">
 
       <div class="icon">📄</div>
 
@@ -266,10 +343,11 @@ footer strong{
     </a>
 
 
-    <!-- 4 -->
+    <!-- RECHARGE CARD DEALERS -->
     <a class="service"
        href="https://www.rechargecarddealers.com/public/home"
-       target="_blank">
+       target="_blank"
+       rel="noopener">
 
       <div class="icon">📱</div>
 
@@ -283,31 +361,74 @@ footer strong{
     </a>
 
 
-    <!-- 5 -->
+    <!-- AIRTEL TRIBE -->
     <a class="service airtel"
        href="https://play.google.com/store/search?q=Airtel%20Tribe&c=apps"
-       target="_blank">
+       target="_blank"
+       rel="noopener">
 
       <div class="icon">📲</div>
 
       <div>
         <h3>Airtel Tribe App</h3>
-        <p>Search and open Airtel Tribe on Google Play</p>
+        <p>Find Airtel Tribe on Google Play</p>
       </div>
 
       <div class="arrow">›</div>
 
     </a>
 
-  </div>
+  </section>
+
+
+  <!-- CONTACT -->
+  <section class="contact">
+
+    <h3 class="contact-title">Contact Ya Salam Business</h3>
+
+    <div class="contact-buttons">
+
+      <!-- WHATSAPP -->
+      <a class="contact-btn whatsapp"
+         href="https://wa.me/2347069205190"
+         target="_blank"
+         rel="noopener">
+        💬 WhatsApp Us
+      </a>
+
+
+      <!-- EMAIL -->
+      <a class="contact-btn email"
+         href="mailto:sagirushuaibu999@gmail.com">
+        📧 Send Us an Email
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- ABOUT -->
+  <section class="about">
+
+    <h3>About Ya Salam Business</h3>
+
+    <p>
+      Ya Salam Business is a digital services portal
+      designed to provide easy access to useful online
+      business and digital service platforms.
+    </p>
+
+  </section>
 
 </main>
 
 
+<!-- FOOTER -->
 <footer>
   © 2026 <strong>YA SALAM BUSINESS</strong><br>
   Digital Services Portal
 </footer>
 
 </body>
-</html>
+      </html>
