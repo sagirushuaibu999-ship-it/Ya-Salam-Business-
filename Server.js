@@ -402,8 +402,7 @@ app.post("/api/didit/session", async (req, res) => {
         message: "Email required"
       });
 
-    const r = await fetch(
-      `$// DIDIT
+    // DIDIT
 app.post("/api/didit/session", async (req, res) => {
   try {
     const { email } = req.body;
