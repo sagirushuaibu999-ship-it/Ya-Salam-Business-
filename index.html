@@ -7,88 +7,88 @@
 <title>YA SALAM BUSINESS</title>
 
 <meta name="description"
-content="Ya Salam Business - Digital Services Portal">
+content="YA SALAM BUSINESS - Digital Services Portal">
 
 <style>
 *{
-  box-sizing:border-box;
   margin:0;
   padding:0;
+  box-sizing:border-box;
 }
 
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:#f2f8f5;
+  background:#f3f8f5;
   color:#173226;
-  min-height:100vh;
 }
 
-/* HEADER */
-.header{
-  background:linear-gradient(145deg,#056b35,#0aae59);
+/* TOP */
+.top{
+  background:linear-gradient(135deg,#056b35,#10b85d);
   color:white;
   text-align:center;
-  padding:28px 18px 32px;
-  border-radius:0 0 32px 32px;
-  box-shadow:0 7px 25px rgba(0,0,0,.16);
+  padding:32px 18px 38px;
+  border-radius:0 0 35px 35px;
+  box-shadow:0 8px 25px rgba(0,0,0,.16);
+  animation:fadeDown .7s ease;
 }
 
 /* LOGO */
 .logo{
-  width:88px;
-  height:88px;
+  width:92px;
+  height:92px;
   margin:auto;
   background:white;
-  border-radius:26px;
+  border-radius:28px;
   display:flex;
   align-items:center;
   justify-content:center;
   position:relative;
-  box-shadow:0 8px 20px rgba(0,0,0,.20);
+  box-shadow:0 8px 22px rgba(0,0,0,.22);
 }
 
 .logo:before{
   content:"";
   position:absolute;
-  width:61px;
-  height:61px;
+  width:64px;
+  height:64px;
   border:5px solid #07833f;
   border-radius:50%;
 }
 
 .logo span{
   position:relative;
-  z-index:2;
   color:#07833f;
   font-size:22px;
   font-weight:900;
-  letter-spacing:-1px;
+  z-index:2;
 }
 
-.header h1{
-  margin-top:15px;
-  font-size:26px;
+.top h1{
+  margin-top:16px;
+  font-size:27px;
   letter-spacing:1px;
 }
 
-.header p{
-  margin-top:6px;
+.top p{
+  margin-top:7px;
   font-size:13px;
-  opacity:.94;
+  opacity:.95;
 }
 
-/* MAIN */
+/* CONTAINER */
 .container{
   width:100%;
   max-width:600px;
   margin:auto;
-  padding:24px 15px 30px;
+  padding:25px 15px 35px;
 }
 
 /* WELCOME */
 .welcome{
   text-align:center;
   margin-bottom:20px;
+  animation:fadeUp .8s ease;
 }
 
 .welcome h2{
@@ -97,12 +97,12 @@ body{
 }
 
 .welcome p{
-  color:#68756f;
+  margin-top:6px;
+  color:#718078;
   font-size:13px;
-  margin-top:7px;
 }
 
-/* SERVICE CARD */
+/* SERVICES */
 .services{
   display:grid;
   gap:13px;
@@ -113,52 +113,61 @@ body{
   align-items:center;
   gap:14px;
   background:white;
+  padding:16px;
+  border-radius:20px;
   text-decoration:none;
   color:#173226;
-  padding:16px;
-  border-radius:19px;
   border:1px solid #e0ebe5;
-  box-shadow:0 4px 14px rgba(0,0,0,.07);
-  transition:.2s;
+  box-shadow:0 5px 16px rgba(0,0,0,.07);
+  animation:fadeUp .7s ease both;
+  transition:.25s;
 }
 
+.service:nth-child(1){animation-delay:.05s}
+.service:nth-child(2){animation-delay:.10s}
+.service:nth-child(3){animation-delay:.15s}
+.service:nth-child(4){animation-delay:.20s}
+.service:nth-child(5){animation-delay:.25s}
+
 .service:active{
-  transform:scale(.98);
+  transform:scale(.97);
 }
 
 .icon{
-  width:52px;
-  height:52px;
-  min-width:52px;
-  border-radius:16px;
+  width:54px;
+  height:54px;
+  min-width:54px;
+  border-radius:17px;
   background:#e8f7ef;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:26px;
+  font-size:27px;
 }
 
-.service h3{
+.info{
+  flex:1;
+}
+
+.info h3{
   font-size:15px;
   margin-bottom:5px;
 }
 
-.service p{
+.info p{
+  color:#78847e;
   font-size:11.5px;
-  color:#78837e;
   line-height:1.4;
 }
 
 .arrow{
-  margin-left:auto;
-  font-size:27px;
   color:#09944b;
-  font-weight:300;
+  font-size:28px;
 }
 
 /* AIRTEL */
 .airtel{
-  border:1.5px solid #edcaca;
+  border:1.5px solid #efcccc;
 }
 
 .airtel .icon{
@@ -169,17 +178,17 @@ body{
   color:#c51b21;
 }
 
-/* CONTACT SECTION */
+/* CONTACT */
 .contact{
   margin-top:25px;
+  padding:20px 16px;
   background:white;
   border-radius:22px;
-  padding:20px 16px;
-  box-shadow:0 4px 16px rgba(0,0,0,.07);
-  border:1px solid #e0ebe5;
+  box-shadow:0 5px 17px rgba(0,0,0,.07);
+  animation:fadeUp .8s ease;
 }
 
-.contact-title{
+.contact h2{
   text-align:center;
   color:#087d3d;
   font-size:19px;
@@ -192,16 +201,21 @@ body{
 }
 
 .contact-btn{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:9px;
   text-decoration:none;
   color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:9px;
   padding:14px;
-  border-radius:14px;
+  border-radius:15px;
   font-size:14px;
   font-weight:bold;
+  transition:.2s;
+}
+
+.contact-btn:active{
+  transform:scale(.97);
 }
 
 .whatsapp{
@@ -215,16 +229,16 @@ body{
 /* ABOUT */
 .about{
   margin-top:18px;
-  background:#e9f7ef;
-  border-radius:20px;
   padding:20px 17px;
+  background:#e8f7ef;
+  border-radius:21px;
   text-align:center;
 }
 
-.about h3{
+.about h2{
   color:#087d3d;
-  margin-bottom:9px;
   font-size:18px;
+  margin-bottom:9px;
 }
 
 .about p{
@@ -236,8 +250,8 @@ body{
 /* FOOTER */
 footer{
   text-align:center;
-  padding:20px 10px 25px;
-  color:#7a8781;
+  padding:20px 10px 27px;
+  color:#78857f;
   font-size:11px;
 }
 
@@ -249,12 +263,35 @@ footer strong{
 @media(min-width:600px){
 
   .service:hover{
-    transform:translateY(-3px);
-    box-shadow:0 9px 24px rgba(0,0,0,.11);
+    transform:translateY(-4px);
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
   }
 
   .contact-btn:hover{
     opacity:.9;
+  }
+}
+
+/* ANIMATION */
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(15px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes fadeDown{
+  from{
+    opacity:0;
+    transform:translateY(-15px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
   }
 }
 </style>
@@ -262,8 +299,7 @@ footer strong{
 
 <body>
 
-<!-- HEADER -->
-<header class="header">
+<header class="top">
 
   <div class="logo">
     <span>YSB</span>
@@ -276,20 +312,16 @@ footer strong{
 </header>
 
 
-<!-- MAIN -->
 <main class="container">
 
-  <!-- WELCOME -->
   <section class="welcome">
     <h2>Welcome 👋</h2>
     <p>Select a service below to continue.</p>
   </section>
 
 
-  <!-- SERVICES -->
   <section class="services">
 
-    <!-- PRINT RECHARGE CARD -->
     <a class="service"
        href="https://printrechargecardonline.com/login"
        target="_blank"
@@ -297,7 +329,7 @@ footer strong{
 
       <div class="icon">💳</div>
 
-      <div>
+      <div class="info">
         <h3>Print Recharge Card Online</h3>
         <p>Recharge card printing service</p>
       </div>
@@ -307,7 +339,6 @@ footer strong{
     </a>
 
 
-    <!-- IKILASS -->
     <a class="service"
        href="https://ikilassdigitalhub.com.ng/login"
        target="_blank"
@@ -315,7 +346,7 @@ footer strong{
 
       <div class="icon">🏢</div>
 
-      <div>
+      <div class="info">
         <h3>Ikilass Digital Hub</h3>
         <p>Digital service platform</p>
       </div>
@@ -325,7 +356,6 @@ footer strong{
     </a>
 
 
-    <!-- RECORDDOCS -->
     <a class="service"
        href="https://recorddocs.net/register?agent=yahaya6843"
        target="_blank"
@@ -333,7 +363,7 @@ footer strong{
 
       <div class="icon">📄</div>
 
-      <div>
+      <div class="info">
         <h3>RecordDocs</h3>
         <p>Registration and documentation</p>
       </div>
@@ -343,7 +373,6 @@ footer strong{
     </a>
 
 
-    <!-- RECHARGE CARD DEALERS -->
     <a class="service"
        href="https://www.rechargecarddealers.com/public/home"
        target="_blank"
@@ -351,7 +380,7 @@ footer strong{
 
       <div class="icon">📱</div>
 
-      <div>
+      <div class="info">
         <h3>Recharge Card Dealers</h3>
         <p>Recharge card dealer platform</p>
       </div>
@@ -361,7 +390,6 @@ footer strong{
     </a>
 
 
-    <!-- AIRTEL TRIBE -->
     <a class="service airtel"
        href="https://play.google.com/store/search?q=Airtel%20Tribe&c=apps"
        target="_blank"
@@ -369,7 +397,7 @@ footer strong{
 
       <div class="icon">📲</div>
 
-      <div>
+      <div class="info">
         <h3>Airtel Tribe App</h3>
         <p>Find Airtel Tribe on Google Play</p>
       </div>
@@ -381,25 +409,21 @@ footer strong{
   </section>
 
 
-  <!-- CONTACT -->
   <section class="contact">
 
-    <h3 class="contact-title">Contact Ya Salam Business</h3>
+    <h2>Contact Ya Salam Business</h2>
 
     <div class="contact-buttons">
 
-      <!-- WHATSAPP -->
       <a class="contact-btn whatsapp"
-         href="https://wa.me/2347069205190"
+         href="https://wa.me/2347069205190?text=Hello%20Ya%20Salam%20Business%2C%20I%20need%20more%20information."
          target="_blank"
          rel="noopener">
         💬 WhatsApp Us
       </a>
 
-
-      <!-- EMAIL -->
       <a class="contact-btn email"
-         href="mailto:sagirushuaibu999@gmail.com">
+         href="mailto:sagirushuaibu999@gmail.com?subject=Ya%20Salam%20Business%20Inquiry">
         📧 Send Us an Email
       </a>
 
@@ -408,10 +432,9 @@ footer strong{
   </section>
 
 
-  <!-- ABOUT -->
   <section class="about">
 
-    <h3>About Ya Salam Business</h3>
+    <h2>About Ya Salam Business</h2>
 
     <p>
       Ya Salam Business is a digital services portal
@@ -424,11 +447,10 @@ footer strong{
 </main>
 
 
-<!-- FOOTER -->
 <footer>
   © 2026 <strong>YA SALAM BUSINESS</strong><br>
   Digital Services Portal
 </footer>
 
 </body>
-      </html>
+        </html>
