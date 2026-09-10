@@ -405,6 +405,19 @@ app.post("/api/didit/session", async (req, res) => {
     const r = await fetch(
       `${DIDIT}/v3/session/`,
       {
+        // DIDIT
+app.post("/api/didit/session", async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    if (!email)
+      return res.status(400).json({
+        message: "Email required"
+      });
+
+    const r = await fetch(
+      `${DIDIT}/v3/session/`,
+      {
         method: "POST",
         headers: {
           "x-api-key": process.env.DIDIT_API_KEY,
@@ -427,6 +440,7 @@ app.post("/api/didit/session", async (req, res) => {
       session_id: data.session_id,
       url: data.url
     });
+
   } catch (e) {
     res.status(500).json({
       message: "Didit connection failed"
