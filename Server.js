@@ -15,10 +15,12 @@ const db = new Pool({
 
 const NINJA = "https://api.sandbox.ninja.boucloud.io";
 const DIDIT = "https://verification.didit.me";
+
 const DIDIT_WORKFLOW =
   "9879f04a-af0b-44eb-9d6f-1a0f83894514";
 
 const FEE = 100;
+
 
 // PAYSTACK WEBHOOK
 app.post(
@@ -94,19 +96,24 @@ app.post(
         await client.query("COMMIT");
 
         return res.sendStatus(200);
+
       } catch (e) {
         await client.query("ROLLBACK");
         return res.sendStatus(500);
+
       } finally {
         client.release();
       }
+
     } catch (e) {
       return res.sendStatus(400);
     }
   }
 );
 
+
 app.use(express.json());
+
 
 // HOME
 app.get("/", (req, res) => {
@@ -115,6 +122,7 @@ app.get("/", (req, res) => {
     message: "Ya Salam Business backend is running"
   });
 });
+
 
 // STATUS
 app.get("/api/status", (req, res) => {
@@ -126,6 +134,7 @@ app.get("/api/status", (req, res) => {
     didit: !!process.env.DIDIT_API_KEY
   });
 });
+
 
 // DATABASE
 async function setup() {
@@ -156,6 +165,7 @@ async function setup() {
   `);
 }
 
+
 // WALLET
 app.post("/api/wallet", async (req, res) => {
   try {
@@ -173,18 +183,25 @@ app.post("/api/wallet", async (req, res) => {
       [email]
     );
 
-    res.json({ status: "success" });
+    res.json({
+      status: "success"
+    });
+
   } catch (e) {
-    res.status(500).json({ message: e.message });
+    res.status(500).json({
+      message: e.message
+    });
   }
 });
+
 
 // CHECK WALLET
 app.get("/api/wallet/:email", async (req, res) => {
   try {
     const r = await db.query(
       `SELECT email,balance
-       FROM wallets WHERE email=$1`,
+       FROM wallets
+       WHERE email=$1`,
       [req.params.email]
     );
 
@@ -192,10 +209,14 @@ app.get("/api/wallet/:email", async (req, res) => {
       status: "success",
       wallet: r.rows[0] || null
     });
+
   } catch (e) {
-    res.status(500).json({ message: e.message });
+    res.status(500).json({
+      message: e.message
+    });
   }
 });
+
 
 // FUND WALLET
 app.post("/api/wallet/fund", async (req, res) => {
@@ -214,8 +235,7 @@ app.post("/api/wallet/fund", async (req, res) => {
       [email]
     );
 
-    const reference =
-      "YSB-" + Date.now();
+    const reference = "YSB-" + Date.now();
 
     await db.query(
       `INSERT INTO wallet_transactions
@@ -235,7 +255,9 @@ app.post("/api/wallet/fund", async (req, res) => {
         },
         body: JSON.stringify({
           email,
-          amount: Math.round(Number(amount) * 100),
+          amount: Math.round(
+            Number(amount) * 100
+          ),
           reference
         })
       }
@@ -252,10 +274,14 @@ app.post("/api/wallet/fund", async (req, res) => {
       authorization_url:
         data.data.authorization_url
     });
+
   } catch (e) {
-    res.status(500).json({ message: e.message });
+    res.status(500).json({
+      message: e.message
+    });
   }
 });
+
 
 // NINJA TOKEN
 async function ninjaToken() {
@@ -278,35 +304,50 @@ async function ninjaToken() {
   const data = await r.json();
 
   if (!r.ok || !data.token)
-    throw new Error("Ninja authentication failed");
+    throw new Error(
+      "Ninja authentication failed"
+    );
 
   return data.token;
 }
+
 
 // NIN / BVN
 async function verify(req, res, type) {
   const client = await db.connect();
 
   try {
-    const { email, idNumber } = req.body;
+    const {
+      email,
+      idNumber
+    } = req.body;
 
-    if (!email || !/^\d{11}$/.test(String(idNumber)))
+    if (
+      !email ||
+      !/^\d{11}$/.test(String(idNumber))
+    ) {
       return res.status(400).json({
-        message: "Email and valid 11-digit ID required"
+        message:
+          "Email and valid 11-digit ID required"
       });
+    }
 
     const wallet = await client.query(
-      `SELECT balance FROM wallets WHERE email=$1`,
+      `SELECT balance
+       FROM wallets
+       WHERE email=$1`,
       [email]
     );
 
     if (
       !wallet.rows.length ||
       Number(wallet.rows[0].balance) < FEE
-    )
+    ) {
       return res.status(400).json({
-        message: "Insufficient wallet balance"
+        message:
+          "Insufficient wallet balance"
       });
+    }
 
     const token = await ninjaToken();
 
@@ -315,39 +356,50 @@ async function verify(req, res, type) {
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json"
+          Authorization:
+            `Bearer ${token}`,
+          "Content-Type":
+            "application/json"
         },
         body: JSON.stringify({
           idType: type,
           mode: "lookup",
           idNumber: String(idNumber),
-          reference: "YSB-" + Date.now()
+          reference:
+            "YSB-" + Date.now()
         })
       }
     );
 
     const data = await r.json();
 
-    if (!r.ok || data.status !== "found")
+    if (
+      !r.ok ||
+      data.status !== "found"
+    ) {
       return res.status(400).json({
-        message: "Verification failed. Wallet was not charged."
+        message:
+          "Verification failed. Wallet was not charged."
       });
+    }
 
     await client.query("BEGIN");
 
     const debit = await client.query(
       `UPDATE wallets
        SET balance=balance-$1
-       WHERE email=$2 AND balance >= $1
+       WHERE email=$2
+       AND balance >= $1
        RETURNING balance`,
       [FEE, email]
     );
 
     if (!debit.rows.length) {
       await client.query("ROLLBACK");
+
       return res.status(400).json({
-        message: "Insufficient wallet balance"
+        message:
+          "Insufficient wallet balance"
       });
     }
 
@@ -357,99 +409,137 @@ async function verify(req, res, type) {
       `INSERT INTO verification_transactions
        (email,id_type,id_number,amount)
        VALUES($1,$2,$3,$4)`,
-      [email, type, String(idNumber), FEE]
+      [
+        email,
+        type,
+        String(idNumber),
+        FEE
+      ]
     );
 
     await client.query("COMMIT");
 
     res.json({
       status: "success",
-      message: `${type.toUpperCase()} verification successful`,
-      balance: debit.rows[0].balance,
+      message:
+        `${type.toUpperCase()} verification successful`,
+      balance:
+        debit.rows[0].balance,
       verification: {
-        first_name: v.first_name || "",
-        last_name: v.last_name || "",
-        date_of_birth: v.date_of_birth || "",
-        gender: v.gender || "",
-        status: v.status || ""
+        first_name:
+          v.first_name || "",
+        last_name:
+          v.last_name || "",
+        date_of_birth:
+          v.date_of_birth || "",
+        gender:
+          v.gender || "",
+        status:
+          v.status || ""
       }
     });
+
   } catch (e) {
-    await client.query("ROLLBACK").catch(() => {});
+    await client
+      .query("ROLLBACK")
+      .catch(() => {});
+
     res.status(500).json({
-      message: "Verification service error"
+      message:
+        "Verification service error"
     });
+
   } finally {
     client.release();
   }
 }
 
-app.post("/api/nin/verify", (req, res) =>
-  verify(req, res, "nin")
+
+app.post(
+  "/api/nin/verify",
+  (req, res) =>
+    verify(req, res, "nin")
 );
 
-app.post("/api/bvn/verify", (req, res) =>
-  verify(req, res, "bvn")
+
+app.post(
+  "/api/bvn/verify",
+  (req, res) =>
+    verify(req, res, "bvn")
 );
+
 
 // DIDIT
-app.post("/api/didit/session", async (req, res) => {
-  try {
-    const { email } = req.body;
+app.post(
+  "/api/didit/session",
+  async (req, res) => {
+    try {
+      const { email } = req.body;
 
-    if (!email)
-      return res.status(400).json({
-        message: "Email required"
+      if (!email)
+        return res.status(400).json({
+          message: "Email required"
+        });
+
+      const r = await fetch(
+        `${DIDIT}/v3/session/`,
+        {
+          method: "POST",
+          headers: {
+            "x-api-key":
+              process.env.DIDIT_API_KEY,
+            "Content-Type":
+              "application/json"
+          },
+          body: JSON.stringify({
+            workflow_id:
+              DIDIT_WORKFLOW,
+            vendor_data:
+              email
+          })
+        }
+      );
+
+      const data = await r.json();
+
+      if (!r.ok)
+        return res.status(400).json(data);
+
+      res.json({
+        status: "success",
+        session_id:
+          data.session_id,
+        url:
+          data.url || data.session_url
       });
 
-    // DIDIT
-app.post("/api/didit/session", async (req, res) => {
-  try {
-    const { email } = req.body;
-
-    if (!email)
-      return res.status(400).json({
-        message: "Email required"
+    } catch (e) {
+      res.status(500).json({
+        message:
+          "Didit connection failed"
       });
-
-    const r = await fetch(`${DIDIT}/v3/session/`, {
-      method: "POST",
-      headers: {
-        "x-api-key": process.env.DIDIT_API_KEY,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        workflow_id: DIDIT_WORKFLOW,
-        vendor_data: email
-      })
-    });
-
-    const data = await r.json();
-
-    if (!r.ok)
-      return res.status(400).json(data);
-
-    res.json({
-      status: "success",
-      session_id: data.session_id,
-      url: data.url
-    });
-
-  } catch (e) {
-    res.status(500).json({
-      message: "Didit connection failed"
-    });
+    }
   }
-});
+);
+
 
 // START
 setup()
   .then(() => {
-    app.listen(PORT, () => {
-      console.log(`Ya Salam Business API running on ${PORT}`);
-    });
+    app.listen(
+      PORT,
+      () => {
+        console.log(
+          `Ya Salam Business API running on ${PORT}`
+        );
+      }
+    );
   })
   .catch((e) => {
-    console.error("DATABASE ERROR:", e);
+    console.error(
+      "DATABASE ERROR:",
+      e
+    );
+
     process.exit(1);
   });
