@@ -403,9 +403,7 @@ app.post("/api/didit/session", async (req, res) => {
       });
 
     const r = await fetch(
-      `${DIDIT}/v3/session/`,
-      {
-        // DIDIT
+      `$// DIDIT
 app.post("/api/didit/session", async (req, res) => {
   try {
     const { email } = req.body;
@@ -415,20 +413,17 @@ app.post("/api/didit/session", async (req, res) => {
         message: "Email required"
       });
 
-    const r = await fetch(
-      `${DIDIT}/v3/session/`,
-      {
-        method: "POST",
-        headers: {
-          "x-api-key": process.env.DIDIT_API_KEY,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          workflow_id: DIDIT_WORKFLOW,
-          vendor_data: email
-        })
-      }
-    );
+    const r = await fetch(`${DIDIT}/v3/session/`, {
+      method: "POST",
+      headers: {
+        "x-api-key": process.env.DIDIT_API_KEY,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        workflow_id: DIDIT_WORKFLOW,
+        vendor_data: email
+      })
+    });
 
     const data = await r.json();
 
@@ -447,6 +442,18 @@ app.post("/api/didit/session", async (req, res) => {
     });
   }
 });
+
+// START
+setup()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Ya Salam Business API running on ${PORT}`);
+    });
+  })
+  .catch((e) => {
+    console.error("DATABASE ERROR:", e);
+    process.exit(1);
+  });
 
 // START
 setup()
