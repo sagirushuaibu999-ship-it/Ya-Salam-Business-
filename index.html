@@ -1,1 +1,313 @@
-<
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>YA SALAM BUSINESS</title>
+
+<meta name="description"
+content="Ya Salam Business - Digital Services Portal">
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f3f8f5;
+  color:#123;
+  min-height:100vh;
+}
+
+/* HEADER */
+header{
+  background:linear-gradient(135deg,#087f3d,#0caf58);
+  color:white;
+  padding:30px 18px;
+  text-align:center;
+  border-bottom-left-radius:30px;
+  border-bottom-right-radius:30px;
+  box-shadow:0 5px 20px rgba(0,0,0,.15);
+}
+
+/* LOGO */
+.logo{
+  width:82px;
+  height:82px;
+  margin:auto;
+  border-radius:24px;
+  background:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 6px 18px rgba(0,0,0,.2);
+  position:relative;
+}
+
+.logo::before{
+  content:"";
+  width:52px;
+  height:52px;
+  border:5px solid #087f3d;
+  border-radius:50%;
+  position:absolute;
+}
+
+.logo span{
+  color:#087f3d;
+  font-size:23px;
+  font-weight:900;
+  z-index:2;
+}
+
+header h1{
+  margin-top:15px;
+  font-size:27px;
+  letter-spacing:1px;
+}
+
+header p{
+  margin-top:7px;
+  font-size:14px;
+  opacity:.95;
+}
+
+/* MAIN */
+main{
+  width:100%;
+  max-width:600px;
+  margin:auto;
+  padding:25px 16px 35px;
+}
+
+.welcome{
+  text-align:center;
+  margin-bottom:22px;
+}
+
+.welcome h2{
+  font-size:21px;
+  color:#087f3d;
+}
+
+.welcome p{
+  margin-top:7px;
+  color:#667;
+  font-size:14px;
+}
+
+/* CARDS */
+.services{
+  display:grid;
+  gap:14px;
+}
+
+.service{
+  background:white;
+  border-radius:18px;
+  padding:18px;
+  text-decoration:none;
+  color:#123;
+  display:flex;
+  align-items:center;
+  gap:15px;
+  box-shadow:0 4px 15px rgba(0,0,0,.08);
+  border:1px solid #e4eee8;
+  transition:.2s;
+}
+
+.service:active{
+  transform:scale(.98);
+}
+
+.icon{
+  min-width:52px;
+  height:52px;
+  border-radius:15px;
+  background:#e8f7ef;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:27px;
+}
+
+.service h3{
+  font-size:16px;
+  margin-bottom:5px;
+}
+
+.service p{
+  font-size:12px;
+  color:#778;
+}
+
+.arrow{
+  margin-left:auto;
+  font-size:22px;
+  color:#0a9147;
+}
+
+/* AIRTAIL */
+.airtel{
+  border:2px solid #e52329;
+}
+
+.airtel .icon{
+  background:#fff0f0;
+}
+
+.airtel h3{
+  color:#c71920;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:20px;
+  font-size:12px;
+  color:#788;
+}
+
+footer strong{
+  color:#087f3d;
+}
+
+/* DESKTOP */
+@media(min-width:600px){
+  main{
+    padding-top:35px;
+  }
+
+  .service:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 22px rgba(0,0,0,.12);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="logo">
+    <span>YSB</span>
+  </div>
+
+  <h1>YA SALAM BUSINESS</h1>
+
+  <p>Digital Services Portal</p>
+
+</header>
+
+
+<main>
+
+  <div class="welcome">
+    <h2>Welcome 👋</h2>
+    <p>Select a service below to continue.</p>
+  </div>
+
+
+  <div class="services">
+
+    <!-- 1 -->
+    <a class="service"
+       href="https://printrechargecardonline.com/login"
+       target="_blank">
+
+      <div class="icon">💳</div>
+
+      <div>
+        <h3>Print Recharge Card Online</h3>
+        <p>Recharge card printing service</p>
+      </div>
+
+      <div class="arrow">›</div>
+
+    </a>
+
+
+    <!-- 2 -->
+    <a class="service"
+       href="https://ikilassdigitalhub.com.ng/login"
+       target="_blank">
+
+      <div class="icon">🏢</div>
+
+      <div>
+        <h3>Ikilass Digital Hub</h3>
+        <p>Digital service platform</p>
+      </div>
+
+      <div class="arrow">›</div>
+
+    </a>
+
+
+    <!-- 3 -->
+    <a class="service"
+       href="https://recorddocs.net/register?agent=yahaya6843"
+       target="_blank">
+
+      <div class="icon">📄</div>
+
+      <div>
+        <h3>RecordDocs</h3>
+        <p>Registration and documentation</p>
+      </div>
+
+      <div class="arrow">›</div>
+
+    </a>
+
+
+    <!-- 4 -->
+    <a class="service"
+       href="https://www.rechargecarddealers.com/public/home"
+       target="_blank">
+
+      <div class="icon">📱</div>
+
+      <div>
+        <h3>Recharge Card Dealers</h3>
+        <p>Recharge card dealer platform</p>
+      </div>
+
+      <div class="arrow">›</div>
+
+    </a>
+
+
+    <!-- 5 -->
+    <a class="service airtel"
+       href="https://play.google.com/store/search?q=Airtel%20Tribe&c=apps"
+       target="_blank">
+
+      <div class="icon">📲</div>
+
+      <div>
+        <h3>Airtel Tribe App</h3>
+        <p>Search and open Airtel Tribe on Google Play</p>
+      </div>
+
+      <div class="arrow">›</div>
+
+    </a>
+
+  </div>
+
+</main>
+
+
+<footer>
+  © 2026 <strong>YA SALAM BUSINESS</strong><br>
+  Digital Services Portal
+</footer>
+
+</body>
+</html>
