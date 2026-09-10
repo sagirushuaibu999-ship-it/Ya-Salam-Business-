@@ -454,17 +454,3 @@ setup()
     console.error("DATABASE ERROR:", e);
     process.exit(1);
   });
-
-// START
-setup()
-  .then(() => {
-    app.listen(PORT, () => {
-      console.log(
-        `Ya Salam Business API running on ${PORT}`
-      );
-    });
-  })
-  .catch((e) => {
-    console.error("DATABASE ERROR:", e);
-    process.exit(1);
-  });
