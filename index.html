@@ -1,58 +1,421 @@
-const express = require("express");
-const cors = require("cors");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YA SALAM BUSINESS</title>
+<meta name="description" content="YA SALAM BUSINESS - Digital Services Portal">
+<meta name="theme-color" content="#087d3d">
 
-const app = express();
-const PORT = process.env.PORT || 10000;
+<style>
+*{box-sizing:border-box}
 
-app.use(cors());
-app.use(express.json());
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f3f8f5;
+  color:#17231c;
+}
 
-app.get("/", (req, res) => {
-  res.json({
-    status: "success",
-    message: "Ya Salam Business API is running"
-  });
-});
+#securityLock{
+  position:fixed;
+  inset:0;
+  z-index:999999;
+  background:#f3f8f5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
 
-app.get("/api/status", (req, res) => {
-  res.json({
-    status: "success",
-    service: "Ya Salam Business API",
-    security: process.env.YSB_ACCESS_PIN ? "configured" : "not configured"
-  });
-});
+.security-box{
+  width:100%;
+  max-width:380px;
+  background:#fff;
+  padding:30px 22px;
+  border-radius:22px;
+  text-align:center;
+  box-shadow:0 12px 40px rgba(0,0,0,.15);
+}
 
-app.post("/api/security/unlock", (req, res) => {
-  const { pin } = req.body || {};
-  const savedPin = process.env.YSB_ACCESS_PIN;
+.security-logo,
+.logo{
+  width:70px;
+  height:70px;
+  margin:0 auto;
+  border-radius:50%;
+  background:#087d3d;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:23px;
+  font-weight:bold;
+}
 
-  if (!savedPin) {
-    return res.status(500).json({
-      success: false,
-      message: "Security PIN is not configured"
-    });
+.security-box h2{
+  margin:15px 0 5px;
+  color:#087d3d;
+}
+
+.security-box p{
+  color:#666;
+  margin-bottom:22px;
+}
+
+#securityPin{
+  width:100%;
+  padding:15px;
+  border:1px solid #ccc;
+  border-radius:12px;
+  text-align:center;
+  font-size:21px;
+  letter-spacing:6px;
+  outline:none;
+}
+
+#securityPin:focus{
+  border-color:#087d3d;
+}
+
+.unlock-btn{
+  width:100%;
+  margin-top:15px;
+  padding:15px;
+  border:0;
+  border-radius:12px;
+  background:#087d3d;
+  color:#fff;
+  font-size:17px;
+  font-weight:bold;
+}
+
+#securityMessage{
+  min-height:22px;
+  margin-top:12px;
+  color:#c62828;
+  font-size:14px;
+}
+
+header{
+  background:#087d3d;
+  color:#fff;
+  padding:22px 18px;
+  text-align:center;
+}
+
+header .logo{
+  background:#fff;
+  color:#087d3d;
+}
+
+header h1{
+  margin:12px 0 5px;
+  font-size:25px;
+}
+
+header p{
+  margin:0;
+  opacity:.9;
+}
+
+main{
+  width:100%;
+  max-width:650px;
+  margin:auto;
+  padding:20px 15px 40px;
+}
+
+.welcome{
+  text-align:center;
+  padding:12px 0 20px;
+}
+
+.welcome h2{
+  margin-bottom:8px;
+}
+
+.welcome p{
+  color:#666;
+}
+
+.card{
+  background:#fff;
+  margin:14px 0;
+  padding:20px;
+  border-radius:18px;
+  box-shadow:0 5px 18px rgba(0,0,0,.08);
+}
+
+.card h3{
+  margin-top:0;
+}
+
+.card p{
+  color:#666;
+  line-height:1.5;
+}
+
+.card a{
+  display:block;
+  margin-top:15px;
+  padding:13px;
+  text-align:center;
+  text-decoration:none;
+  border-radius:10px;
+  background:#087d3d;
+  color:#fff;
+  font-weight:bold;
+}
+
+.whatsapp{
+  background:#128c4a!important;
+}
+
+.email{
+  background:#333!important;
+}
+
+.about{
+  text-align:center;
+  line-height:1.6;
+}
+
+footer{
+  text-align:center;
+  padding:22px 15px;
+  color:#777;
+  font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="securityLock">
+  <div class="security-box">
+
+    <div class="security-logo">YSB</div>
+
+    <h2>YA SALAM BUSINESS</h2>
+
+    <p>Secure Access</p>
+
+    <input
+      id="securityPin"
+      type="password"
+      inputmode="numeric"
+      maxlength="6"
+      placeholder="6-digit PIN"
+      autocomplete="off"
+    >
+
+    <button class="unlock-btn" onclick="unlockWebsite()">
+      Unlock
+    </button>
+
+    <div id="securityMessage"></div>
+
+  </div>
+</div>
+
+<header>
+
+  <div class="logo">YSB</div>
+
+  <h1>YA SALAM BUSINESS</h1>
+
+  <p>Digital Services Portal</p>
+
+</header>
+
+<main>
+
+  <section class="welcome">
+    <h2>Welcome</h2>
+    <p>
+      Welcome to YA SALAM BUSINESS.
+      Access our digital services and business support.
+    </p>
+  </section>
+
+  <div class="card">
+    <h3>🖨️ Print Recharge Card Online</h3>
+    <p>
+      Recharge card printing and digital recharge services.
+    </p>
+    <a href="#">Open Service</a>
+  </div>
+
+  <div class="card">
+    <h3>📱 Ikilass Digital Hub</h3>
+    <p>
+      Digital services and customer support.
+    </p>
+    <a href="#">Open Service</a>
+  </div>
+
+  <div class="card">
+    <h3>📄 RecordDocs</h3>
+    <p>
+      Digital document and record services.
+    </p>
+    <a href="#">Open Service</a>
+  </div>
+
+  <div class="card">
+    <h3>💳 Recharge Card Dealers</h3>
+    <p>
+      Information and support for recharge card dealers.
+    </p>
+    <a href="#">Contact Us</a>
+  </div>
+
+  <div class="card">
+    <h3>📲 Airtel Tribe App</h3>
+    <p>
+      Find the Airtel Tribe application.
+    </p>
+
+    <a
+      href="https://play.google.com/store/search?q=Airtel%20Tribe&c=apps"
+      target="_blank"
+      rel="noopener"
+    >
+      Find App
+    </a>
+  </div>
+
+  <div class="card">
+
+    <h3>📞 Contact Ya Salam Business</h3>
+
+    <p>
+      Contact us directly for more information.
+    </p>
+
+    <a
+      class="whatsapp"
+      href="https://wa.me/2347069205190?text=Hello%20Ya%20Salam%20Business%2C%20I%20need%20more%20information."
+      target="_blank"
+      rel="noopener"
+    >
+      WhatsApp Us
+    </a>
+
+    <a
+      class="email"
+      href="mailto:sagirushuaibu999@gmail.com?subject=Ya%20Salam%20Business%20Inquiry"
+    >
+      Send Us an Email
+    </a>
+
+  </div>
+
+  <div class="card about">
+
+    <h3>ℹ️ About Ya Salam Business</h3>
+
+    <p>
+      YA SALAM BUSINESS provides digital services
+      and online business support to customers.
+    </p>
+
+  </div>
+
+</main>
+
+<footer>
+  © 2026 YA SALAM BUSINESS. All rights reserved.
+</footer>
+
+<script>
+
+async function unlockWebsite(){
+
+  const pinInput=document.getElementById("securityPin");
+  const message=document.getElementById("securityMessage");
+  const button=document.querySelector(".unlock-btn");
+
+  const pin=pinInput.value.trim();
+
+  message.textContent="";
+
+  if(!/^\d{6}$/.test(pin)){
+    message.textContent="Enter a 6-digit PIN.";
+    return;
   }
 
-  if (!/^\d{6}$/.test(String(pin || ""))) {
-    return res.status(400).json({
-      success: false,
-      message: "Enter a 6-digit PIN"
-    });
+  button.disabled=true;
+  button.textContent="Checking...";
+
+  try{
+
+    const response=await fetch(
+      "https://ya-salam-business-api.onrender.com/api/security/unlock",
+      {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+          pin:pin
+        })
+      }
+    );
+
+    const data=await response.json();
+
+    if(data.success===true){
+
+      sessionStorage.setItem(
+        "ysbUnlocked",
+        "true"
+      );
+
+      document.getElementById(
+        "securityLock"
+      ).style.display="none";
+
+    }else{
+
+      message.textContent=
+        data.message||"Invalid PIN.";
+
+    }
+
+  }catch(error){
+
+    message.textContent=
+      "Unable to connect to security server.";
+
   }
 
-  if (String(pin) !== String(savedPin)) {
-    return res.status(401).json({
-      success: false,
-      message: "Invalid PIN"
-    });
+  button.disabled=false;
+  button.textContent="Unlock";
+}
+
+document
+.getElementById("securityPin")
+.addEventListener("keydown",function(event){
+
+  if(event.key==="Enter"){
+    unlockWebsite();
   }
 
-  return res.json({
-    success: true,
-    message: "Access granted"
-  });
 });
 
-app.listen(PORT, () => {
-  console.log(`Ya Salam Business API running on ${PORT}`);
-});
+if(
+  sessionStorage.getItem("ysbUnlocked")==="true"
+){
+
+  document.getElementById(
+    "securityLock"
+  ).style.display="none";
+
+}
+
+</script>
+
+</body>
+  </html>
