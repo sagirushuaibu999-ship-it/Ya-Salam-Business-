@@ -1,456 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+const express = require("express");
+const cors = require("cors");
 
-<title>YA SALAM BUSINESS</title>
+const app = express();
+const PORT = process.env.PORT || 10000;
 
-<meta name="description"
-content="YA SALAM BUSINESS - Digital Services Portal">
+app.use(cors());
+app.use(express.json());
 
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+app.get("/", (req, res) => {
+  res.json({
+    status: "success",
+    message: "Ya Salam Business API is running"
+  });
+});
 
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f3f8f5;
-  color:#173226;
-}
+app.get("/api/status", (req, res) => {
+  res.json({
+    status: "success",
+    service: "Ya Salam Business API",
+    security: process.env.YSB_ACCESS_PIN ? "configured" : "not configured"
+  });
+});
 
-/* TOP */
-.top{
-  background:linear-gradient(135deg,#056b35,#10b85d);
-  color:white;
-  text-align:center;
-  padding:32px 18px 38px;
-  border-radius:0 0 35px 35px;
-  box-shadow:0 8px 25px rgba(0,0,0,.16);
-  animation:fadeDown .7s ease;
-}
+app.post("/api/security/unlock", (req, res) => {
+  const { pin } = req.body || {};
+  const savedPin = process.env.YSB_ACCESS_PIN;
 
-/* LOGO */
-.logo{
-  width:92px;
-  height:92px;
-  margin:auto;
-  background:white;
-  border-radius:28px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  box-shadow:0 8px 22px rgba(0,0,0,.22);
-}
-
-.logo:before{
-  content:"";
-  position:absolute;
-  width:64px;
-  height:64px;
-  border:5px solid #07833f;
-  border-radius:50%;
-}
-
-.logo span{
-  position:relative;
-  color:#07833f;
-  font-size:22px;
-  font-weight:900;
-  z-index:2;
-}
-
-.top h1{
-  margin-top:16px;
-  font-size:27px;
-  letter-spacing:1px;
-}
-
-.top p{
-  margin-top:7px;
-  font-size:13px;
-  opacity:.95;
-}
-
-/* CONTAINER */
-.container{
-  width:100%;
-  max-width:600px;
-  margin:auto;
-  padding:25px 15px 35px;
-}
-
-/* WELCOME */
-.welcome{
-  text-align:center;
-  margin-bottom:20px;
-  animation:fadeUp .8s ease;
-}
-
-.welcome h2{
-  color:#087d3d;
-  font-size:21px;
-}
-
-.welcome p{
-  margin-top:6px;
-  color:#718078;
-  font-size:13px;
-}
-
-/* SERVICES */
-.services{
-  display:grid;
-  gap:13px;
-}
-
-.service{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  background:white;
-  padding:16px;
-  border-radius:20px;
-  text-decoration:none;
-  color:#173226;
-  border:1px solid #e0ebe5;
-  box-shadow:0 5px 16px rgba(0,0,0,.07);
-  animation:fadeUp .7s ease both;
-  transition:.25s;
-}
-
-.service:nth-child(1){animation-delay:.05s}
-.service:nth-child(2){animation-delay:.10s}
-.service:nth-child(3){animation-delay:.15s}
-.service:nth-child(4){animation-delay:.20s}
-.service:nth-child(5){animation-delay:.25s}
-
-.service:active{
-  transform:scale(.97);
-}
-
-.icon{
-  width:54px;
-  height:54px;
-  min-width:54px;
-  border-radius:17px;
-  background:#e8f7ef;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:27px;
-}
-
-.info{
-  flex:1;
-}
-
-.info h3{
-  font-size:15px;
-  margin-bottom:5px;
-}
-
-.info p{
-  color:#78847e;
-  font-size:11.5px;
-  line-height:1.4;
-}
-
-.arrow{
-  color:#09944b;
-  font-size:28px;
-}
-
-/* AIRTEL */
-.airtel{
-  border:1.5px solid #efcccc;
-}
-
-.airtel .icon{
-  background:#fff0f0;
-}
-
-.airtel h3{
-  color:#c51b21;
-}
-
-/* CONTACT */
-.contact{
-  margin-top:25px;
-  padding:20px 16px;
-  background:white;
-  border-radius:22px;
-  box-shadow:0 5px 17px rgba(0,0,0,.07);
-  animation:fadeUp .8s ease;
-}
-
-.contact h2{
-  text-align:center;
-  color:#087d3d;
-  font-size:19px;
-  margin-bottom:15px;
-}
-
-.contact-buttons{
-  display:grid;
-  gap:11px;
-}
-
-.contact-btn{
-  text-decoration:none;
-  color:white;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:9px;
-  padding:14px;
-  border-radius:15px;
-  font-size:14px;
-  font-weight:bold;
-  transition:.2s;
-}
-
-.contact-btn:active{
-  transform:scale(.97);
-}
-
-.whatsapp{
-  background:#20b85a;
-}
-
-.email{
-  background:#087d3d;
-}
-
-/* ABOUT */
-.about{
-  margin-top:18px;
-  padding:20px 17px;
-  background:#e8f7ef;
-  border-radius:21px;
-  text-align:center;
-}
-
-.about h2{
-  color:#087d3d;
-  font-size:18px;
-  margin-bottom:9px;
-}
-
-.about p{
-  color:#586961;
-  font-size:13px;
-  line-height:1.7;
-}
-
-/* FOOTER */
-footer{
-  text-align:center;
-  padding:20px 10px 27px;
-  color:#78857f;
-  font-size:11px;
-}
-
-footer strong{
-  color:#087d3d;
-}
-
-/* DESKTOP */
-@media(min-width:600px){
-
-  .service:hover{
-    transform:translateY(-4px);
-    box-shadow:0 10px 25px rgba(0,0,0,.12);
+  if (!savedPin) {
+    return res.status(500).json({
+      success: false,
+      message: "Security PIN is not configured"
+    });
   }
 
-  .contact-btn:hover{
-    opacity:.9;
+  if (!/^\d{6}$/.test(String(pin || ""))) {
+    return res.status(400).json({
+      success: false,
+      message: "Enter a 6-digit PIN"
+    });
   }
-}
 
-/* ANIMATION */
-@keyframes fadeUp{
-  from{
-    opacity:0;
-    transform:translateY(15px);
+  if (String(pin) !== String(savedPin)) {
+    return res.status(401).json({
+      success: false,
+      message: "Invalid PIN"
+    });
   }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
 
-@keyframes fadeDown{
-  from{
-    opacity:0;
-    transform:translateY(-15px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-</style>
-</head>
+  return res.json({
+    success: true,
+    message: "Access granted"
+  });
+});
 
-<body>
-
-<header class="top">
-
-  <div class="logo">
-    <span>YSB</span>
-  </div>
-
-  <h1>YA SALAM BUSINESS</h1>
-
-  <p>Digital Services Portal</p>
-
-</header>
-
-
-<main class="container">
-
-  <section class="welcome">
-    <h2>Welcome 👋</h2>
-    <p>Select a service below to continue.</p>
-  </section>
-
-
-  <section class="services">
-
-    <a class="service"
-       href="https://printrechargecardonline.com/login"
-       target="_blank"
-       rel="noopener">
-
-      <div class="icon">💳</div>
-
-      <div class="info">
-        <h3>Print Recharge Card Online</h3>
-        <p>Recharge card printing service</p>
-      </div>
-
-      <div class="arrow">›</div>
-
-    </a>
-
-
-    <a class="service"
-       href="https://ikilassdigitalhub.com.ng/login"
-       target="_blank"
-       rel="noopener">
-
-      <div class="icon">🏢</div>
-
-      <div class="info">
-        <h3>Ikilass Digital Hub</h3>
-        <p>Digital service platform</p>
-      </div>
-
-      <div class="arrow">›</div>
-
-    </a>
-
-
-    <a class="service"
-       href="https://recorddocs.net/register?agent=yahaya6843"
-       target="_blank"
-       rel="noopener">
-
-      <div class="icon">📄</div>
-
-      <div class="info">
-        <h3>RecordDocs</h3>
-        <p>Registration and documentation</p>
-      </div>
-
-      <div class="arrow">›</div>
-
-    </a>
-
-
-    <a class="service"
-       href="https://www.rechargecarddealers.com/public/home"
-       target="_blank"
-       rel="noopener">
-
-      <div class="icon">📱</div>
-
-      <div class="info">
-        <h3>Recharge Card Dealers</h3>
-        <p>Recharge card dealer platform</p>
-      </div>
-
-      <div class="arrow">›</div>
-
-    </a>
-
-
-    <a class="service airtel"
-       href="https://play.google.com/store/search?q=Airtel%20Tribe&c=apps"
-       target="_blank"
-       rel="noopener">
-
-      <div class="icon">📲</div>
-
-      <div class="info">
-        <h3>Airtel Tribe App</h3>
-        <p>Find Airtel Tribe on Google Play</p>
-      </div>
-
-      <div class="arrow">›</div>
-
-    </a>
-
-  </section>
-
-
-  <section class="contact">
-
-    <h2>Contact Ya Salam Business</h2>
-
-    <div class="contact-buttons">
-
-      <a class="contact-btn whatsapp"
-         href="https://wa.me/2347069205190?text=Hello%20Ya%20Salam%20Business%2C%20I%20need%20more%20information."
-         target="_blank"
-         rel="noopener">
-        💬 WhatsApp Us
-      </a>
-
-      <a class="contact-btn email"
-         href="mailto:sagirushuaibu999@gmail.com?subject=Ya%20Salam%20Business%20Inquiry">
-        📧 Send Us an Email
-      </a>
-
-    </div>
-
-  </section>
-
-
-  <section class="about">
-
-    <h2>About Ya Salam Business</h2>
-
-    <p>
-      Ya Salam Business is a digital services portal
-      designed to provide easy access to useful online
-      business and digital service platforms.
-    </p>
-
-  </section>
-
-</main>
-
-
-<footer>
-  © 2026 <strong>YA SALAM BUSINESS</strong><br>
-  Digital Services Portal
-</footer>
-
-</body>
-        </html>
+app.listen(PORT, () => {
+  console.log(`Ya Salam Business API running on ${PORT}`);
+});
