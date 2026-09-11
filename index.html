@@ -23,91 +23,16 @@ body{
   color:#17231c;
 }
 
-#securityLock{
-  position:fixed;
-  inset:0;
-  z-index:999999;
-  background:#f3f8f5;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-}
-
-.securityBox{
-  width:100%;
-  max-width:380px;
-  background:#fff;
-  padding:30px 22px;
-  border-radius:22px;
-  text-align:center;
-  box-shadow:0 12px 40px rgba(0,0,0,.15);
-}
-
-.securityLogo{
-  width:70px;
-  height:70px;
-  margin:auto;
-  border-radius:50%;
-  background:#087d3d;
-  color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:23px;
-  font-weight:bold;
-}
-
-.securityBox h2{
-  color:#087d3d;
-  margin:15px 0 5px;
-}
-
-.securityBox p{
-  color:#666;
-}
-
-#securityPin{
-  width:100%;
-  padding:15px;
-  margin-top:10px;
-  border:1px solid #ccc;
-  border-radius:12px;
-  text-align:center;
-  font-size:21px;
-  letter-spacing:6px;
-  outline:none;
-}
-
-.unlockButton{
-  width:100%;
-  padding:15px;
-  margin-top:15px;
-  border:0;
-  border-radius:12px;
-  background:#087d3d;
-  color:#fff;
-  font-size:17px;
-  font-weight:bold;
-}
-
-#securityMessage{
-  min-height:22px;
-  margin-top:12px;
-  color:#c62828;
-  font-size:14px;
-}
-
 header{
   background:#087d3d;
   color:#fff;
   text-align:center;
-  padding:22px 15px;
+  padding:25px 15px;
 }
 
 .logo{
-  width:70px;
-  height:70px;
+  width:75px;
+  height:75px;
   margin:auto;
   border-radius:50%;
   background:#fff;
@@ -116,7 +41,7 @@ header{
   align-items:center;
   justify-content:center;
   font-weight:bold;
-  font-size:23px;
+  font-size:24px;
 }
 
 header h1{
@@ -135,7 +60,7 @@ main{
 
 .welcome{
   text-align:center;
-  padding-bottom:20px;
+  padding-bottom:10px;
 }
 
 .welcome p{
@@ -145,7 +70,7 @@ main{
 
 .card{
   background:#fff;
-  margin:14px 0;
+  margin:15px 0;
   padding:20px;
   border-radius:18px;
   box-shadow:0 5px 18px rgba(0,0,0,.08);
@@ -163,7 +88,7 @@ main{
 .card a{
   display:block;
   margin-top:15px;
-  padding:13px;
+  padding:14px;
   border-radius:10px;
   background:#087d3d;
   color:#fff;
@@ -195,308 +120,144 @@ footer{
 
 <body>
 
-<!-- SECURITY -->
-<div id="securityLock">
-
-  <div class="securityBox">
-
-    <div class="securityLogo">
-      YSB
-    </div>
-
-    <h2>YA SALAM BUSINESS</h2>
-
-    <p>Secure Access</p>
-
-    <input
-      id="securityPin"
-      type="password"
-      inputmode="numeric"
-      maxlength="6"
-      placeholder="Enter 6-digit PIN"
-      autocomplete="off"
-    >
-
-    <button
-      id="unlockButton"
-      class="unlockButton"
-      type="button"
-    >
-      Unlock
-    </button>
-
-    <div id="securityMessage"></div>
-
-  </div>
-
-</div>
-
-
 <header>
 
   <div class="logo">
     YSB
   </div>
 
-  <h1>
-    YA SALAM BUSINESS
-  </h1>
+  <h1>YA SALAM BUSINESS</h1>
 
-  <p>
-    Digital Services Portal
-  </p>
+  <p>Digital Services Portal</p>
 
 </header>
 
-
 <main>
 
-  <section class="welcome">
+<section class="welcome">
 
-    <h2>Welcome</h2>
+  <h2>Welcome</h2>
 
-    <p>
-      Welcome to YA SALAM BUSINESS.
-      Access our digital services and business support.
-    </p>
+  <p>
+    Welcome to YA SALAM BUSINESS.
+    Access our digital services and business support.
+  </p>
 
-  </section>
+</section>
 
+<div class="card">
 
-  <div class="card">
+  <h3>🖨️ Print Recharge Card Online</h3>
 
-    <h3>🖨️ Print Recharge Card Online</h3>
+  <p>
+    Recharge card printing and digital recharge services.
+  </p>
 
-    <p>
-      Recharge card printing and digital recharge services.
-    </p>
+  <a href="#">
+    Open Service
+  </a>
 
-    <a href="#">
-      Open Service
-    </a>
+</div>
 
-  </div>
+<div class="card">
 
+  <h3>📱 Ikilass Digital Hub</h3>
 
-  <div class="card">
+  <p>
+    Digital services and customer support.
+  </p>
 
-    <h3>📱 Ikilass Digital Hub</h3>
+  <a href="#">
+    Open Service
+  </a>
 
-    <p>
-      Digital services and customer support.
-    </p>
+</div>
 
-    <a href="#">
-      Open Service
-    </a>
+<div class="card">
 
-  </div>
+  <h3>📄 RecordDocs</h3>
 
+  <p>
+    Digital document and record services.
+  </p>
 
-  <div class="card">
+  <a href="#">
+    Open Service
+  </a>
 
-    <h3>📄 RecordDocs</h3>
+</div>
 
-    <p>
-      Digital document and record services.
-    </p>
+<div class="card">
 
-    <a href="#">
-      Open Service
-    </a>
+  <h3>💳 Recharge Card Dealers</h3>
 
-  </div>
+  <p>
+    Information and support for recharge card dealers.
+  </p>
 
+  <a href="#">
+    Contact Us
+  </a>
 
-  <div class="card">
+</div>
 
-    <h3>💳 Recharge Card Dealers</h3>
+<div class="card">
 
-    <p>
-      Information and support for recharge card dealers.
-    </p>
+  <h3>📲 Airtel Tribe App</h3>
 
-    <a href="#">
-      Contact Us
-    </a>
+  <p>
+    Find the Airtel Tribe application.
+  </p>
 
-  </div>
+  <a
+    href="https://play.google.com/store/search?q=Airtel%20Tribe&c=apps"
+    target="_blank"
+    rel="noopener">
+    Find App
+  </a>
 
+</div>
 
-  <div class="card">
+<div class="card">
 
-    <h3>📲 Airtel Tribe App</h3>
+  <h3>📞 Contact Ya Salam Business</h3>
 
-    <p>
-      Find the Airtel Tribe application.
-    </p>
+  <p>
+    Contact us directly for more information.
+  </p>
 
-    <a
-      href="https://play.google.com/store/search?q=Airtel%20Tribe&c=apps"
-      target="_blank"
-      rel="noopener"
-    >
-      Find App
-    </a>
+  <a
+    class="whatsapp"
+    href="https://wa.me/2347069205190?text=Hello%20Ya%20Salam%20Business%2C%20I%20need%20more%20information."
+    target="_blank"
+    rel="noopener">
+    WhatsApp Us
+  </a>
 
-  </div>
+  <a
+    class="email"
+    href="mailto:sagirushuaibu999@gmail.com?subject=Ya%20Salam%20Business%20Inquiry">
+    Send Us an Email
+  </a>
 
+</div>
 
-  <div class="card">
+<div class="card about">
 
-    <h3>📞 Contact Ya Salam Business</h3>
+  <h3>ℹ️ About Ya Salam Business</h3>
 
-    <p>
-      Contact us directly for more information.
-    </p>
+  <p>
+    YA SALAM BUSINESS provides digital services
+    and online business support to customers.
+  </p>
 
-    <a
-      class="whatsapp"
-      href="https://wa.me/2347069205190?text=Hello%20Ya%20Salam%20Business%2C%20I%20need%20more%20information."
-      target="_blank"
-      rel="noopener"
-    >
-      WhatsApp Us
-    </a>
-
-    <a
-      class="email"
-      href="mailto:sagirushuaibu999@gmail.com?subject=Ya%20Salam%20Business%20Inquiry"
-    >
-      Send Us an Email
-    </a>
-
-  </div>
-
-
-  <div class="card about">
-
-    <h3>ℹ️ About Ya Salam Business</h3>
-
-    <p>
-      YA SALAM BUSINESS provides digital services
-      and online business support to customers.
-    </p>
-
-  </div>
+</div>
 
 </main>
 
-
 <footer>
-  © 2026 YA SALAM BUSINESS. All rights reserved.
+© 2026 YA SALAM BUSINESS. All rights reserved.
 </footer>
 
-
-<script>
-
-const API_URL =
-  "https://ya-salam-business-api.onrender.com";
-
-
-const lock =
-  document.getElementById("securityLock");
-
-const pin =
-  document.getElementById("securityPin");
-
-const button =
-  document.getElementById("unlockButton");
-
-const message =
-  document.getElementById("securityMessage");
-
-
-async function unlockWebsite(){
-
-  const enteredPin =
-    pin.value.trim();
-
-  message.textContent = "";
-
-  if(!/^[0-9]{6}$/.test(enteredPin)){
-
-    message.textContent =
-      "Enter exactly 6 digits.";
-
-    return;
-  }
-
-  button.disabled = true;
-  button.textContent = "Checking...";
-
-  try{
-
-    const response =
-      await fetch(
-        API_URL + "/api/security/unlock",
-        {
-          method:"POST",
-
-          headers:{
-            "Content-Type":"application/json"
-          },
-
-          body:JSON.stringify({
-            pin:enteredPin
-          })
-        }
-      );
-
-
-    const data =
-      await response.json();
-
-
-    if(data.success === true){
-
-      lock.style.display =
-        "none";
-
-      pin.value = "";
-
-    }else{
-
-      message.textContent =
-        data.message ||
-        "Invalid PIN.";
-
-    }
-
-  }catch(error){
-
-    console.error(error);
-
-    message.textContent =
-      "Security server connection failed.";
-
-  }
-
-  button.disabled = false;
-  button.textContent = "Unlock";
-}
-
-
-button.addEventListener(
-  "click",
-  unlockWebsite
-);
-
-
-pin.addEventListener(
-  "keydown",
-  function(event){
-
-    if(event.key === "Enter"){
-
-      unlockWebsite();
-
-    }
-
-  }
-);
-
-</script>
-
 </body>
-  </html>
+</html>
