@@ -1,1 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>YA SALAM BUSINESS | Airtime, Data & Recharge Cards</title>
+
+<meta name="description"
+content="YA SALAM BUSINESS provides airtime, mobile data and recharge card services in Nigeria. MTN, Airtel, Glo and 9mobile services.">
+
+<meta name="keywords"
+content="Ya Salam Business, airtime, data, MTN, Airtel, Glo, 9mobile, recharge card, Nigeria">
+
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#087f3f">
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4f8f5;
+  color:#14251b;
+}
+
+header{
+  background:#087f3f;
+  color:white;
+  padding:16px 20px;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 3px 12px rgba(0,0,0,.15);
+}
+
+.nav{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.logo{
+  font-size:21px;
+  font-weight:bold;
+}
+
+.logo span{
+  display:block;
+  font-size:11px;
+  opacity:.85;
+  margin-top:3px;
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  margin-left:16px;
+  font-size:14px;
+}
+
+.container{
+  width:92%;
+  max-width:1100px;
+  margin:auto;
+}
+
+.hero{
+  background:linear-gradient(135deg,#087f3f,#0ba95a);
+  color:white;
+  padding:55px 0;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.3fr .7fr;
+  gap:35px;
+  align-items:center;
+}
+
+.hero h1{
+  font-size:42px;
+  margin:0 0 15px;
+}
+
+.hero p{
+  font-size:18px;
+  line-height:1.6;
+  max-width:650px;
+}
+
+.btn{
+  display:inline-block;
+  border:0;
+  border-radius:10px;
+  padding:14px 20px;
+  font-weight:bold;
+  text-decoration:none;
+  cursor:pointer;
+  margin-top:10px;
+}
+
+.btn-light{
+  background:white;
+  color:#087f3f;
+}
+
+.btn-dark{
+  background:#075c2f;
+  color:white;
+}
+
+.phone{
+  background:white;
+  color:#14251b;
+  border-radius:25px;
+  padding:25px;
+  box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
+
+.phone-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.balance{
+  background:#087f3f;
+  color:white;
+  padding:20px;
+  border-radius:15px;
+}
+
+.balance small{
+  opacity:.8;
+}
+
+.balance strong{
+  display:block;
+  font-size:30px;
+  margin-top:8px;
+}
+
+section{
+  padding:55px 0;
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.section-title h2{
+  margin:0 0 8px;
+  font-size:30px;
+}
+
+.section-title p{
+  color:#64756a;
+}
+
+.services{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.card{
+  background:white;
+  padding:25px;
+  border-radius:18px;
+  box-shadow:0 5px 20px rgba(0,0,0,.07);
+}
+
+.card-icon{
+  font-size:35px;
+}
+
+.card h3{
+  margin-bottom:8px;
+}
+
+.order{
+  max-width:700px;
+  margin:auto;
+  background:white;
+  padding:25px;
+  border-radius:20px;
+  box-shadow:0 5px 25px rgba(0,0,0,.08);
+}
+
+.tabs{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+.tab{
+  padding:13px;
+  border:1px solid #d7e2da;
+  background:#f5f8f6;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.tab.active{
+  background:#087f3f;
+  color:white;
+  border-color:#087f3f;
+}
+
+label{
+  display:block;
+  margin:15px 0 7px;
+  font-weight:bold;
+}
+
+input,select{
+  width:100%;
+  padding:14px;
+  border:1px solid #ccd8cf;
+  border-radius:10px;
+  font-size:16px;
+  outline:none;
+}
+
+input:focus,select:focus{
+  border-color:#087f3f;
+}
+
+.amounts{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:10px;
+}
+
+.amount{
+  border:1px solid #d4dfd7;
+  background:#f8faf8;
+  padding:12px;
+  border-radius:9px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.amount.selected{
+  background:#087f3f;
+  color:white;
+  border-color:#087f3f;
+}
+
+.summary{
+  background:#f0f7f2;
+  padding:15px;
+  border-radius:12px;
+  margin-top:20px;
+}
+
+.full{
+  width:100%;
+}
+
+.wallet{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.wallet-box{
+  background:white;
+  padding:25px;
+  border-radius:18px;
+  box-shadow:0 5px 20px rgba(0,0,0,.07);
+}
+
+.wallet-balance{
+  font-size:34px;
+  font-weight:bold;
+  color:#087f3f;
+  margin:12px 0;
+}
+
+.features{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.feature{
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  text-align:center;
+  box-shadow:0 4px 15px rgba(0,0,0,.05);
+}
+
+.feature b{
+  display:block;
+  margin-top:8px;
+}
+
+.contact{
+  background:#e8f5ec;
+  border-radius:20px;
+  padding:35px;
+  text-align:center;
+}
+
+footer{
+  background:#073d20;
+  color:white;
+  padding:30px 0;
+  text-align:center;
+}
+
+footer p{
+  margin:6px 0;
+  opacity:.85;
+}
+
+.whatsapp{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  background:#25d366;
+  color:white;
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  text-decoration:none;
+  box-shadow:0 5px 20px rgba(0,0,0,.25);
+  z-index:999;
+}
+
+@media(max-width:800px){
+
+  .hero-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    font-size:34px;
+  }
+
+  .services{
+    grid-template-columns:1fr;
+  }
+
+  .features{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .wallet{
+    grid-template-columns:1fr;
+  }
+
+  nav{
+    display:none;
+  }
+}
+
+@media(max-width:500px){
+
+  .amounts{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .features{
+    grid-template-columns:1fr;
+  }
+
+  .hero{
+    padding:40px 0;
+  }
+
+  section{
+    padding:40px 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">
+      YS BUSINESS
+      <span>YA SALAM BUSINESS</span>
+    </div>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#order">Buy Airtime/Data</a>
+      <a href="#wallet">Wallet</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+  <div class="container hero-grid">
+
+    <div>
+      <h1>Airtime, Data & Recharge Cards</h1>
+
+      <p>
+        Welcome to YA SALAM BUSINESS.
+        Buy airtime, mobile data and recharge card services
+        conveniently from your phone.
+      </p>
+
+      <a href="#order" class="btn btn-light">
+        Buy Airtime / Data
+      </a>
+
+      <a href="#services" class="btn btn-dark">
+        Our Services
+      </a>
+    </div>
+
+    <div class="phone">
+
+      <div class="phone-top">
+        <strong>YA SALAM</strong>
+        <span>💳 Wallet</span>
+      </div>
+
+      <div class="balance">
+        <small>Wallet Balance</small>
+        <strong id="heroBalance">₦0.00</strong>
+      </div>
+
+      <p>
+        Fast digital services for your everyday mobile needs.
+      </p>
+
+    </div>
+
+  </div>
+</section>
+
+
+<section id="services">
+
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Our Services</h2>
+      <p>Simple and convenient digital services.</p>
+    </div>
+
+    <div class="services">
+
+      <div class="card">
+        <div class="card-icon">📱</div>
+        <h3>Airtime</h3>
+        <p>
+          Buy airtime for MTN, Airtel, Glo and 9mobile.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📶</div>
+        <h3>Mobile Data</h3>
+        <p>
+          Choose your network and data package.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🖨️</div>
+        <h3>Recharge Card</h3>
+        <p>
+          Recharge card printing and distribution services.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="order">
+
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Buy Airtime or Data</h2>
+      <p>Select your service and enter your details.</p>
+    </div>
+
+    <div class="order">
+
+      <div class="tabs">
+
+        <button
+          class="tab active"
+          id="airtimeTab"
+          onclick="setService('airtime')">
+          📱 Airtime
+        </button>
+
+        <button
+          class="tab"
+          id="dataTab"
+          onclick="setService('data')">
+          📶 Data
+        </button>
+
+      </div>
+
+
+      <label for="network">Network</label>
+
+      <select id="network">
+
+        <option value="">Select Network</option>
+        <option value="mtn">MTN</option>
+        <option value="airtel">Airtel</option>
+        <option value="glo">Glo</option>
+        <option value="9mobile">9mobile</option>
+
+      </select>
+
+
+      <label for="phone">Phone Number</label>
+
+      <input
+        id="phone"
+        type="tel"
+        inputmode="numeric"
+        maxlength="11"
+        placeholder="08012345678">
+
+
+      <label>Amount</label>
+
+      <div class="amounts">
+
+        <button class="amount" onclick="chooseAmount(100,this)">
+          ₦100
+        </button>
+
+        <button class="amount" onclick="chooseAmount(200,this)">
+          ₦200
+        </button>
+
+        <button class="amount" onclick="chooseAmount(500,this)">
+          ₦500
+        </button>
+
+        <button class="amount" onclick="chooseAmount(1000,this)">
+          ₦1,000
+        </button>
+
+        <button class="amount" onclick="chooseAmount(2000,this)">
+          ₦2,000
+        </button>
+
+        <button class="amount" onclick="chooseAmount(5000,this)">
+          ₦5,000
+        </button>
+
+      </div>
+
+
+      <label for="customAmount">
+        Custom Amount
+      </label>
+
+      <input
+        id="customAmount"
+        type="number"
+        min="50"
+        placeholder="Enter amount">
+
+
+      <div class="summary">
+
+        <strong>Order Summary</strong>
+
+        <p id="summary">
+          Select network and amount.
+        </p>
+
+      </div>
+
+
+      <button
+        class="btn btn-dark full"
+        onclick="prepareOrder()">
+
+        Continue
+
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="wallet">
+
+  <div class="container">
+
+    <div class="section-title">
+      <h2>My Wallet</h2>
+      <p>Your wallet will be used for digital service purchases.</p>
+    </div>
+
+    <div class="wallet">
+
+      <div class="wallet-box">
+
+        <h3>💰 Wallet Balance</h3>
+
+        <div class="wallet-balance" id="walletBalance">
+          ₦0.00
+        </div>
+
+        <button
+          class="btn btn-dark"
+          onclick="fundWallet()">
+
+          💳 Fund Wallet
+
+        </button>
+
+      </div>
+
+
+      <div class="wallet-box">
+
+        <h3>📋 Transactions</h3>
+
+        <p>
+          Your airtime, data and wallet transactions
+          will appear here after backend integration.
+        </p>
+
+        <button
+          class="btn btn-dark"
+          onclick="showTransactions()">
+
+          View History
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section>
+
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Why YA SALAM BUSINESS?</h2>
+    </div>
+
+    <div class="features">
+
+      <div class="feature">
+        ⚡
+        <b>Fast Service</b>
+        Quick digital transactions.
+      </div>
+
+      <div class="feature">
+        🔐
+        <b>Secure</b>
+        Your transactions are protected.
+      </div>
+
+      <div class="feature">
+        📱
+        <b>Mobile Friendly</b>
+        Designed for Android and mobile users.
+      </div>
+
+      <div class="feature">
+        💬
+        <b>Support</b>
+        Contact us through WhatsApp.
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="contact">
+
+  <div class="container">
+
+    <div class="contact">
+
+      <h2>Need Help?</h2>
+
+      <p>
+        Contact YA SALAM BUSINESS for support
+        with airtime, data and recharge card services.
+      </p>
+
+      <a
+        class="btn btn-dark"
+        href="https://wa.me/2347069205190"
+        target="_blank">
+
+        💬 Chat on WhatsApp
+
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+  <div class="container">
+
+    <strong>YA SALAM BUSINESS</strong>
+
+    <p>
+      Airtime • Data • Recharge Cards
+    </p>
+
+    <p>
+      © 2026 YA SALAM BUSINESS. All rights reserved.
+    </p>
+
+  </div>
+
+</footer>
+
+
+<a
+  class="whatsapp"
+  href="https://wa.me/2347069205190"
+  target="_blank"
+  aria-label="WhatsApp">
+
+  💬
+
+</a>
+
+
+<script>
+
+let service = "airtime";
+let selectedAmount = 0;
+
+
+function setService(type){
+
+  service = type;
+
+  document
+    .getElementById("airtimeTab")
+    .classList
+    .toggle("active", type === "airtime");
+
+  document
+    .getElementById("dataTab")
+    .classList
+    .toggle("active", type === "data");
+
+  updateSummary();
+}
+
+
+function chooseAmount(amount, button){
+
+  selectedAmount = amount;
+
+  document
+    .querySelectorAll(".amount")
+    .forEach(function(item){
+
+      item.classList.remove("selected");
+
+    });
+
+  button.classList.add("selected");
+
+  document.getElementById("customAmount").value = "";
+
+  updateSummary();
+}
+
+
+document
+  .getElementById("customAmount")
+  .addEventListener("input", function(){
+
+    if(this.value){
+
+      selectedAmount = Number(this.value);
+
+      document
+        .querySelectorAll(".amount")
+        .forEach(function(item){
+
+          item.classList.remove("selected");
+
+        });
+
+    }
+
+    updateSummary();
+
+  });
+
+
+document
+  .getElementById("network")
+  .addEventListener("change", updateSummary);
+
+
+document
+  .getElementById("phone")
+  .addEventListener("input", updateSummary);
+
+
+function updateSummary(){
+
+  const network =
+    document.getElementById("network").value;
+
+  const phone =
+    document.getElementById("phone").value;
+
+  const custom =
+    Number(document.getElementById("customAmount").value || 0);
+
+  const amount =
+    custom || selectedAmount;
+
+  const type =
+    service === "airtime" ? "Airtime" : "Data";
+
+  if(!network || !phone || !amount){
+
+    document.getElementById("summary").textContent =
+      "Select network, phone number and amount.";
+
+    return;
+
+  }
+
+  document.getElementById("summary").textContent =
+    type +
+    " • " +
+    network.toUpperCase() +
+    " • " +
+    phone +
+    " • ₦" +
+    amount.toLocaleString();
+
+}
+
+
+function prepareOrder(){
+
+  const network =
+    document.getElementById("network").value;
+
+  const phone =
+    document.getElementById("phone").value;
+
+  const custom =
+    Number(document.getElementById("customAmount").value || 0);
+
+  const amount =
+    custom || selectedAmount;
+
+  if(!network){
+
+    alert("Please select your network.");
+
+    return;
+
+  }
+
+  if(!/^0[0-9]{10}$/.test(phone)){
+
+    alert("Please enter a valid 11-digit Nigerian phone number.");
+
+    return;
+
+  }
+
+  if(amount < 50){
+
+    alert("Minimum amount is ₦50.");
+
+    return;
+
+  }
+
+  alert(
+    "Order ready.\n\n" +
+    "Service: " +
+    (service === "airtime" ? "Airtime" : "Data") +
+    "\nNetwork: " +
+    network.toUpperCase() +
+    "\nPhone: " +
+    phone +
+    "\nAmount: ₦" +
+    amount.toLocaleString() +
+    "\n\nBackend payment/provider connection will process this order."
+  );
+
+}
+
+
+function fundWallet(){
+
+  alert(
+    "Wallet funding will be connected to Paystack through the secure backend."
+  );
+
+}
+
+
+function showTransactions(){
+
+  alert(
+    "Transaction history will appear here after backend integration."
+  );
+
+}
+
+</script>
+
+</body>
+  </html>
