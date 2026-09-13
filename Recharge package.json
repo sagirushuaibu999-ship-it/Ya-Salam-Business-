@@ -1,1 +1,13 @@
-
+{
+  "name": "ya-salam-business-recharge",
+  "version": "1.0.0",
+  "description": "YA SALAM BUSINESS Real Airtime and Data Recharge API",
+  "main": "Server.js",
+  "scripts": {
+    "start": "node Server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  }
+}
