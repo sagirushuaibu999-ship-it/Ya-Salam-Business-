@@ -1,1 +1,812 @@
-699
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="google-site-verification" content="w3i9kZ9THgrpdJ6hovE1euO1AB46XBuARDOByaH4SQU">
+
+<title>YA SALAM BUSINESS | Digital Services in Nigeria</title>
+
+<meta name="description" content="YA SALAM BUSINESS provides digital services, recharge card printing, online business support and customer services in Nigeria.">
+
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://ya-salam-business-1iy2.onrender.com/">
+
+<meta name="theme-color" content="#087d3d">
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f3f8f5;
+  color:#17231c;
+}
+
+/* PASSWORD LOCK */
+
+#securityGate{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  background:linear-gradient(135deg,#063d70,#087d3d);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.lockBox{
+  width:100%;
+  max-width:420px;
+  background:#fff;
+  border-radius:25px;
+  padding:30px 24px;
+  text-align:center;
+  box-shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+.lockLogo{
+  width:75px;
+  height:75px;
+  margin:auto;
+  border-radius:20px;
+  background:linear-gradient(135deg,#087d3d,#064a86);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  font-weight:900;
+}
+
+.lockBox h2{
+  color:#063d70;
+  margin:15px 0 8px;
+}
+
+.lockBox p{
+  color:#667085;
+}
+
+#gatePassword{
+  width:100%;
+  padding:16px;
+  border:1px solid #d5e1ea;
+  border-radius:12px;
+  font-size:20px;
+  text-align:center;
+  letter-spacing:6px;
+  outline:none;
+}
+
+#gatePassword:focus{
+  border-color:#087d3d;
+}
+
+#gateBtn{
+  width:100%;
+  padding:15px;
+  margin-top:12px;
+  border:0;
+  border-radius:12px;
+  background:#087d3d;
+  color:#fff;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+#gateBtn:disabled{
+  opacity:.6;
+}
+
+#gateStatus{
+  min-height:22px;
+  margin-top:12px;
+  color:#c62828;
+  font-size:14px;
+}
+
+/* HEADER */
+
+header{
+  background:#fff;
+  padding:14px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  box-shadow:0 2px 12px rgba(0,0,0,.08);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo{
+  width:58px;
+  height:58px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#087d3d,#064a86);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  font-weight:900;
+}
+
+.brand strong{
+  font-size:20px;
+  color:#073d70;
+}
+
+.brand span{
+  display:block;
+  color:#087d3d;
+  font-weight:bold;
+  font-size:12px;
+  letter-spacing:2px;
+}
+
+.login-top{
+  background:#087d3d;
+  color:#fff;
+  padding:12px 18px;
+  border-radius:25px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+/* HERO */
+
+.hero{
+  background:linear-gradient(135deg,#063d70,#006c9e 55%,#087d3d);
+  color:#fff;
+  padding:45px 18px 55px;
+}
+
+.hero-inner{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:35px;
+  align-items:center;
+}
+
+.profile{
+  text-align:center;
+}
+
+.profile img{
+  width:220px;
+  height:220px;
+  border-radius:50%;
+  object-fit:cover;
+  object-position:center 25%;
+  border:7px solid #fff;
+  box-shadow:0 12px 35px rgba(0,0,0,.3);
+}
+
+.owner{
+  display:inline-block;
+  margin-top:-8px;
+  background:#08a957;
+  padding:11px 22px;
+  border-radius:25px;
+  font-weight:bold;
+}
+
+.hero h1{
+  font-size:48px;
+  line-height:1.05;
+  margin:12px 0;
+}
+
+.hero h1 span{
+  color:#37d66f;
+}
+
+.hero p{
+  font-size:18px;
+  line-height:1.6;
+}
+
+.features{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:25px;
+}
+
+.feature{
+  background:rgba(255,255,255,.11);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:14px;
+  padding:14px;
+  text-align:center;
+  font-size:13px;
+}
+
+/* LOGIN */
+
+.card{
+  background:#fff;
+  border-radius:22px;
+  padding:28px;
+  box-shadow:0 12px 35px rgba(0,0,0,.14);
+  color:#17324d;
+}
+
+.card h2{
+  margin-top:0;
+  color:#073d70;
+}
+
+.input{
+  width:100%;
+  padding:15px;
+  margin:8px 0;
+  border:1px solid #d5e1ea;
+  border-radius:12px;
+  font-size:16px;
+}
+
+.password-wrap{
+  position:relative;
+}
+
+.password-wrap button{
+  position:absolute;
+  right:8px;
+  top:15px;
+  border:0;
+  background:transparent;
+  font-size:18px;
+  cursor:pointer;
+}
+
+.btn{
+  width:100%;
+  padding:15px;
+  border:0;
+  border-radius:12px;
+  background:#087d3d;
+  color:#fff;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+/* SERVICES */
+
+.services{
+  max-width:1100px;
+  margin:auto;
+  padding:35px 18px;
+}
+
+.services h2{
+  text-align:center;
+  color:#073d70;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
+
+.service{
+  background:#fff;
+  border-radius:18px;
+  padding:22px;
+  box-shadow:0 5px 18px rgba(0,0,0,.08);
+}
+
+.service a{
+  display:block;
+  margin-top:14px;
+  padding:13px;
+  border-radius:10px;
+  background:#087d3d;
+  color:#fff;
+  text-align:center;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+/* FOOTER */
+
+footer{
+  background:#063d70;
+  color:#fff;
+  padding:25px 18px;
+  text-align:center;
+  font-size:13px;
+  line-height:1.8;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+  .hero-inner{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    font-size:38px;
+  }
+
+  .features{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  header{
+    padding:10px 12px;
+  }
+
+  .brand strong{
+    font-size:16px;
+  }
+
+  .logo{
+    width:50px;
+    height:50px;
+  }
+
+  .login-top{
+    padding:10px 13px;
+    font-size:13px;
+  }
+
+  .profile img{
+    width:190px;
+    height:190px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD LOCK -->
+
+<div id="securityGate">
+
+  <div class="lockBox">
+
+    <div class="lockLogo">
+      YS
+    </div>
+
+    <h2>YA SALAM BUSINESS</h2>
+
+    <p>
+      🔐 Enter your 6-digit password to continue
+    </p>
+
+    <input
+      id="gatePassword"
+      type="password"
+      inputmode="numeric"
+      maxlength="6"
+      placeholder="Password"
+      autocomplete="current-password">
+
+    <button
+      id="gateBtn"
+      type="button"
+      onclick="unlockWebsite()">
+      Unlock Website
+    </button>
+
+    <div id="gateStatus"></div>
+
+    <p style="font-size:12px;">
+      Secure Protected Access
+    </p>
+
+  </div>
+
+</div>
+
+<!-- WEBSITE -->
+
+<div id="websiteContent" style="display:none;">
+
+  <!-- HEADER -->
+
+  <header>
+
+    <div class="brand">
+
+      <div class="logo">
+        YS
+      </div>
+
+      <div>
+        <strong>YA SALAM</strong>
+        <span>BUSINESS</span>
+      </div>
+
+    </div>
+
+    <a class="login-top" href="#login">
+      🔐 Account
+    </a>
+
+  </header>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-inner">
+
+      <div>
+
+        <div class="profile">
+
+          <img
+            src="Profile.jpg"
+            alt="YA SALAM BUSINESS"
+            class="profile-photo">
+
+          <div class="owner">
+            Sagiru Shuaibu · Founder & Owner
+          </div>
+
+        </div>
+
+      </div>
+
+      <div>
+
+        <h1>
+          YA SALAM <span>BUSINESS</span>
+        </h1>
+
+        <p>
+          Reliable digital services, online business support
+          and customer solutions in Nigeria.
+        </p>
+
+        <div class="features">
+
+          <div class="feature">
+            🔐 Secure
+          </div>
+
+          <div class="feature">
+            ⚡ Fast
+          </div>
+
+          <div class="feature">
+            🇳🇬 Nigeria
+          </div>
+
+          <div class="feature">
+            💼 Business
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- LOGIN -->
+
+  <section
+    id="login"
+    style="max-width:1100px;margin:30px auto;padding:0 18px;">
+
+    <div class="card">
+
+      <h2>
+        🔐 Account Login
+      </h2>
+
+      <input
+        class="input"
+        type="email"
+        value="sagirushuaibu999@gmail.com"
+        placeholder="Email">
+
+      <div class="password-wrap">
+
+        <input
+          id="accountPassword"
+          class="input"
+          type="password"
+          placeholder="Password">
+
+        <button
+          type="button"
+          onclick="togglePassword()">
+          👁️
+        </button>
+
+      </div>
+
+      <button
+        class="btn"
+        type="button">
+        Login
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- SERVICES -->
+
+  <section class="services">
+
+    <h2>
+      Our Digital Services
+    </h2>
+
+    <div class="grid">
+
+      <div class="service">
+
+        <h3>
+          🖨️ Print Recharge Card Online
+        </h3>
+
+        <p>
+          Recharge card printing and digital recharge services.
+        </p>
+
+        <a
+          href="https://printrechargecardonline.com/login"
+          target="_blank"
+          rel="noopener">
+          Open Service
+        </a>
+
+      </div>
+
+      <div class="service">
+
+        <h3>
+          📱 Ikilass Digital Hub
+        </h3>
+
+        <p>
+          Digital services and customer support.
+        </p>
+
+        <a
+          href="https://ikilassdigitalhub.com.ng/login"
+          target="_blank"
+          rel="noopener">
+          Open Service
+        </a>
+
+      </div>
+
+      <div class="service">
+
+        <h3>
+          📄 RecordDocs
+        </h3>
+
+        <p>
+          Digital document and record services.
+        </p>
+
+        <a
+          href="https://recorddocs.net/register?agent=yahaya6843"
+          target="_blank"
+          rel="noopener">
+          Open Service
+        </a>
+
+      </div>
+
+      <div class="service">
+
+        <h3>
+          💳 Recharge Card Dealers
+        </h3>
+
+        <p>
+          Information and support for recharge card dealers.
+        </p>
+
+        <a
+          href="https://www.rechargecarddealers.com/public/home"
+          target="_blank"
+          rel="noopener">
+          Open Service
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    YA SALAM BUSINESS · Sagiru Shuaibu · Founder & Owner
+
+    <br>
+
+    Tudun Wada LGA, Alafarinruwa, Kano State
+
+    <br>
+
+    WhatsApp: 07069205190
+
+    <br>
+
+    Email: sagirushuaibu999@gmail.com
+
+    <br>
+
+    © 2026 YA SALAM BUSINESS. All rights reserved.
+
+  </footer>
+
+</div>
+
+<script>
+
+const API =
+"https://ya-salam-business-api.onrender.com";
+
+async function unlockWebsite(){
+
+  const input =
+    document.getElementById("gatePassword");
+
+  const button =
+    document.getElementById("gateBtn");
+
+  const status =
+    document.getElementById("gateStatus");
+
+  const pin =
+    input.value.trim();
+
+  if(!/^\d{6}$/.test(pin)){
+
+    status.textContent =
+      "Enter the 6-digit password.";
+
+    return;
+
+  }
+
+  button.disabled = true;
+
+  button.textContent =
+    "Checking...";
+
+  status.textContent = "";
+
+  try{
+
+    const response =
+      await fetch(
+        API + "/api/security/unlock",
+        {
+          method:"POST",
+
+          headers:{
+            "Content-Type":
+              "application/json"
+          },
+
+          body:JSON.stringify({
+            pin:pin
+          })
+        }
+      );
+
+    if(!response.ok){
+      throw new Error("Server error");
+    }
+
+    const data =
+      await response.json();
+
+    if(data.success){
+
+      document.getElementById(
+        "securityGate"
+      ).style.display = "none";
+
+      document.getElementById(
+        "websiteContent"
+      ).style.display = "block";
+
+      sessionStorage.setItem(
+        "ysb_unlocked",
+        "yes"
+      );
+
+    }else{
+
+      status.textContent =
+        data.message ||
+        "Incorrect password.";
+
+      input.value = "";
+
+      input.focus();
+
+    }
+
+  }catch(error){
+
+    status.textContent =
+      "Unable to connect to secure server.";
+
+  }
+
+  button.disabled = false;
+
+  button.textContent =
+    "Unlock Website";
+
+}
+
+document
+  .getElementById("gatePassword")
+  .addEventListener(
+    "keydown",
+    function(event){
+
+      if(event.key === "Enter"){
+        unlockWebsite();
+      }
+
+    }
+  );
+
+function togglePassword(){
+
+  const password =
+    document.getElementById(
+      "accountPassword"
+    );
+
+  if(password.type === "password"){
+
+    password.type = "text";
+
+  }else{
+
+    password.type = "password";
+
+  }
+
+}
+
+</script>
+
+</body>
+  </html>
