@@ -28,7 +28,7 @@ body{
   color:#17231c;
 }
 
-/* ================= PASSWORD LOCK ================= */
+/* PASSWORD LOCK */
 
 #securityGate{
   position:fixed;
@@ -113,7 +113,7 @@ body{
   font-size:14px;
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 
 header{
   background:#fff;
@@ -121,7 +121,6 @@ header{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:15px;
   box-shadow:0 2px 12px rgba(0,0,0,.08);
 }
 
@@ -157,7 +156,7 @@ header{
   letter-spacing:2px;
 }
 
-/* ================= HERO ================= */
+/* HERO */
 
 .hero{
   background:linear-gradient(135deg,#063d70,#006c9e 55%,#087d3d);
@@ -228,7 +227,7 @@ header{
   font-size:13px;
 }
 
-/* ================= SERVICES ================= */
+/* SERVICES */
 
 .services{
   max-width:1100px;
@@ -260,7 +259,6 @@ header{
 .service h3{
   color:#073d70;
   margin-top:0;
-  margin-bottom:10px;
 }
 
 .service p{
@@ -284,7 +282,7 @@ header{
   background:#066b34;
 }
 
-/* ================= FOOTER ================= */
+/* FOOTER */
 
 footer{
   background:#063d70;
@@ -295,7 +293,7 @@ footer{
   line-height:1.8;
 }
 
-/* ================= MOBILE ================= */
+/* MOBILE */
 
 @media(max-width:800px){
 
@@ -337,40 +335,12 @@ footer{
     font-size:25px;
   }
 }
-
-@media(max-width:420px){
-
-  .hero{
-    padding:35px 14px 45px;
-  }
-
-  .hero h1{
-    font-size:32px;
-  }
-
-  .hero p{
-    font-size:16px;
-  }
-
-  .features{
-    gap:8px;
-  }
-
-  .feature{
-    padding:12px 8px;
-    font-size:12px;
-  }
-
-  .service{
-    padding:18px;
-  }
-}
 </style>
 </head>
 
 <body>
 
-<!-- ================= PASSWORD LOCK ================= -->
+<!-- PASSWORD LOCK -->
 
 <div id="securityGate">
 
@@ -411,8 +381,7 @@ footer{
 
 </div>
 
-
-<!-- ================= WEBSITE ================= -->
+<!-- WEBSITE -->
 
 <div id="websiteContent" style="display:none;">
 
@@ -459,7 +428,6 @@ footer{
 
       </div>
 
-
       <div>
 
         <h1>
@@ -498,7 +466,7 @@ footer{
   </section>
 
 
-  <!-- ================= SERVICES ================= -->
+  <!-- SERVICES -->
 
   <section class="services">
 
@@ -508,8 +476,7 @@ footer{
 
     <div class="grid">
 
-
-      <!-- SERVICE 1 -->
+      <!-- PRINT RECHARGE CARD -->
 
       <div class="service">
 
@@ -531,7 +498,7 @@ footer{
       </div>
 
 
-      <!-- SERVICE 2 -->
+      <!-- IKILASS -->
 
       <div class="service">
 
@@ -553,7 +520,7 @@ footer{
       </div>
 
 
-      <!-- SERVICE 3 -->
+      <!-- RECORDDOCS -->
 
       <div class="service">
 
@@ -575,7 +542,7 @@ footer{
       </div>
 
 
-      <!-- SERVICE 4 -->
+      <!-- RECHARGE CARD DEALERS -->
 
       <div class="service">
 
@@ -597,7 +564,7 @@ footer{
       </div>
 
 
-      <!-- SERVICE 5 -->
+      <!-- ZEEDATA -->
 
       <div class="service">
 
@@ -619,12 +586,56 @@ footer{
       </div>
 
 
+      <!-- ALRAHUZDATA -->
+
+      <div class="service">
+
+        <h3>
+          📡 AlrahuzData
+        </h3>
+
+        <p>
+          Access data, airtime and digital services through AlrahuzData.
+        </p>
+
+        <a
+          href="https://alrahuzdata.com.ng/login/"
+          target="_blank"
+          rel="noopener noreferrer">
+          Open AlrahuzData
+        </a>
+
+      </div>
+
+
+      <!-- OPAY -->
+
+      <div class="service">
+
+        <h3>
+          💰 OPay
+        </h3>
+
+        <p>
+          Access OPay's official digital financial services.
+        </p>
+
+        <a
+          href="https://www.opayweb.com/"
+          target="_blank"
+          rel="noopener noreferrer">
+          Open OPay
+        </a>
+
+      </div>
+
+
     </div>
 
   </section>
 
 
-  <!-- ================= FOOTER ================= -->
+  <!-- FOOTER -->
 
   <footer>
 
@@ -651,7 +662,7 @@ footer{
 </div>
 
 
-<!-- ================= SECURITY SCRIPT ================= -->
+<!-- SECURITY SCRIPT -->
 
 <script>
 
@@ -733,17 +744,14 @@ async function unlockWebsite(){
         "securityGate"
       ).style.display = "none";
 
-
       document.getElementById(
         "websiteContent"
       ).style.display = "block";
-
 
       sessionStorage.setItem(
         "ysb_unlocked",
         "yes"
       );
-
 
     }else{
 
@@ -792,4 +800,4 @@ document
 </script>
 
 </body>
-  </html>
+</html>
